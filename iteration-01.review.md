@@ -1,6 +1,6 @@
 # PLANNABLE
 
-## Iteration XX - Review & Retrospect
+## Iteration 01 - Review & Retrospect
 
  * When: October 13, 2017
  * Where: Bahen 2nd Floor
