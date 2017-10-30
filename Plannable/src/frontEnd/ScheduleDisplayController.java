@@ -32,7 +32,7 @@ public class ScheduleDisplayController extends Controller {
 	@FXML
 	public void initialize() {
 		 for (int x = 1 ; x < 8; x++) {
-		        for (int y = 1 ; y < 24 ; y++) {
+		        for (int y = 1 ; y < 48 ; y++) {
 		            Region cell = new Region();
 		            scheduleGrid.getChildren().add(cell);
 		            cell.getStyleClass().add("inactiveCell");
