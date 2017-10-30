@@ -1,4 +1,4 @@
-package tasks;
+package backEnd.tasks;
 
 public class Courses extends Task {
 	private String courseName;
