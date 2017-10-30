@@ -1,4 +1,4 @@
-package tasks;
+package backEnd.tasks;
 
 public class Commute extends Task {
 	private int priority;

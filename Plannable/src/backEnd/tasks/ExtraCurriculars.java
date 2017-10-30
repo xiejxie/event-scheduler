@@ -1,14 +1,15 @@
-package tasks;
+package backEnd.tasks;
 
-public class Courses extends Task {
-	private String courseName;
+public class ExtraCurriculars extends Task {
+	private String activityName;
 	private int priority;
 	private String startTime;
 	private String endTime;
 	private char day;
 	
-	public Courses (String name, int p, String sT, String eT, char d){
-		courseName = name;
+	
+	public ExtraCurriculars(String name, int p, String sT, String eT, char d){
+		activityName = name;
 		priority = p;
 		startTime = sT;
 		endTime = eT;
@@ -22,5 +23,4 @@ public class Courses extends Task {
 	public String getStartTime(){
 		return startTime;
 	}
-	
 }

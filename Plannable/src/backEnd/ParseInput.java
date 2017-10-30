@@ -1,6 +1,8 @@
-import tasks.Commute;
-import tasks.Courses;
-import tasks.Task;
+package backEnd;
+
+import backEnd.tasks.Commute;
+import backEnd.tasks.Courses;
+import backEnd.tasks.Task;
 
 public class ParseInput {
 

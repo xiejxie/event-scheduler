@@ -1,12 +1,14 @@
-package tasks;
+package backEnd.tasks;
 
-public class FreeTimeTask extends Task {
+import backEnd.tasks.Task;
+
+public class StudyTimeTask extends Task {
 
 	private int priority;
 	private String startTime;
 	private String endTime;
 	
-	public FreeTimeTask(int p, String sT, String eT){
+	public StudyTimeTask(int p, String sT, String eT){
 		priority = p;
 		sT = startTime;
 		eT = endTime;
