@@ -10,4 +10,12 @@ public class Commute extends Task {
 		startTime = sT;
 		endTime = eT;
 	}
+	
+	public String getEndTime(){
+		return endTime;
+	}
+	
+	public String getStartTime(){
+		return startTime;
+	}
 }

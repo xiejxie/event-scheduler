@@ -1,13 +1,17 @@
 package tasks;
 
-public class Sleep extends Task {
-	private int amount;
+public class FreeTimeTask extends Task {
+
+	private int priority;
 	private String startTime;
 	private String endTime;
 	
-	public Sleep(int sleepTime){
-		amount = sleepTime;
+	public FreeTimeTask(int p, String sT, String eT){
+		priority = p;
+		sT = startTime;
+		eT = endTime;
 	}
+	
 	public String getEndTime(){
 		return endTime;
 	}
