@@ -1,0 +1,35 @@
+@import url("mainApp.css");
+
+.activeCell {
+	-fx-background-color: rgb(14, 122, 254, 1) !important;
+}
+
+.activeRow {
+	-fx-border-color: rgb(14,122,254,1);
+	-fx-border-style: solid;
+	-fx-border-width: 2 0 0 0;
+	-fx-border-insets: 0 -5 0 -5;
+}
+
+.calendarDateNumber{
+	-fx-font-size: 20;
+}
+
+.calendarTime{
+	-fx-text-fill: grey;
+}
+
+.inactiveCell {
+	-fx-cursor: hand;
+	-fx-background-color: #fcfcfc;
+}
+
+.inactiveCell:hover {
+	-fx-background-color: rgb(14, 122, 254, 0.2);
+}
+
+.leftPane {
+	-fx-border-style: solid;
+	-fx-border-width: 0 5 0 0;
+	-fx-border-color: #f8f8f8;
+}

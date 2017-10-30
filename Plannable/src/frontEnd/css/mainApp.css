@@ -1,21 +1,21 @@
 @font-face {
 	font-family: 'SF UI Display Thin';
-	src: url('../../src/frontEnd/fonts/SF-UI-Display-Thin.otf');
+	src: url('../../../src/frontEnd/fonts/SF-UI-Display-Thin.otf');
 }
 
 @font-face {
 	font-family: 'SF UI Text Regular';
-	src: url('../../src/frontEnd/fonts/SF-UI-Text-Regular.otf');
+	src: url('../../../src/frontEnd/fonts/SF-UI-Text-Regular.otf');
 }
 
 @font-face {
 	font-family: 'SF UI Text Medium';
-	src: url('../../src/frontEnd/fonts/SF-UI-Text-Medium.otf');
+	src: url('../../../src/frontEnd/fonts/SF-UI-Text-Medium.otf');
 }
 
 @font-face {
 	font-family: 'SF UI Text Bold';
-	src: url('../../src/frontEnd/fonts/SF-UI-Text-Bold.otf');
+	src: url('../../../src/frontEnd/fonts/SF-UI-Text-Bold.otf');
 }
 
 .subTitleThick {

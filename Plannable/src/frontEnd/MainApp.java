@@ -1,62 +1,59 @@
 package frontEnd;
 
-import java.io.IOException;
-
+import java.util.HashMap;
+import java.util.Map;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
-
-    private Stage primaryStage;
-    private BorderPane rootLayout;
-
+	/**
+	 * The window for the application
+	 */
+    private static Stage primaryStage;
+    /**
+     * Maps a key (currently of the format: <<NameofCallingClass>>+<<NameofButtonBeingCalled>>)
+     * to a Scene object. It's objective is to organize the paths between different scenes.
+     */
+    private static Map<String, Scene> sceneOrderings = new HashMap<String, Scene>();
+    
+    /**
+     * Start the application
+     */
     @Override
     public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Plannable");
-
+        MainApp.primaryStage = primaryStage;
+        MainApp.primaryStage.setTitle("Plannable");
         setUpLayout();
     }
 
     /**
-     * Initializes the root layout.
-     * 
+     * Initializes the map and sets the initial scene
      */
     public void setUpLayout() {
-        rootLayout = new BorderPane();
-        try {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainApp.class.getResource("./calendarSelect.fxml"));
-        rootLayout = (BorderPane) loader.load();
-        Scene scene = new Scene(rootLayout, 1200, 800);
-        primaryStage.setScene(scene);
+        ScheduleSelectController csc = new ScheduleSelectController();
+        ScheduleDisplayController cdc = new ScheduleDisplayController();
+        sceneOrderings.put("CalendarSelectControllerNext", cdc.getScene("./ScheduleDisplay.fxml"));
+        
+        Scene startScene = csc.getScene("./ScheduleSelect.fxml");
+        sceneOrderings.put("CalendarDisplayControllerBack", startScene);
+        primaryStage.setScene(startScene);
         primaryStage.show();
-        calendarSelectController csc = new calendarSelectController();
-        } catch (IOException e) {
-        	e.printStackTrace();
-        } 
+    }
+
+    /**
+     * Change from one scene to the next
+     * @param key	the key to the sceneOrderings dictionary to return a Scene object
+     */
+    public static void switchScene(String key) {
+    	Scene nextScene = sceneOrderings.get(key);
+    	primaryStage.setScene(nextScene);
     }
     
     /**
-     * Switch scenes
+     * Launch
+     * @param args
      */
-    public void switchScenes(Scene nextScene) {
-    	primaryStage.setScene(nextScene);
-    }
-
-    /**
-     * Returns the main stage.
-     * @return
-     */
-    public Stage getPrimaryStage() {
-        return primaryStage;
-    }
-
     public static void main(String[] args) {
         launch(args);
     }
