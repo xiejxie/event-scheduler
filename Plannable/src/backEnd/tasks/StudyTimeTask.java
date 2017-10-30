@@ -1,14 +1,17 @@
 package backEnd.tasks;
 
-public class Commute extends Task {
+import backEnd.tasks.Task;
+
+public class StudyTimeTask extends Task {
+
 	private int priority;
 	private String startTime;
 	private String endTime;
 	
-	public Commute (int p, String sT, String eT){
+	public StudyTimeTask(int p, String sT, String eT){
 		priority = p;
-		startTime = sT;
-		endTime = eT;
+		sT = startTime;
+		eT = endTime;
 	}
 	
 	public String getEndTime(){
