@@ -20,15 +20,9 @@ public class StartingPoint {
 			createAdd.createCourseAddToCal(currCourse);
 			currCourse = in.nextLine();
 		}
-		System.out.println(Arrays.toString(week.monTasks.toArray()));
-		System.out.println(Arrays.toString(week.tuesTasks.toArray()));
-		System.out.println(Arrays.toString(week.wedTasks.toArray()));
-		System.out.println(Arrays.toString(week.thursTasks.toArray()));
-		System.out.println(Arrays.toString(week.friTasks.toArray()));
-
-
-				
+		System.out.println("Entering courses.......");
+		System.out.println("Please enter your commute time in minutes");
+		int commuteTime = in.nextInt();
+		createAdd.createCommuteAddToCal(commuteTime);
 	}
-	
-	
 }

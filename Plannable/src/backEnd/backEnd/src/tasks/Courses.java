@@ -14,4 +14,13 @@ public class Courses extends Task {
 		endTime = eT;
 		day = d;
 	}
+	
+	public String getEndTime(){
+		return endTime;
+	}
+	
+	public String getStartTime(){
+		return startTime;
+	}
+	
 }
