@@ -1,0 +1,53 @@
+@font-face {
+	font-family: 'SF UI Display Thin';
+	src: url('../../../src/frontEnd/fonts/SF-UI-Display-Thin.otf');
+}
+
+@font-face {
+	font-family: 'SF UI Text Regular';
+	src: url('../../../src/frontEnd/fonts/SF-UI-Text-Regular.otf');
+}
+
+@font-face {
+	font-family: 'SF UI Text Medium';
+	src: url('../../../src/frontEnd/fonts/SF-UI-Text-Medium.otf');
+}
+
+@font-face {
+	font-family: 'SF UI Text Bold';
+	src: url('../../../src/frontEnd/fonts/SF-UI-Text-Bold.otf');
+}
+
+.subTitleThick {
+	-fx-font-family: 'SF UI Text Bold';
+	-fx-text-fill: rgb(14, 122, 254, 1);
+}
+
+.navButton {
+	-fx-cursor: hand;
+	-fx-font-family: 'SF UI Text Bold';
+	-fx-text-fill: rgb(14, 122, 254, 1);
+	-fx-background-color: none;
+}
+
+.navButton:hover {
+	-fx-text-fill: rgb(14, 122, 254, 0.6);
+}
+
+.root {
+	-fx-border-style: solid;
+	-fx-border-width: 5 0 0 0;
+	-fx-border-color: #f8f8f8;
+	-fx-font-family: 'SF UI Text Medium';
+	-fx-background-color: white;
+}
+
+.titleThin {
+	-fx-font-family: 'SF UI Display Thin';
+	-fx-font-size: 30;
+}
+
+.titleThick {
+	-fx-font-size: 30;
+	-fx-font-family: 'SF UI Text Medium'
+}

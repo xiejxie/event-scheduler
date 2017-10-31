@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@css/calendarSelect.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontEnd.ScheduleSelectController">
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="230.0" spacing="15.0" styleClass="leftPane" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane>
+               <right>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@icons/003-down-arrow.png" />
+                     </image>
+                  </ImageView>
+               </right>
+               <center>
+                  <Label alignment="CENTER" contentDisplay="CENTER" styleClass="calendarDateDay" text="CALENDAR" BorderPane.alignment="CENTER_LEFT">
+                     <tooltip>
+                        <Tooltip text="Select" />
+                     </tooltip></Label>
+               </center>
+            </BorderPane>
+            <BorderPane layoutX="25.0" layoutY="25.0">
+               <right>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@icons/001-cross.png" />
+                     </image>
+                  </ImageView>
+               </right>
+               <center>
+                  <Label alignment="CENTER" contentDisplay="CENTER" styleClass="calendarDateDay" text="TASKS" BorderPane.alignment="CENTER_LEFT" />
+               </center>
+            </BorderPane>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+         <top>
+            <BorderPane styleClass="rightPane" BorderPane.alignment="CENTER">
+               <right>
+                  <BorderPane BorderPane.alignment="CENTER">
+                     <left>
+                        <Label styleClass="subTitleThick" text="PLANNABLE TIME" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="Metropolis-Regular" size="15.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets right="10.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </left>
+                     <right>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@icons/001-cross.png" />
+                           </image>
+                        </ImageView>
+                     </right>
+                  </BorderPane>
+               </right>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+               </padding>
+               <left>
+                  <HBox spacing="10.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="titleThin" styleClass="titleThin" text="2017" />
+                        <Label styleClass="titleThick" text="NOVEMBER" />
+                     </children>
+                  </HBox>
+               </left>
+            </BorderPane>
+         </top>
+         <center>
+            <GridPane fx:id="scheduleGrid" alignment="CENTER" hgap="10.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints fx:id="monday" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="calendarDateNumber" text="10" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="21.0" styleClass="calendarDateDay" text="MON" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="40.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="160.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="calendarDateNumber" text="09" textFill="RED" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="21.0" styleClass="calendarDateDay" text="SUN" textFill="RED" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="40.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="calendarDateNumber" text="13" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="21.0" styleClass="calendarDateDay" text="THURS" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="40.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="610.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="calendarDateNumber" text="11" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="21.0" styleClass="calendarDateDay" text="TUES" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="40.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="310.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="calendarDateNumber" text="12" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="21.0" styleClass="calendarDateDay" text="WED" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="40.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="438.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="7">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="calendarDateNumber" text="15" textFill="RED" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="21.0" styleClass="calendarDateDay" text="SAT" textFill="RED" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="40.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="652.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="calendarDateNumber" text="14" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="21.0" styleClass="calendarDateDay" text="FRI" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="40.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <Label alignment="CENTER" styleClass="calendarTime" text="12 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding></Label>
+                  <Label alignment="CENTER" layoutX="35.0" layoutY="69.0" styleClass="calendarTime" text="1 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding></Label>
+                  <Label alignment="CENTER" styleClass="calendarTime" text="2 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding></Label>
+                  <Label alignment="CENTER" styleClass="calendarTime" text="3 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding></Label>
+                  <Label alignment="CENTER" styleClass="calendarTime" text="4 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding></Label>
+                  <Label alignment="CENTER" layoutX="35.0" layoutY="223.0" styleClass="calendarTime" text="5 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding></Label>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="260.0" styleClass="calendarTime" text="6 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="13">
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding></Label>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="297.0" styleClass="calendarTime" text="7 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="15">
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding></Label>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="334.0" styleClass="calendarTime" text="8 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="17">
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding></Label>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="371.0" styleClass="calendarTime" text="9 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="19">
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding></Label>
+                  <Label id="calendarTime" alignment="CENTER" layoutX="10.0" layoutY="445.0" styleClass="calendarTime" text="10 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="21">
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding></Label>
+                  <Label id="calendarTime" styleClass="calendarTime" text="11 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="23">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
+                  </Label>
+                  <Label id="calendarTime" styleClass="calendarTime" text="12 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="25">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
+                  </Label>
+                  <Label id="calendarTime" styleClass="calendarTime" text="1 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="27">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
+                  </Label>
+                  <Label id="calendarTime" styleClass="calendarTime" text="2 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="29">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
+                  </Label>
+                  <Label id="calendarTime" styleClass="calendarTime" text="3 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="31">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
+                  </Label>
+                  <Label id="calendarTime" styleClass="calendarTime" text="4 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="33">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
+                  </Label>
+                  <Label id="calendarTime" styleClass="calendarTime" text="5 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="35">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
+                  </Label>
+                  <Label id="calendarTime" styleClass="calendarTime" text="6 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="37">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
+                  </Label>
+                  <Label id="calendarTime" styleClass="calendarTime" text="7 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="39">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
+                  </Label>
+                  <Label id="calendarTime" styleClass="calendarTime" text="8 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="41">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
+                  </Label>
+                  <Label id="calendarTime" styleClass="calendarTime" text="9 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="43">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
+                  </Label>
+                  <Label styleClass="calendarTime" text="10 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="45">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
+                  </Label>
+                  <Label styleClass="calendarTime" text="11 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="47">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </GridPane>
+         </center>
+         <left>
+            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="navButton" text="BACK" BorderPane.alignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/005-left-chevron.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </left>
+         <right>
+            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#handleOnMouseClicked" styleClass="navButton" text="NEXT" BorderPane.alignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/004-right-chevron.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </right>
+      </BorderPane>
+   </center>
+   <padding>
+      <Insets bottom="15.0" />
+   </padding>
+</BorderPane>
