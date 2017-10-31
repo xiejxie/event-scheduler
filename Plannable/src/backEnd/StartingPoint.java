@@ -26,5 +26,11 @@ public class StartingPoint {
 		System.out.println("Please enter your commute time in minutes");
 		int commuteTime = in.nextInt();
 		createAdd.createCommuteAddToCal(commuteTime);
+		
+		System.out.println("Scheduling commute times......");
+		System.out.println("Please enter your desired rest time in hours");
+		int restTimeHours = in.nextInt();
+		int restTimeMinutes = restTimeHours * 60;
+		createAdd.addRestTimeToCal(restTimeMinutes);
 	}
 }

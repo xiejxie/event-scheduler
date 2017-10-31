@@ -1,7 +1,10 @@
 package backEnd;
 
+import java.util.ArrayList;
+
 import backEnd.tasks.Commute;
 import backEnd.tasks.Courses;
+import backEnd.tasks.Sleep;
 import backEnd.tasks.Task;
 
 public class ParseInput {
@@ -49,6 +52,18 @@ public class ParseInput {
 	
 	public void createCommuteAddToCal(int time){
 		Task lastTask, firstTask;
+		
+		for(int counter = 0; counter < thisWeek.daysOfWeek.size(); counter ++){
+			ArrayList<Task> today = thisWeek.daysOfWeek.get(counter);
+			if(today.size() != 0){
+				lastTask = today.get(today.size() - 1);
+				today.add(getEndOfDayCommute(lastTask, time));
+				firstTask = today.get(0);
+				today.add(0, getEndOfDayCommute(firstTask, time));
+			}	
+		}
+		
+/*
 		//only commute if going to courses
 		if(thisWeek.monTasks.size() != 0){
 			// getting the last course so can commute after
@@ -82,6 +97,13 @@ public class ParseInput {
 			firstTask = thisWeek.friTasks.get(0);
 			thisWeek.friTasks.add(0, getStartOfDayCommute(firstTask, time));
 		}
+	*/
+		
+	}
+	
+	public void addRestTimeToCal(int time){
+		Task firstCommute, lastCommute;
+		
 		
 	}
 	
@@ -121,5 +143,11 @@ public class ParseInput {
 		startTime = hour+startTime;
 		Commute startOfDay = new Commute (0, startTime, endTime);
 		return startOfDay;
+	}
+
+
+	public Sleep getSleepTime(int time){
+			
+		return null;
 	}
 }
