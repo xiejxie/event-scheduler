@@ -26,5 +26,18 @@ public class StartingPoint {
 		System.out.println("Please enter your commute time in minutes");
 		int commuteTime = in.nextInt();
 		createAdd.createCommuteAddToCal(commuteTime);
+		
+		System.out.println("Please enter any extracurriculars you have, in the "
+		    + "following format\nChess Club: "
+		    + "W 18:00-20:00\n"
+		    + "When you're finished entering your extracurriculars, type DONE");
+		String currEC = in.nextLine();
+		while(! currEC.equals("DONE")){
+		    createAdd.createECAddToCal(currEC);
+		    currEC = in.nextLine();
+		}
+		System.out.println("Entering Extracurriculars.......");
+		
+		
 	}
 }

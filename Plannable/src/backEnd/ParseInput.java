@@ -122,4 +122,41 @@ public class ParseInput {
 		Commute startOfDay = new Commute (0, startTime, endTime);
 		return startOfDay;
 	}
+	
+	public void CreateECAddToCal(String ECDescr){
+	  String ECName = ECDescr.substring(0, ECDescr.indexOf(":"));
+      // getting just the extracurricular times
+      String timings = ECDescr.substring(ECDescr.indexOf(":")+1);
+      //getting each offering of the extracurriculars on each day
+      String [] daily = timings.split(",");
+      
+      for(int i = 0; i < daily.length; i++){
+        String currDay = daily[i];
+        char day = currDay.charAt(1);
+        String startTime = currDay.substring(currDay.indexOf(day)+2, currDay.indexOf("-"));
+        String endTime = currDay.substring(currDay.indexOf("-")+1);
+        //creating the object Courses for that course on that day
+        Courses currEC = new Courses(ECName, 0, startTime, endTime, day);
+        
+        //based on the day of the course offering, have to add to right list
+        switch(day){
+            case 'M':
+                thisWeek.monTasks.add(currEC);
+                break;
+            case 'T':
+                thisWeek.tuesTasks.add(currEC);
+                break;
+            case 'W':
+                thisWeek.wedTasks.add(currEC);
+                break;
+            case 'R':
+                thisWeek.thursTasks.add(currEC);
+                break;
+            case 'F':
+                thisWeek.friTasks.add(currEC);
+                break;
+        }
+        
+      }
+	}
 }
