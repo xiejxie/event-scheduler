@@ -2,25 +2,12 @@ package backEnd.tasks;
 
 public class Courses extends Task {
 	private String courseName;
-	private int priority;
-	private String startTime;
-	private String endTime;
 	private char day;
 	
 	public Courses (String name, int p, String sT, String eT, char d){
+		super(sT, eT, p);
 		courseName = name;
-		priority = p;
-		startTime = sT;
-		endTime = eT;
 		day = d;
-	}
-	
-	public String getEndTime(){
-		return endTime;
-	}
-	
-	public String getStartTime(){
-		return startTime;
 	}
 	
 }

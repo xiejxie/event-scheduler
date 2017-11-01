@@ -1,22 +1,11 @@
 package backEnd.tasks;
 
 public class FreeTime extends Task {
-	private String startTime;
-	private String endTime;
-	private int priority;
+	private char day;
 	
-	public FreeTime(String sT, String eT, int p) {
-		startTime = sT;
-		endTime = eT;
-		priority = p;
-	}
-	
-	public String getEndTime() {
-		return endTime;
-	}
-	
-	public String getStartTime() {
-		return startTime;
+	public FreeTime(String sT, String eT, int p, char day) {
+		super(sT, eT, p);
+		this.day = day;
 	}
 
 }

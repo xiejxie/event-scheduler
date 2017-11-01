@@ -26,5 +26,16 @@ public class StartingPoint {
 		System.out.println("Please enter your commute time in minutes");
 		int commuteTime = in.nextInt();
 		createAdd.createCommuteAddToCal(commuteTime);
+		System.out.println("Please enter the times you would like to designate as free time, in the "
+				+ "following format:\n M 10:00-11:00, R 10:00-11:00, F 18:00-19:00\n"
+				+ "When you're finished entering times, type DONE");
+		String freeTime = in.nextLine();
+		while (!freeTime.equals("DONE")){
+			createAdd.createFreeTimeAddToCal(freeTime);
+			freeTime = in.nextLine();
+		}
+		
+		System.out.println(week);
+		
 	}
 }

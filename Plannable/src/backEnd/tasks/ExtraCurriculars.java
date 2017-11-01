@@ -9,10 +9,8 @@ public class ExtraCurriculars extends Task {
 	
 	
 	public ExtraCurriculars(String name, int p, String sT, String eT, char d){
+		super(sT, eT, p);
 		activityName = name;
-		priority = p;
-		startTime = sT;
-		endTime = eT;
 		day = d;
 	}
 	
