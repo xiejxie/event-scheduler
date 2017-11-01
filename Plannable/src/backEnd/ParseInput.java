@@ -3,9 +3,10 @@ package backEnd;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import backEnd.tasks.Commute;
 import backEnd.tasks.Courses;
 import backEnd.tasks.FreeTime;
+
+import backEnd.tasks.Sleep;
 import backEnd.tasks.Task;
 
 public class ParseInput {
@@ -40,7 +41,14 @@ public class ParseInput {
 	}
 	
 	public void createCommuteAddToCal(int time){
+
 		manager.addCommute(time);
+		
+	}
+	
+	public void addRestTimeToCal(int time){
+		Task firstCommute, lastCommute;
+		
 	}
 	
 	public void createFreeTimeAddToCal(String description){
@@ -57,4 +65,9 @@ public class ParseInput {
 		}
 	}
 
+
+	public Sleep getSleepTime(int time){
+			
+		return null;
+	}
 }

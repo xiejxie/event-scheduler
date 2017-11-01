@@ -1,5 +1,7 @@
 package backEnd;
 
+import java.util.ArrayList;
+
 import backEnd.tasks.Commute;
 import backEnd.tasks.Task;
 
@@ -36,37 +38,14 @@ public class TaskManager {
 	
 	public void addCommute(int time){
 		Task lastTask, firstTask;
-		if(week.monTasks.size() != 0){
-			// getting the last course so can commute after
-			lastTask = week.monTasks.get(week.monTasks.size()-1);
-			week.monTasks.add(getEndOfDayCommute(lastTask, time));
-			// getting the first course so can commute before
-			firstTask = week.monTasks.get(0);
-			week.monTasks.add(0, getStartOfDayCommute(firstTask, time));
-		}
-		if(week.tuesTasks.size() != 0){
-			lastTask = week.tuesTasks.get(week.tuesTasks.size()-1);
-			week.tuesTasks.add(getEndOfDayCommute(lastTask, time));
-			firstTask = week.tuesTasks.get(0);
-			week.tuesTasks.add(0, getStartOfDayCommute(firstTask, time));
-		}
-		if(week.wedTasks.size() != 0){
-			lastTask = week.wedTasks.get(week.wedTasks.size()-1);
-			week.wedTasks.add(getEndOfDayCommute(lastTask, time));
-			firstTask = week.wedTasks.get(0);
-			week.wedTasks.add(0, getStartOfDayCommute(firstTask, time));
-		}
-		if(week.thursTasks.size() != 0){
-			lastTask = week.thursTasks.get(week.thursTasks.size()-1);
-			week.thursTasks.add(getEndOfDayCommute(lastTask, time));
-			firstTask = week.thursTasks.get(0);
-			week.thursTasks.add(0, getStartOfDayCommute(firstTask, time));
-		}
-		if(week.friTasks.size() != 0){
-			lastTask = week.friTasks.get(week.friTasks.size()-1);
-			week.friTasks.add(getEndOfDayCommute(lastTask, time));
-			firstTask = week.friTasks.get(0);
-			week.friTasks.add(0, getStartOfDayCommute(firstTask, time));
+		for(int counter = 0; counter < week.daysOfWeek.size(); counter ++){
+			ArrayList<Task> today = week.daysOfWeek.get(counter);
+			if(today.size() != 0){
+				lastTask = today.get(today.size() - 1);
+				today.add(getEndOfDayCommute(lastTask, time));
+				firstTask = today.get(0);
+				today.add(0, getStartOfDayCommute(firstTask, time));
+			}	
 		}
 		
 	}
