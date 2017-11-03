@@ -1,18 +1,24 @@
 package backEnd;
 
-import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import backEnd.tasks.Commute;
 import backEnd.tasks.Courses;
+import backEnd.tasks.FreeTime;
+
 import backEnd.tasks.Sleep;
 import backEnd.tasks.Task;
 
 public class ParseInput {
 
-	private WeeklyCalendar thisWeek;
+//	private WeeklyCalendar thisWeek;
+	private TaskManager manager;
+	
 	public ParseInput(WeeklyCalendar w){
-		thisWeek = w;
+//		thisWeek = w;
+		manager = new TaskManager(w);
 	}
+	
 	public void createCourseAddToCal(String courseDescr){
 		String courseName = courseDescr.substring(0, courseDescr.indexOf(":"));
 		// getting just the course times
@@ -29,120 +35,34 @@ public class ParseInput {
 			Courses currCouse = new Courses(courseName, 0, startTime, endTime, day);
 			
 			//based on the day of the course offering, have to add to right list
-			switch(day){
-				case 'M':
-					thisWeek.monTasks.add(currCouse);
-					break;
-				case 'T':
-					thisWeek.tuesTasks.add(currCouse);
-					break;
-				case 'W':
-					thisWeek.wedTasks.add(currCouse);
-					break;
-				case 'R':
-					thisWeek.thursTasks.add(currCouse);
-					break;
-				case 'F':
-					thisWeek.friTasks.add(currCouse);
-					break;
-			}
+			manager.addTaskToCalendar(currCouse, day);
 			
 		}
 	}
 	
 	public void createCommuteAddToCal(int time){
-		Task lastTask, firstTask;
-		
-		for(int counter = 0; counter < thisWeek.daysOfWeek.size(); counter ++){
-			ArrayList<Task> today = thisWeek.daysOfWeek.get(counter);
-			if(today.size() != 0){
-				lastTask = today.get(today.size() - 1);
-				today.add(getEndOfDayCommute(lastTask, time));
-				firstTask = today.get(0);
-				today.add(0, getEndOfDayCommute(firstTask, time));
-			}	
-		}
-		
-/*
-		//only commute if going to courses
-		if(thisWeek.monTasks.size() != 0){
-			// getting the last course so can commute after
-			lastTask = thisWeek.monTasks.get(thisWeek.monTasks.size()-1);
-			thisWeek.monTasks.add(getEndOfDayCommute(lastTask, time));
-			// getting the first course so can commute before
-			firstTask = thisWeek.monTasks.get(0);
-			thisWeek.monTasks.add(0, getStartOfDayCommute(firstTask, time));
-		}
-		if(thisWeek.tuesTasks.size() != 0){
-			lastTask = thisWeek.tuesTasks.get(thisWeek.tuesTasks.size()-1);
-			thisWeek.tuesTasks.add(getEndOfDayCommute(lastTask, time));
-			firstTask = thisWeek.tuesTasks.get(0);
-			thisWeek.tuesTasks.add(0, getStartOfDayCommute(firstTask, time));
-		}
-		if(thisWeek.wedTasks.size() != 0){
-			lastTask = thisWeek.wedTasks.get(thisWeek.wedTasks.size()-1);
-			thisWeek.wedTasks.add(getEndOfDayCommute(lastTask, time));
-			firstTask = thisWeek.wedTasks.get(0);
-			thisWeek.wedTasks.add(0, getStartOfDayCommute(firstTask, time));
-		}
-		if(thisWeek.thursTasks.size() != 0){
-			lastTask = thisWeek.thursTasks.get(thisWeek.thursTasks.size()-1);
-			thisWeek.thursTasks.add(getEndOfDayCommute(lastTask, time));
-			firstTask = thisWeek.thursTasks.get(0);
-			thisWeek.thursTasks.add(0, getStartOfDayCommute(firstTask, time));
-		}
-		if(thisWeek.friTasks.size() != 0){
-			lastTask = thisWeek.friTasks.get(thisWeek.friTasks.size()-1);
-			thisWeek.friTasks.add(getEndOfDayCommute(lastTask, time));
-			firstTask = thisWeek.friTasks.get(0);
-			thisWeek.friTasks.add(0, getStartOfDayCommute(firstTask, time));
-		}
-	*/
+
+		manager.addCommute(time);
 		
 	}
 	
 	public void addRestTimeToCal(int time){
 		Task firstCommute, lastCommute;
 		
-		
 	}
 	
-	public Commute getEndOfDayCommute(Task lastTask, int time){
-		String startTime = lastTask.getEndTime();
-		String endTime;
-		//converting time to number of half hour blocks since midnight (easier to do arithmetic
-		//than with strings
-		int e = lastTask.getEndTimeAsInt(lastTask.getEndTime()) + (time/30);
-		if(e%2==1){
-			endTime =":30";
-			e--;
+	public void createFreeTimeAddToCal(String description){
+		Pattern pattern = Pattern.compile("([MTWRF]) (\\d\\d?:\\d\\d?)-(\\d\\d?:\\d\\d?)");
+		Matcher m = pattern.matcher(description);
+		char day;
+		String start, end;
+		while (m.find()){
+			day = m.group(1).charAt(0);
+			start = m.group(2);
+			end = m.group(3);
+			FreeTime ft = new FreeTime(start, end, 0, day);
+			manager.addTaskToCalendar(ft, day);
 		}
-		else{
-			endTime =":00";
-		}
-		String hour = String.valueOf(e/2);
-		endTime = hour+endTime;
-		//System.out.println(startTime + "\n" + endTime);
-		Commute endOfDay = new Commute (0, startTime, endTime);
-		return endOfDay;
-	}
-	
-	public Commute getStartOfDayCommute(Task firstTask, int time){
-		String endTime, startTime, hour;
-		endTime = firstTask.getStartTime();
-		int s = firstTask.getStartTimeAsInt(firstTask.getStartTime()) - (time/30);
-		
-		if(s%2==1){
-			startTime =":30";
-			s--;
-		}
-		else{
-			startTime =":00";
-		}
-		hour = String.valueOf(s/2);
-		startTime = hour+startTime;
-		Commute startOfDay = new Commute (0, startTime, endTime);
-		return startOfDay;
 	}
 	
 	public void CreateECAddToCal(String ECDescr){
@@ -161,23 +81,7 @@ public class ParseInput {
         Courses currEC = new Courses(ECName, 0, startTime, endTime, day);
         
         //based on the day of the course offering, have to add to right list
-        switch(day){
-            case 'M':
-                thisWeek.monTasks.add(currEC);
-                break;
-            case 'T':
-                thisWeek.tuesTasks.add(currEC);
-                break;
-            case 'W':
-                thisWeek.wedTasks.add(currEC);
-                break;
-            case 'R':
-                thisWeek.thursTasks.add(currEC);
-                break;
-            case 'F':
-                thisWeek.friTasks.add(currEC);
-                break;
-        }
+        manager.addTaskToCalendar(currEC, day);
         
       }
 	}
@@ -186,4 +90,5 @@ public class ParseInput {
   
         return null;
     }
+
 }
