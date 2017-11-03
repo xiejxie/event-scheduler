@@ -14,6 +14,10 @@ public class ExtraCurriculars extends Task {
 		day = d;
 	}
 	
+	public int getPriority(){
+	    return priority;
+	}
+	
 	public String getEndTime(){
 		return endTime;
 	}
