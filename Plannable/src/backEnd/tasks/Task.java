@@ -4,7 +4,17 @@ public class Task {
 	private int priority;
 	private String startTime;
 	private String endTime;
+	private int amount;
 	
+	public Task(String sT, String eT, int p){
+		priority = p;
+		startTime = sT;
+		endTime = eT;
+	}
+	
+	public Task(int sleepTime){
+		amount = sleepTime;
+	}
 	
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
@@ -43,4 +53,11 @@ public class Task {
 			result++;
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return "Task [startTime=" + startTime + ", endTime=" + endTime + "]";
+	}
+	
+	
 }

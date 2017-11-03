@@ -9,9 +9,7 @@ public class StudyTimeTask extends Task {
 	private String endTime;
 	
 	public StudyTimeTask(int p, String sT, String eT){
-		priority = p;
-		sT = startTime;
-		eT = endTime;
+		super(sT, eT, p);
 	}
 	
 	public String getEndTime(){

@@ -26,5 +26,39 @@ public class StartingPoint {
 		System.out.println("Please enter your commute time in minutes");
 		int commuteTime = in.nextInt();
 		createAdd.createCommuteAddToCal(commuteTime);
+	    System.out.println("Scheduling commute times......");
+	    System.out.println("Please enter your desired rest time in hours");
+	    int restTimeHours = in.nextInt();
+	    int restTimeMinutes = restTimeHours * 60;
+	    createAdd.addRestTimeToCal(restTimeMinutes);
+    
+		System.out.println("Please enter any extracurriculars you have, in the "
+		    + "following format\nChess Club: "
+		    + "W 18:00-20:00\n"
+		    + "When you're finished entering your extracurriculars, type DONE");
+		String currEC = in.nextLine();
+		while(! currEC.equals("DONE")){
+		    createAdd.createECAddToCal(currEC);
+		    currEC = in.nextLine();
+		}
+		System.out.println("Entering Extracurriculars.......");
+		
+		System.out.println("Scheduling commute times......");
+		System.out.println("Please enter your desired rest time in hours");
+		int restTimeHours = in.nextInt();
+		int restTimeMinutes = restTimeHours * 60;
+		createAdd.addRestTimeToCal(restTimeMinutes);
+		
+		System.out.println("Please enter the times you would like to designate as free time, in the "
+				+ "following format:\nM 10:00-11:00, R 10:00-11:00, F 18:00-19:00\n"
+				+ "When you're finished entering times, type DONE");
+		String freeTime = in.nextLine();
+		while (!freeTime.equals("DONE")){
+			createAdd.createFreeTimeAddToCal(freeTime);
+			freeTime = in.nextLine();
+		}
+		in.close();
+		System.out.println(week);
+		
 	}
 }

@@ -6,6 +6,7 @@ public class Sleep extends Task {
 	private String endTime;
 	
 	public Sleep(int sleepTime){
+		super("", "", 0);
 		amount = sleepTime;
 	}
 	public String getEndTime(){
