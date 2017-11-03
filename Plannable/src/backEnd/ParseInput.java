@@ -144,7 +144,6 @@ public class ParseInput {
 		Commute startOfDay = new Commute (0, startTime, endTime);
 		return startOfDay;
 	}
-<<<<<<< HEAD
 	
 	public void CreateECAddToCal(String ECDescr){
 	  String ECName = ECDescr.substring(0, ECDescr.indexOf(":"));
