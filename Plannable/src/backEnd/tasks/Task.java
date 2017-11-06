@@ -1,39 +1,43 @@
 package backEnd.tasks;
 
+import java.time.LocalTime;
+
 public class Task {
 	private int priority;
-	private String startTime;
-	private String endTime;
-	private int amount;
+	private LocalTime startTime;
+	private LocalTime endTime;
 	
-	public Task(String sT, String eT, int p){
-		priority = p;
-		startTime = sT;
-		endTime = eT;
+	public Task(LocalTime sT, LocalTime eT, int p){
+		this.priority = p;
+		this.startTime = sT;
+		this.endTime = eT;
 	}
 	
-	public Task(int sleepTime){
-		amount = sleepTime;
+	public int getPriority(){
+		return this.priority;
+	} 
+	
+	public void setPriority(int priority){
+		this.priority = priority;
 	}
 	
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-	
-	public String getEndTime() {
+	public LocalTime getEndTime() {
 		return endTime;
 	}
 	
-	public String getStartTime() {
+	public LocalTime getStartTime() {
 		return startTime;
+	
+	}
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
 	}
 	
-	
-	
-	public void setEndTime(String endTime) {
+	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
 	
+	/*
 	public int getStartTimeAsInt(String startTime){
 		int result = 0;
 		String hour = startTime.substring(0, startTime.indexOf(":"));
@@ -53,6 +57,7 @@ public class Task {
 			result++;
 		return result;
 	}
+	*/
 
 	@Override
 	public String toString() {

@@ -1,13 +1,22 @@
 package backEnd.tasks;
 
+import java.time.LocalTime;
+
 public class Courses extends Task {
-	private String courseName;
+	
+	private String name;
 	private char day;
 	
-	public Courses (String name, int p, String sT, String eT, char d){
+	public Courses (LocalTime sT, LocalTime eT, int p, String name, char day){
 		super(sT, eT, p);
-		courseName = name;
-		day = d;
+		this.name = name;
 	}
 	
+	public String getName(){
+		return this.name;
+	}
+	
+	public char getDay(){
+		return this.day;
+	}
 }

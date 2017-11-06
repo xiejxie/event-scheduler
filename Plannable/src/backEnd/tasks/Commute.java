@@ -1,9 +1,10 @@
 package backEnd.tasks;
 
+import java.time.LocalTime;
+
 public class Commute extends Task {
 	
-	public Commute (int p, String sT, String eT){
+	public Commute (LocalTime sT, LocalTime eT, int p){
 		super(sT, eT, p);
 	}
-	
 }

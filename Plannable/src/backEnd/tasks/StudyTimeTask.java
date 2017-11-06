@@ -1,22 +1,12 @@
 package backEnd.tasks;
 
+import java.time.LocalTime;
+
 import backEnd.tasks.Task;
 
 public class StudyTimeTask extends Task {
-
-	private int priority;
-	private String startTime;
-	private String endTime;
 	
-	public StudyTimeTask(int p, String sT, String eT){
+	public StudyTimeTask(LocalTime sT, LocalTime eT, int p){
 		super(sT, eT, p);
-	}
-	
-	public String getEndTime(){
-		return endTime;
-	}
-	
-	public String getStartTime(){
-		return startTime;
 	}
 }
