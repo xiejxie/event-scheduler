@@ -65,25 +65,26 @@ public class ParseInput {
 		}
 	}
 	
-	public void CreateECAddToCal(String ECDescr){
-	  String ECName = ECDescr.substring(0, ECDescr.indexOf(":"));
-      // getting just the extracurricular times
-      String timings = ECDescr.substring(ECDescr.indexOf(":")+1);
-      //getting each offering of the extracurriculars on each day
-      String [] daily = timings.split(",");
-      
-      for(int i = 0; i < daily.length; i++){
-        String currDay = daily[i];
-        char day = currDay.charAt(1);
-        String startTime = currDay.substring(currDay.indexOf(day)+2, currDay.indexOf("-"));
-        String endTime = currDay.substring(currDay.indexOf("-")+1);
-        //creating the object Courses for that course on that day
-        Courses currEC = new Courses(ECName, 0, startTime, endTime, day);
-        
-        //based on the day of the course offering, have to add to right list
-        manager.addTaskToCalendar(currEC, day);
-        
-      }
+	public void createECAddToCal(String ECDescr){
+		if (ECDescr.length() > 0){
+			String ECName = ECDescr.substring(0, ECDescr.indexOf(":"));
+			// getting just the extracurricular times
+			String timings = ECDescr.substring(ECDescr.indexOf(":")+1);
+			//getting each offering of the extracurriculars on each day
+			String [] daily = timings.split(",");
+	
+			for(int i = 0; i < daily.length; i++){
+				String currDay = daily[i];
+				char day = currDay.charAt(1);
+				String startTime = currDay.substring(currDay.indexOf(day)+2, currDay.indexOf("-"));
+				String endTime = currDay.substring(currDay.indexOf("-")+1);
+				//creating the object Courses for that course on that day
+				Courses currEC = new Courses(ECName, 0, startTime, endTime, day);
+	
+				//based on the day of the course offering, have to add to right list
+				manager.addTaskToCalendar(currEC, day);
+			}
+		}
 	}
 
     public Sleep getSleepTime(int time){
