@@ -1,8 +1,11 @@
 package backEnd;
 
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 import backEnd.tasks.Commute;
+import backEnd.tasks.Sleep;
 import backEnd.tasks.Task;
 
 public class TaskManager {
@@ -36,6 +39,11 @@ public class TaskManager {
 		}
 	}
 	
+
+	public WeeklyCalendar getWeek(){
+		return week;
+	}
+	
 	public void addCommute(int time){
 		Task lastTask, firstTask;
 		for(int counter = 0; counter < week.daysOfWeek.size(); counter ++){
@@ -47,12 +55,13 @@ public class TaskManager {
 				today.add(0, getStartOfDayCommute(firstTask, time));
 			}	
 		}
-		
 	}
 	
 	public Commute getEndOfDayCommute(Task lastTask, int time){
-		String startTime = lastTask.getEndTime();
-		String endTime;
+		LocalTime departureTime = lastTask.getEndTime();
+		LocalTime arrivalTime = departureTime.plus(time, ChronoUnit.MINUTES);
+		
+		/*
 		//converting time to number of half hour blocks since midnight (easier to do arithmetic
 		//than with strings
 		int e = lastTask.getEndTimeAsInt(lastTask.getEndTime()) + (time/30);
@@ -65,14 +74,19 @@ public class TaskManager {
 		}
 		String hour = String.valueOf(e/2);
 		endTime = hour+endTime;
-		//System.out.println(startTime + "\n" + endTime);
-		Commute endOfDay = new Commute (0, startTime, endTime);
+		*/
+		Commute endOfDay = new Commute (departureTime, arrivalTime, 0);
 		return endOfDay;
 	}
 	
 	public Commute getStartOfDayCommute(Task firstTask, int time){
+		LocalTime arrivalTime = firstTask.getStartTime();
+		LocalTime departureTime = arrivalTime.minus(time, ChronoUnit.MINUTES);
+		
+		/*
 		String endTime, startTime, hour;
 		endTime = firstTask.getStartTime();
+		
 		int s = firstTask.getStartTimeAsInt(firstTask.getStartTime()) - (time/30);
 		
 		if(s%2==1){
@@ -84,12 +98,64 @@ public class TaskManager {
 		}
 		hour = String.valueOf(s/2);
 		startTime = hour+startTime;
-		Commute startOfDay = new Commute (0, startTime, endTime);
+		*/
+		Commute startOfDay = new Commute (departureTime, arrivalTime, 0);
 		return startOfDay;
 	}
 
-	public WeeklyCalendar getWeek(){
-		return week;
+	
+	public void addRest(int time){
+		Task tonightCommute, tomorrowMorningCommute;
+		int totalSleepTime = time;
+		
+		System.out.println(week);
+		
+		for(int counter = 0; counter < week.daysOfWeek.size(); counter ++){
+			
+			ArrayList<Task> today = week.daysOfWeek.get(counter);
+			ArrayList<Task> tomorrow;
+			if(counter == week.daysOfWeek.size() - 1){
+				tomorrow = week.daysOfWeek.get(0);
+			}
+			else{
+				tomorrow = week.daysOfWeek.get(counter + 1);
+			}
+			
+			tonightCommute = today.get(today.size() - 1);
+			tomorrowMorningCommute = tomorrow.get(0);
+			
+			//Get maximum amount of sleep in morning of next day
+			Sleep daySleep = getSleepTime(tomorrowMorningCommute, totalSleepTime, 'm');
+			totalSleepTime -= daySleep.getSleepInHours();
+			today.add(daySleep);
+			if(totalSleepTime > 0){
+				tomorrow.add(getSleepTime(tonightCommute, totalSleepTime, 'n'));
+			}
+		}
 	}
+    public Sleep getSleepTime(Task commute, int time, char which){
+    	
+    	//Morning sleep portion (Between 0:00 and departure time)
+    	if(which == 'm'){
+    		LocalTime departureTime = commute.getStartTime();
+    		
+    		//Will need to split sleep into 2 parts as it is more than or equal to midnight to morning departure
+    		if((departureTime.minus(time, ChronoUnit.HOURS).isBefore(LocalTime.MIDNIGHT))){
+    			return new Sleep(LocalTime.MIDNIGHT, departureTime, 0);
+    		}
+    		//If amount can all be slept between midnight and morning departure time
+    		else{
+    			LocalTime lateBedTime = departureTime.minus(time, ChronoUnit.HOURS);
+    			
+    			return new Sleep(lateBedTime,departureTime, 0);
+    		}
+    	}
+    	//Night sleep time (Any extra sleep time required before 23:59) 
+    	else{
+    		LocalTime beforeMidnightSleep = LocalTime.of(23, 59);
+    		LocalTime bedTime = LocalTime.MIDNIGHT.minus(time, ChronoUnit.HOURS);
+    		return new Sleep(bedTime, beforeMidnightSleep, 0);
+    	}
+    }
 	
 }
