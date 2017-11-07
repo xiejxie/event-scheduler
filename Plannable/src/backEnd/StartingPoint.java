@@ -21,11 +21,6 @@ public class StartingPoint {
 			currCourse = in.nextLine();
 		}
 		System.out.println("Entering courses.......");
-		System.out.println("Please enter your one-way commute time in minutes");
-		int commuteTime = in.nextInt();
-		createAdd.createCommuteAddToCal(commuteTime);
-	    System.out.println("Scheduling commute times......");
-	    in.nextLine();	// Eat up newline character
 	    
 		System.out.println("Please enter any extracurriculars you have, in the "
 		    + "following format\nChess Club: "
@@ -37,6 +32,13 @@ public class StartingPoint {
 		    currEC = in.nextLine();
 		}
 		System.out.println("Entering Extracurriculars.......");
+		
+		System.out.println("Please enter your one-way commute time in minutes");
+		int commuteTime = in.nextInt();
+		createAdd.createCommuteAddToCal(commuteTime);
+	    System.out.println("Scheduling commute times......");
+	    in.nextLine();	// Eat up newline character
+	    
 		/*
 		System.out.println("Please enter your desired rest time in hours");
 		int restTimeHours = Integer.parseInt(in.nextLine().trim());
