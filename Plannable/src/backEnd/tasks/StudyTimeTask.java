@@ -7,6 +7,6 @@ import backEnd.tasks.Task;
 public class StudyTimeTask extends Task {
 	
 	public StudyTimeTask(LocalTime sT, LocalTime eT, int p){
-		super(sT, eT, p);
+		super("StudyTime", sT, eT, p);
 	}
 }

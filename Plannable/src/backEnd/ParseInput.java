@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import backEnd.tasks.Courses;
+import backEnd.tasks.ExtraCurriculars;
 import backEnd.tasks.FreeTime;
 
 import backEnd.tasks.Sleep;
@@ -43,7 +44,7 @@ public class ParseInput {
 			String endTimeString = currDay.substring(currDay.indexOf("-")+1);
 			
 			//creating the object Courses for that course on that day
-			Courses currCouse = new Courses(convertToTime(startTimeString), convertToTime(endTimeString), 0, courseName, day);
+			Courses currCouse = new Courses(courseName, convertToTime(startTimeString), convertToTime(endTimeString), 0, day);
 			
 			//based on the day of the course offering, have to add to right list
 			manager.addTaskToCalendar(currCouse, day);
@@ -78,7 +79,7 @@ public class ParseInput {
         String startTime = currDay.substring(currDay.indexOf(day)+2, currDay.indexOf("-"));
         String endTime = currDay.substring(currDay.indexOf("-")+1);
         //creating the object Courses for that course on that day
-        Courses currEC = new Courses(convertToTime(startTime), convertToTime(endTime), 0, ECName, day);
+        ExtraCurriculars currEC = new ExtraCurriculars(convertToTime(startTime), convertToTime(endTime), 0, ECName, day);
         
         //based on the day of the course offering, have to add to right list
         manager.addTaskToCalendar(currEC , day);

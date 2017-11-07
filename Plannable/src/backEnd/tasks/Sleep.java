@@ -13,7 +13,7 @@ public class Sleep extends Task {
 	 * @param sleepTime
 	 */
 	public Sleep(LocalTime startTime, LocalTime endTime, int sleepTime){
-		super(startTime, endTime, 0);
+		super("Sleep", startTime, endTime, 0);
 	}
 	
 	/**
