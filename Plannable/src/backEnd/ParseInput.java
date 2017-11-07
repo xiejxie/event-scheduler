@@ -9,6 +9,7 @@ import backEnd.tasks.ExtraCurriculars;
 import backEnd.tasks.FreeTime;
 
 import backEnd.tasks.Sleep;
+import backEnd.tasks.StudyTimeTask;
 import backEnd.tasks.Task;
 
 public class ParseInput {
@@ -52,17 +53,23 @@ public class ParseInput {
 		}
 	}
 	
-	public void createFreeTimeAddToCal(String description){
-		Pattern pattern = Pattern.compile("([MTWRF]) (\\d\\d?:\\d\\d?)-(\\d\\d?:\\d\\d?)");
+	public void createStudyFreeTimeAddToCal(String description, String timeType){
+		Pattern pattern = Pattern.compile("([MTWRFSN]) (\\d\\d?:\\d\\d?)-(\\d\\d?:\\d\\d?)");
 		Matcher m = pattern.matcher(description);
 		char day;
 		String start, end;
+		Task t;
 		while (m.find()){
 			day = m.group(1).charAt(0);
 			start = m.group(2);
 			end = m.group(3);
-			FreeTime ft = new FreeTime(convertToTime(start), convertToTime(end), 0, day);
-			manager.addTaskToCalendar(ft, day);
+			if(timeType.equals("free")){
+				t = new FreeTime(convertToTime(start), convertToTime(end), 0, day);
+			}
+			else{
+				t = new StudyTimeTask(convertToTime(start), convertToTime(end), 0, day);
+			}
+			manager.addTaskToCalendar(t, day);
 		}
 	}
 	

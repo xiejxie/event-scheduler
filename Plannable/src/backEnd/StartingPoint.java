@@ -51,9 +51,19 @@ public class StartingPoint {
 				+ "When you're finished entering times, type DONE");
 		String freeTime = in.nextLine();
 		while (!freeTime.equals("DONE")){
-			createAdd.createFreeTimeAddToCal(freeTime);
+			createAdd.createStudyFreeTimeAddToCal(freeTime, "free");
 			freeTime = in.nextLine();
 		}
+		
+		System.out.println("Please enter the times you would like to designate as study time, in the "
+				+ "same format as free time\n You should be studying everyday ;)\n"
+				+ "When you're finished entering times, type DONE");
+		String studyTime = in.nextLine();
+		while (!studyTime.equals("DONE")){
+			createAdd.createStudyFreeTimeAddToCal(studyTime,"study");
+			studyTime = in.nextLine();
+		}
+		
 		in.close();
 		System.out.println(week);
 	}

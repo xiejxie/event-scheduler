@@ -36,6 +36,12 @@ public class TaskManager {
 		case 'F':
 			week.friTasks.add(task);
 			break;
+		case 'S':
+			week.satTasks.add(task);
+			break;
+		case 'N':
+			week.sunTasks.add(task);
+			break;
 		}
 	}
 	
