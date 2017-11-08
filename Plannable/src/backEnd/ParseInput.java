@@ -104,4 +104,13 @@ public class ParseInput {
 		LocalTime curTime = LocalTime.of(hours, minutes);
 		return curTime;
 	}
+	
+	public void createThingTODO(String item, TODOManager tManage){
+		String [] parts = item.split(":");
+		String name = parts[0];
+		char day = parts[1].charAt(1);
+		int dur = Integer.parseInt(parts[1].substring(3));
+		TODO t = new TODO(day, dur, name);
+		tManage.addThingTODO(t);
+	}
 }
