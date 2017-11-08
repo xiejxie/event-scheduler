@@ -12,6 +12,13 @@ import backEnd.tasks.Sleep;
 import backEnd.tasks.StudyTimeTask;
 import backEnd.tasks.Task;
 
+/**
+ * ParseInput is a class that:
+ * - takes in raw text input
+ * - processes the information
+ * - calls the appropriate methods in TaskManager
+ * to add new tasks
+ */
 public class ParseInput {
 
 	private TaskManager manager;

@@ -8,6 +8,11 @@ import backEnd.tasks.Commute;
 import backEnd.tasks.Sleep;
 import backEnd.tasks.Task;
 
+/**
+ * TaskManager is a manager class where its 
+ * purpose is to create Task objects and add
+ * them to the WeeklyCalendar week.
+ */
 public class TaskManager {
 	
 	private WeeklyCalendar week;

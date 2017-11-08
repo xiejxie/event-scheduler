@@ -2,6 +2,11 @@ package backEnd;
 
 import java.util.Scanner;
 
+/**
+ * StartingPoint is the Main method for pure back end usage.
+ * It prompts for the user to type input into console and 
+ * calls the appropriate function in ParseInput.
+ */
 public class StartingPoint {
 
 	public static void main(String []args){

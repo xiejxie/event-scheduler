@@ -2,13 +2,27 @@ package backEnd.tasks;
 
 import java.time.LocalTime;
 
-public class Task {
+/**
+ * Task is the abstract base class for all events.
+ * Each Task has a name for easy identification, priority
+ * which is for use in the calendar algorithm, startTime and
+ * endTime which signify the boundary of the task block. 
+ */
+abstract public class Task {
 	
 	private String name;
 	private int priority;
 	private LocalTime startTime;
 	private LocalTime endTime;
 	
+	/**
+	 * The Task constructor.
+	 * 
+	 * @param n		the name of the task
+	 * @param sT	the start time
+	 * @param eT	the end time
+	 * @param p		the priority
+	 */
 	public Task(String n, LocalTime sT, LocalTime eT, int p){
 		this.name = n;
 		this.priority = p;
