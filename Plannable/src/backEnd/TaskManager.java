@@ -44,7 +44,6 @@ public class TaskManager {
 			break;
 		}
 	}
-	
 
 	public WeeklyCalendar getWeek(){
 		return week;
@@ -76,7 +75,6 @@ public class TaskManager {
 		Commute startOfDay = new Commute (departureTime, arrivalTime, 0);
 		return startOfDay;
 	}
-
 	
 	public void addRest(int time){
 		Task tonightCommute, tomorrowMorningCommute;
@@ -107,6 +105,7 @@ public class TaskManager {
 			}
 		}
 	}
+
     public Sleep getSleepTime(Task commute, int time, char which){
     	
     	//Morning sleep portion (Between 0:00 and departure time)

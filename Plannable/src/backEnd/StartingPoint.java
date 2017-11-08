@@ -7,7 +7,6 @@ public class StartingPoint {
 	public static void main(String []args){
 		Scanner in = new Scanner(System.in);
 		System.out.println("WELCOME TO PLANNABLE!!!");
-
 		
 		WeeklyCalendar week = new WeeklyCalendar();
 		ParseInput createAdd = new ParseInput(week);

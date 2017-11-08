@@ -74,5 +74,4 @@ public class Task {
 		return "Task " + name + " [startTime=" + startTime + ", endTime=" + endTime + "]";
 	}
 	
-	
 }
