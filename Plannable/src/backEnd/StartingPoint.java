@@ -79,6 +79,7 @@ public class StartingPoint {
 			createAdd.createThingTODO(item, tManage);
 			item = in.nextLine();
 		}
+		tManage.addToCalendar(week);
 		
 		in.close();
 

@@ -11,10 +11,19 @@ public class TODO implements Comparable<TODO> {
 		dueDate = d;
 		timeAllocated = t;
 		name = n;
+		assignPriority();
 	}
 	
 	public int getPriority(){
 		return priority;
+	}
+	
+	public int getTimeAllocated(){
+		return timeAllocated;
+	}
+	
+	public String getName(){
+		return name;
 	}
 	
 	public void assignPriority(){
@@ -43,12 +52,15 @@ public class TODO implements Comparable<TODO> {
 		}
 	}
 	
-	public void incrementPriority(){
-		priority++;
+	public void decrementPriority(){
+		priority--;
 	}
 	
-	public void workedOnTODO(int minutes){
-		timeAllocated -=minutes;
+	public void workedOnTODO(int hours){
+		timeAllocated -=hours;
+	}
+	public void addBack(int hours){
+		timeAllocated+=hours;
 	}
 
 	@Override
