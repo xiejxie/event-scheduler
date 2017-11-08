@@ -60,7 +60,7 @@ public class StartingPoint {
 		}
 		
 		System.out.println("Please enter the times you would like to designate as study time, in the "
-				+ "same format as free time\n You should be studying everyday ;)\n"
+				+ "same format as free time\nYou should be studying everyday ;)\n"
 				+ "When you're finished entering times, type DONE");
 		String studyTime = in.nextLine();
 		while (!studyTime.equals("DONE")){
