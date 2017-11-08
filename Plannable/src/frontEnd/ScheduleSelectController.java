@@ -78,6 +78,7 @@ public class ScheduleSelectController extends Controller {
 	public void initialize() {
 		backButton.setOnMousePressed((MouseEvent e) -> goToDifferentStep(e, false));
 		nextButton.setOnMousePressed((MouseEvent e) -> goToDifferentStep(e, true));
+		backButton.setDisable(true);
 		addNew.setId("addNew");
 		addNew.setOnMousePressed((MouseEvent e) -> addNewTimeBlock(e));
 		addNewTextField.setOnKeyPressed((KeyEvent e) -> addNewTimeBlockWrapper(e));
@@ -206,6 +207,9 @@ public class ScheduleSelectController extends Controller {
 				addIndex = i + 1;
 			}
 		}
+		
+		backButton.setDisable(newState == 1 ? true : false);
+		nextButton.setDisable(newState == 4 ? true : false);
 		//Keep this here in case we need
 		//MainApp.switchScene("CalendarSelectControllerNext");
 	}
