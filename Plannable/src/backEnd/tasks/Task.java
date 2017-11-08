@@ -3,11 +3,14 @@ package backEnd.tasks;
 import java.time.LocalTime;
 
 public class Task {
+	
+	private String name;
 	private int priority;
 	private LocalTime startTime;
 	private LocalTime endTime;
 	
-	public Task(LocalTime sT, LocalTime eT, int p){
+	public Task(String n, LocalTime sT, LocalTime eT, int p){
+		this.name = n;
 		this.priority = p;
 		this.startTime = sT;
 		this.endTime = eT;
@@ -21,6 +24,13 @@ public class Task {
 		this.priority = priority;
 	}
 	
+	public String getName(){
+		return this.name;
+	}
+	
+	public void setName(String s){
+		this.name = s;
+	}
 	public LocalTime getEndTime() {
 		return endTime;
 	}
@@ -61,8 +71,7 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "Task [startTime=" + startTime + ", endTime=" + endTime + "]";
+		return "Task " + name + " [startTime=" + startTime + ", endTime=" + endTime + "]";
 	}
-	
 	
 }
