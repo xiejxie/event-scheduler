@@ -1,39 +1,67 @@
 package backEnd.tasks;
 
-public class Task {
+import java.time.LocalTime;
+
+/**
+ * Task is the abstract base class for all events.
+ * Each Task has a name for easy identification, priority
+ * which is for use in the calendar algorithm, startTime and
+ * endTime which signify the boundary of the task block. 
+ */
+abstract public class Task {
+	
+	private String name;
 	private int priority;
-	private String startTime;
-	private String endTime;
-	private int amount;
+	private LocalTime startTime;
+	private LocalTime endTime;
 	
-	public Task(String sT, String eT, int p){
-		priority = p;
-		startTime = sT;
-		endTime = eT;
+	/**
+	 * The Task constructor.
+	 * 
+	 * @param n		the name of the task
+	 * @param sT	the start time
+	 * @param eT	the end time
+	 * @param p		the priority
+	 */
+	public Task(String n, LocalTime sT, LocalTime eT, int p){
+		this.name = n;
+		this.priority = p;
+		this.startTime = sT;
+		this.endTime = eT;
 	}
 	
-	public Task(int sleepTime){
-		amount = sleepTime;
+	public int getPriority(){
+		return this.priority;
+	} 
+	
+	public void setPriority(int priority){
+		this.priority = priority;
 	}
 	
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
+	public String getName(){
+		return this.name;
 	}
 	
-	public String getEndTime() {
+	public void setName(String s){
+		this.name = s;
+	}
+	public LocalTime getEndTime() {
 		return endTime;
 	}
 	
-	public String getStartTime() {
+	public LocalTime getStartTime() {
 		return startTime;
+	
+	}
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
 	}
 	
-	
-	
-	public void setEndTime(String endTime) {
+	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
 	
+	/*
 	public int getStartTimeAsInt(String startTime){
 		int result = 0;
 		String hour = startTime.substring(0, startTime.indexOf(":"));
@@ -53,11 +81,11 @@ public class Task {
 			result++;
 		return result;
 	}
+	*/
 
 	@Override
 	public String toString() {
-		return "Task [startTime=" + startTime + ", endTime=" + endTime + "]";
+		return "Task " + name + " [startTime=" + startTime + ", endTime=" + endTime + "]";
 	}
-	
 	
 }

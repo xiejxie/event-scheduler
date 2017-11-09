@@ -32,11 +32,12 @@ public class MainApp extends Application {
      */
     public void setUpLayout() {
         ScheduleSelectController csc = new ScheduleSelectController();
-        ScheduleDisplayController cdc = new ScheduleDisplayController();
-        sceneOrderings.put("CalendarSelectControllerNext", cdc.getScene("./ScheduleDisplay.fxml"));
-        
+        //The below commented out is currently not in use, but I want to keep the infrastructure in case we want
+        //to switch to a different scene. Currently only working on one because all the steps seem exactly the same
+        //ScheduleDisplayController cdc = new ScheduleDisplayController();
+        //sceneOrderings.put("CalendarSelectControllerNext", cdc.getScene("./ScheduleDisplay.fxml"));
         Scene startScene = csc.getScene("./ScheduleSelect.fxml");
-        sceneOrderings.put("CalendarDisplayControllerBack", startScene);
+        //sceneOrderings.put("CalendarDisplayControllerBack", startScene);
         primaryStage.setScene(startScene);
         primaryStage.show();
     }

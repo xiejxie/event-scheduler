@@ -1,16 +1,18 @@
 package backEnd;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * StartingPoint is the Main method for pure back end usage.
+ * It prompts for the user to type input into console and 
+ * calls the appropriate function in ParseInput.
+ */
 public class StartingPoint {
 
 	public static void main(String []args){
 		Scanner in = new Scanner(System.in);
 		System.out.println("WELCOME TO PLANNABLE!!!");
-		System.out.println("Before we get started, let's learn a bit about you");
-		System.out.println("Please enter your name");
-		String name = in.nextLine();
+		
 		WeeklyCalendar week = new WeeklyCalendar();
 		ParseInput createAdd = new ParseInput(week);
 
@@ -23,15 +25,7 @@ public class StartingPoint {
 			currCourse = in.nextLine();
 		}
 		System.out.println("Entering courses.......");
-		System.out.println("Please enter your commute time in minutes");
-		int commuteTime = in.nextInt();
-		createAdd.createCommuteAddToCal(commuteTime);
-	    System.out.println("Scheduling commute times......");
-	    System.out.println("Please enter your desired rest time in hours");
-	    int restTimeHours = in.nextInt();
-	    int restTimeMinutes = restTimeHours * 60;
-	    createAdd.addRestTimeToCal(restTimeMinutes);
-    
+	    
 		System.out.println("Please enter any extracurriculars you have, in the "
 		    + "following format\nChess Club: "
 		    + "W 18:00-20:00\n"
@@ -43,22 +37,38 @@ public class StartingPoint {
 		}
 		System.out.println("Entering Extracurriculars.......");
 		
-		System.out.println("Scheduling commute times......");
+		System.out.println("Please enter your one-way commute time in minutes");
+		int commuteTime = in.nextInt();
+		createAdd.createCommuteAddToCal(commuteTime);
+	    System.out.println("Scheduling commute times......");
+	    in.nextLine();	// Eat up newline character
+	    
+		/*
 		System.out.println("Please enter your desired rest time in hours");
-		int restTimeHours = in.nextInt();
-		int restTimeMinutes = restTimeHours * 60;
-		createAdd.addRestTimeToCal(restTimeMinutes);
+		int restTimeHours = Integer.parseInt(in.nextLine().trim());
 		
+		createAdd.createRestTimeAddToCal(restTimeHours);
+		in.nextLine();
+		*/
 		System.out.println("Please enter the times you would like to designate as free time, in the "
 				+ "following format:\nM 10:00-11:00, R 10:00-11:00, F 18:00-19:00\n"
 				+ "When you're finished entering times, type DONE");
 		String freeTime = in.nextLine();
 		while (!freeTime.equals("DONE")){
-			createAdd.createFreeTimeAddToCal(freeTime);
+			createAdd.createStudyFreeTimeAddToCal(freeTime, "free");
 			freeTime = in.nextLine();
 		}
+		
+		System.out.println("Please enter the times you would like to designate as study time, in the "
+				+ "same format as free time\n You should be studying everyday ;)\n"
+				+ "When you're finished entering times, type DONE");
+		String studyTime = in.nextLine();
+		while (!studyTime.equals("DONE")){
+			createAdd.createStudyFreeTimeAddToCal(studyTime,"study");
+			studyTime = in.nextLine();
+		}
+		
 		in.close();
 		System.out.println(week);
-		
 	}
 }

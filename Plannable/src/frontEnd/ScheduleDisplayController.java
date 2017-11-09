@@ -36,8 +36,8 @@ public class ScheduleDisplayController extends Controller {
 		            Region cell = new Region();
 		            scheduleGrid.getChildren().add(cell);
 		            cell.getStyleClass().add("inactiveCell");
-		            cell.setOnMouseEntered((MouseEvent e) -> ScheduleSelectController.handleMouseEntered(e, this.sortByRows));
-		            cell.setOnMouseExited((MouseEvent e) -> ScheduleSelectController.handleMouseExited(e, this.sortByRows));
+		            cell.setOnMouseEntered((MouseEvent e) -> ScheduleSelectController.drawHoverLine(e, this.sortByRows));
+		            cell.setOnMouseExited((MouseEvent e) -> ScheduleSelectController.cleanUpHoverLine(e, this.sortByRows));
 		            
 		            if (sortByRows.containsKey(y)) {
 		            	sortByRows.get(y).add(cell);
