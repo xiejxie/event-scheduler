@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -136,6 +137,9 @@
                            </GridPane.margin>
                         </VBox>
                      </children>
+                     <padding>
+                        <Insets right="15.0" />
+                     </padding>
                   </GridPane>
                   <ScrollPane fitToWidth="true" styleClass="scrollPane">
                      <content>
@@ -202,167 +206,263 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label alignment="CENTER" styleClass="calendarTime" text="12 AM" GridPane.halignment="RIGHT">
+                              <Label alignment="CENTER" text="12 AM" GridPane.halignment="RIGHT">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label alignment="CENTER" layoutX="35.0" layoutY="69.0" styleClass="calendarTime" text="1 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                              <Label alignment="CENTER" layoutX="35.0" layoutY="69.0" text="1 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label alignment="CENTER" styleClass="calendarTime" text="2 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                              <Label alignment="CENTER" text="2 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label alignment="CENTER" styleClass="calendarTime" text="3 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                              <Label alignment="CENTER" text="3 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label alignment="CENTER" styleClass="calendarTime" text="4 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+                              <Label alignment="CENTER" text="4 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label alignment="CENTER" layoutX="35.0" layoutY="223.0" styleClass="calendarTime" text="5 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
+                              <Label alignment="CENTER" layoutX="35.0" layoutY="223.0" text="5 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="260.0" styleClass="calendarTime" text="6 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="260.0" text="6 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="297.0" styleClass="calendarTime" text="7 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="14">
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="297.0" text="7 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="14">
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="334.0" styleClass="calendarTime" text="8 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="16">
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="334.0" text="8 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="16">
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="371.0" styleClass="calendarTime" text="9 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="18">
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="371.0" text="9 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="18">
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label id="calendarTime" alignment="CENTER" layoutX="10.0" layoutY="445.0" styleClass="calendarTime" text="10 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="20">
+                              <Label id="calendarTime" alignment="CENTER" layoutX="10.0" layoutY="445.0" text="10 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="20">
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label id="calendarTime" styleClass="calendarTime" text="11 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="22">
+                              <Label id="calendarTime" text="11 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="22">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label id="calendarTime" styleClass="calendarTime" text="12 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="24">
+                              <Label id="calendarTime" text="12 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="24">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label id="calendarTime" styleClass="calendarTime" text="1 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="26">
+                              <Label id="calendarTime" text="1 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="26">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label id="calendarTime" styleClass="calendarTime" text="2 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="28">
+                              <Label id="calendarTime" text="2 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="28">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label id="calendarTime" styleClass="calendarTime" text="3 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="30">
+                              <Label id="calendarTime" text="3 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="30">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label id="calendarTime" styleClass="calendarTime" text="4 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="32">
+                              <Label id="calendarTime" text="4 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="32">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label id="calendarTime" styleClass="calendarTime" text="5 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="34">
+                              <Label id="calendarTime" text="5 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="34">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label id="calendarTime" styleClass="calendarTime" text="6 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="36">
+                              <Label id="calendarTime" text="6 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="36">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label id="calendarTime" styleClass="calendarTime" text="7 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="38">
+                              <Label id="calendarTime" text="7 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="38">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label id="calendarTime" styleClass="calendarTime" text="8 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="40">
+                              <Label id="calendarTime" text="8 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="40">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label id="calendarTime" styleClass="calendarTime" text="9 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="42">
+                              <Label id="calendarTime" text="9 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="42">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label styleClass="calendarTime" text="10 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="44">
+                              <Label text="10 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="44">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
-                              <Label styleClass="calendarTime" text="11 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="46">
+                              <Label text="11 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="46">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <padding>
                                     <Insets bottom="12.0" />
                                  </padding>
+                                 <styleClass>
+                                    <String fx:value="calendarTime" />
+                                    <String fx:value="fontRegular" />
+                                 </styleClass>
                               </Label>
                            </children>
                            <padding>
@@ -381,12 +481,15 @@
             </VBox>
          </center>
          <left>
-            <Button fx:id="backButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="navButton" text="BACK" BorderPane.alignment="CENTER">
+            <Button fx:id="backButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" styleClass="navButton" text="&lt;" BorderPane.alignment="CENTER">
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/005-left-chevron.png" />
                      </image>
+                     <effect>
+                        <ColorAdjust brightness="-0.05" hue="-0.2" saturation="-0.03" />
+                     </effect>
                   </ImageView>
                </graphic>
             </Button>
@@ -405,7 +508,7 @@
       </BorderPane>
    </center>
    <padding>
-      <Insets bottom="15.0" left="30.0" />
+      <Insets bottom="15.0" left="30.0" right="30.0" />
    </padding>
    <top>
       <BorderPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
