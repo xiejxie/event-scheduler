@@ -19,7 +19,7 @@ public abstract class Controller {
 		try {
 			FXMLLoader loader = new FXMLLoader();
         	loader.setLocation(MainApp.class.getResource(location));
-        	Scene scene = new Scene(loader.load(), 1200, 800);
+        	Scene scene = new Scene(loader.load(), 1000, 600);
         	return scene;
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import backEnd.tasks.Task;
 
+/**
+ * The WeeklyCalendar class represents seven days
+ * of one week and holds the information regarding
+ * all Tasks given by the user.
+ */
 public class WeeklyCalendar {
 		
 	ArrayList<Task> monTasks = new ArrayList<Task>();
@@ -28,9 +33,9 @@ public class WeeklyCalendar {
 	
 	@Override
 	public String toString(){
-		return "M" + monTasks + "\nT" + tuesTasks +
+		return  "N" + sunTasks +"\nM" + monTasks + "\nT" + tuesTasks +
 				"\nW" + wedTasks +"\nR" + thursTasks +"\nF" + friTasks +
-				"\nS" + satTasks + "\nN" + sunTasks;
+				"\nS" + satTasks;
 		
 	}
 }

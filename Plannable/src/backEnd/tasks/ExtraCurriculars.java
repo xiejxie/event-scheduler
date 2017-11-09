@@ -1,28 +1,16 @@
 package backEnd.tasks;
 
-public class ExtraCurriculars extends Task {
-	private String activityName;
-	private int priority;
-	private String startTime;
-	private String endTime;
+import java.time.LocalTime;
+
+public class ExtraCurriculars extends Task {	
+	
 	private char day;
 	
-	
-	public ExtraCurriculars(String name, int p, String sT, String eT, char d){
-		super(sT, eT, p);
-		activityName = name;
-		day = d;
+	public ExtraCurriculars(LocalTime sT, LocalTime eT, int p, String name, char day){
+		super(name, sT, eT, p);
 	}
 	
-	public int getPriority(){
-	    return priority;
-	}
-	
-	public String getEndTime(){
-		return endTime;
-	}
-	
-	public String getStartTime(){
-		return startTime;
+	public char getDay(){
+		return this.day;
 	}
 }
