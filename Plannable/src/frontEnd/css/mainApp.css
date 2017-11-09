@@ -1,0 +1,93 @@
+@font-face {
+	font-family: 'SF UI Display Thin';
+	src: url('../../../src/frontEnd/fonts/SF-UI-Display-Thin.otf');
+}
+
+@font-face {
+	font-family: 'SF UI Text Regular';
+	src: url('../../../src/frontEnd/fonts/SF-UI-Text-Regular.otf');
+}
+
+@font-face {
+	font-family: 'SF UI Text Medium';
+	src: url('../../../src/frontEnd/fonts/SF-UI-Text-Medium.otf');
+}
+
+@font-face {
+	font-family: 'SF UI Text Bold';
+	src: url('../../../src/frontEnd/fonts/SF-UI-Text-Bold.otf');
+}
+
+.accentColor1 {
+	-fx-background-color: #f8f8f8;
+}
+
+.accentColor2Text {
+	-fx-text-fill: rgb(14, 122, 254, 1);
+}
+
+.accentColor3Text {
+	-fx-text-fill: #95989A;
+}
+
+.fontRegular {
+	-fx-font-family: 'SF UI Text Regular';
+}
+
+.fontThin {
+	-fx-font-family: 'SF UI Display Thin';
+}
+
+.decrement-arrow, .increment-arrow {
+	-fx-background-color: none;
+}
+
+.subTitleThick {
+	-fx-font-family: 'SF UI Text Bold';
+	-fx-text-fill: rgb(14, 122, 254, 1);
+}
+
+.generalButton {
+	-fx-cursor: hand;
+	-fx-background-color: none;
+}
+
+.generalButton:hover {
+	-fx-text-fill: rgb(14, 122, 254, 0.2);
+}
+
+.navButton {
+	-fx-cursor: hand;
+	-fx-font-family: 'SF UI Text Bold';
+	-fx-text-fill: #95989A;
+	-fx-background-color: none;
+}
+
+.navButton:hover {
+	-fx-text-fill: rgb(14, 122, 254, 0.6);
+}
+
+.root {
+	-fx-border-style: solid;
+	-fx-border-width: 5 0 0 0;
+	-fx-border-color: #f8f8f8;
+	-fx-font-family: 'SF UI Text Medium';
+	-fx-background-color: white;
+}
+
+.scroll-bar:vertical {
+	-fx-background-color: white;
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scrollPane {
+	-fx-background-color: white;
+	-fx-border-color: none;
+}
+
+.thumb {
+	-fx-background-color: #f8f8f8;
+}
