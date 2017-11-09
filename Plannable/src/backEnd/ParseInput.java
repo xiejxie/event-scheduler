@@ -34,6 +34,77 @@ public class ParseInput {
 		manager.addRest(time);
 	}
 	
+	public void addCourseToCal(String courseName, HashMap<Character, LocalTime[]> courseInfo){
+		Iterator<Character> courseInfoIterator = courseInfo.keySet().iterator();
+		
+		while(courseInfoIterator.hasNext()){
+			Character nextCourseDay = courseInfoIterator.next();
+			char day = nextCourseDay;
+			
+			LocalTime startTime = courseInfo.get(day)[0];
+			LocalTime endTime = courseInfo.get(day)[1];
+			//creating the object Courses for that course on that day
+			Courses currCouse = new Courses(courseName, startTime, endTime, 0, day);
+			
+			//based on the day of the course offering, have to add to right list
+			manager.addTaskToCalendar(currCouse, day);
+		}	
+	}
+
+	public void addFreeAndStudyTimeToCal(String description, HashMap<Character, LocalTime[]> timeInfo){
+
+		Iterator<Character> timeInfoIterator = timeInfo.keySet().iterator();
+		
+		while(timeInfoIterator.hasNext()){
+			
+			Character nextTimeDay = timeInfoIterator.next();
+			char day = nextTimeDay;
+			LocalTime startTime = timeInfo.get(day)[0];
+			LocalTime endTime = timeInfo.get(day)[1];
+			
+			if(description.equals("Free Time")){
+				FreeTime freeTimeTask = new FreeTime(startTime, endTime, 0, day);
+				manager.addTaskToCalendar(freeTimeTask, day);
+			}
+			else{
+				StudyTimeTask studyTimeTask = new StudyTimeTask(startTime, endTime, 0, day);
+				manager.addTaskToCalendar(studyTimeTask, day);
+			}
+		}
+	}
+
+	public void addECToCal(String description, HashMap<Character, LocalTime[]> extraInfo){
+		
+		Iterator<Character> extraInfoIterator = extraInfo.keySet().iterator();
+		
+		while(extraInfoIterator.hasNext()){
+			
+			Character nextTimeDay = extraInfoIterator.next();
+			char day = nextTimeDay;
+			LocalTime startTime = extraInfo.get(day)[0];
+			LocalTime endTime = extraInfo.get(day)[1];
+			
+			  //creating the object Courses for that course on that day
+	        ExtraCurriculars currEC = new ExtraCurriculars(startTime, endTime, 0, description, day);
+			   
+	        //based on the day of the course offering, have to add to right list
+	        manager.addTaskToCalendar(currEC , day);
+		}
+	}
+	
+	public void createThingTODO(String item, TODOManager tManage){
+		String [] parts = item.split(":");
+		String name = parts[0];
+		char day = parts[1].charAt(1);
+		int dur = Integer.parseInt(parts[1].substring(3));
+		TODO t = new TODO(day, dur, name);
+		tManage.addThingTODO(t);
+	}
+	
+	// ==================================================
+	// Backend testing methods
+	// ==================================================
+	
 	//THIS FUNCTION DOES STRING CONVERSION AND IS FOR BACKEND TESTING PURPOSES
 	public void createCourseAddToCal(String courseDescr){
 		String courseName = courseDescr.substring(0, courseDescr.indexOf(":"));
@@ -55,23 +126,6 @@ public class ParseInput {
 			courseInfo.put(day, timeArr);
 		}
 		addCourseToCal(courseName, courseInfo);
-	}
-	
-	public void addCourseToCal(String courseName, HashMap<Character, LocalTime[]> courseInfo){
-		Iterator<Character> courseInfoIterator = courseInfo.keySet().iterator();
-		
-		while(courseInfoIterator.hasNext()){
-			Character nextCourseDay = courseInfoIterator.next();
-			char day = nextCourseDay;
-			
-			LocalTime startTime = courseInfo.get(day)[0];
-			LocalTime endTime = courseInfo.get(day)[1];
-			//creating the object Courses for that course on that day
-			Courses currCouse = new Courses(courseName, startTime, endTime, 0, day);
-			
-			//based on the day of the course offering, have to add to right list
-			manager.addTaskToCalendar(currCouse, day);
-		}	
 	}
 	
 	//THIS FUNCTION DOES STRING CONVERSION AND IS FOR BACKEND TESTING PURPOSES
@@ -103,30 +157,7 @@ public class ParseInput {
 		addFreeAndStudyTimeToCal("Free Time", freeTimeInfo);
 		addFreeAndStudyTimeToCal("Study Time", studyTimeInfo);
 	}
-	
-	public void addFreeAndStudyTimeToCal(String description, HashMap<Character, LocalTime[]> timeInfo){
 
-		Iterator<Character> timeInfoIterator = timeInfo.keySet().iterator();
-		
-		while(timeInfoIterator.hasNext()){
-			
-			Character nextTimeDay = timeInfoIterator.next();
-			char day = nextTimeDay;
-			LocalTime startTime = timeInfo.get(day)[0];
-			LocalTime endTime = timeInfo.get(day)[1];
-			
-			if(description.equals("Free Time")){
-				FreeTime freeTimeTask = new FreeTime(startTime, endTime, 0, day);
-				manager.addTaskToCalendar(freeTimeTask, day);
-			}
-			else{
-				StudyTimeTask studyTimeTask = new StudyTimeTask(startTime, endTime, 0, day);
-				manager.addTaskToCalendar(studyTimeTask, day);
-			}
-		}
-	}
-	
-	
 	//THIS FUNCTION DOES STRING CONVERSION AND IS FOR BACKEND TESTING PURPOSES
 	public void createECAddToCal(String ECDescr){
 		  String ECName = ECDescr.substring(0, ECDescr.indexOf(":"));
@@ -150,25 +181,10 @@ public class ParseInput {
 	      addECToCal(ECName, extraInfo);
 	}
 	
-	public void addECToCal(String description, HashMap<Character, LocalTime[]> extraInfo){
-		
-		Iterator<Character> extraInfoIterator = extraInfo.keySet().iterator();
-		
-		while(extraInfoIterator.hasNext()){
-			
-			Character nextTimeDay = extraInfoIterator.next();
-			char day = nextTimeDay;
-			LocalTime startTime = extraInfo.get(day)[0];
-			LocalTime endTime = extraInfo.get(day)[1];
-			
-			  //creating the object Courses for that course on that day
-	        ExtraCurriculars currEC = new ExtraCurriculars(startTime, endTime, 0, description, day);
-			   
-	        //based on the day of the course offering, have to add to right list
-	        manager.addTaskToCalendar(currEC , day);
-		}
-	}
-	
+	// ==================================================
+	// Helper methods
+	// ==================================================
+
 	//Helper function for converting string format time to the Java LocalTime class
 	public LocalTime convertToTime(String stringTime){
 		String [] timeParts = stringTime.split(":");
@@ -178,12 +194,4 @@ public class ParseInput {
 		return curTime;
 	}
 	
-	public void createThingTODO(String item, TODOManager tManage){
-		String [] parts = item.split(":");
-		String name = parts[0];
-		char day = parts[1].charAt(1);
-		int dur = Integer.parseInt(parts[1].substring(3));
-		TODO t = new TODO(day, dur, name);
-		tManage.addThingTODO(t);
-	}
 }
