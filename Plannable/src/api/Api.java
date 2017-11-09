@@ -17,6 +17,7 @@ import javafx.scene.layout.Region;
  */
 public final class Api {
 	
+	// Api's access to backend
 	private static final ParseInput parse = new ParseInput(new WeeklyCalendar()); 
 	
 	// Never instantiate this class
@@ -51,13 +52,16 @@ public final class Api {
 		}
 		
 		/** Call to ParseInput **/
+		parse.addCourseToCal(name, info);
 		
+		/*
 		// For debugging
 		Iterator<Character> c = info.keySet().iterator();
 		while(c.hasNext()) {
 			char curr = c.next();
 			System.out.println(curr + " " + info.get(curr)[0] + "-" + info.get(curr)[1]);
 		}
+		*/
 	}
 	
 	/**
