@@ -30,17 +30,15 @@ public class TODOManager {
 			ArrayList<Task> currDay = days.get(i);
 			// going through each task on each day
 			for(int j = 0; j < currDay.size(); j++){
-				Task currTask = currDay.get(j);
-				if(currTask instanceof StudyTimeTask){
-					manageStudyTime(currTask);
+				if(currDay.get(j) instanceof StudyTimeTask){
+					manageStudyTime((StudyTimeTask)currDay.get(j));
 					sortList();
 				}
 			}
 		}
 	}
 	
-	public void manageStudyTime(Task currTask){
-		StudyTimeTask studyToday = (StudyTimeTask) currTask;
+	public void manageStudyTime(StudyTimeTask studyToday){
 		int totalTime = studyToday.getDuration();
 		int currTime = 0;
 		int index = 0;
