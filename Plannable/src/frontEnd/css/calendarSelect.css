@@ -11,8 +11,13 @@
 	-fx-border-insets: 0 -5 0 -5;
 }
 
+.addNewTextField {
+	-fx-border-color: none;
+	-fx-background-color: none;
+}
+
 .calendarDateNumber{
-	-fx-font-size: 20;
+	-fx-font-size: 25;
 }
 
 .calendarTime{
@@ -33,4 +38,16 @@
 	-fx-border-style: solid;
 	-fx-border-width: 0 5 0 0;
 	-fx-border-color: #f8f8f8;
+}
+
+.stepBig {
+	-fx-font-size: 30;
+}
+
+.stepSmall {
+	-fx-font-size: 14;
+}
+
+.timeBlock {
+	-fx-padding: 0 0 0 20;
 }

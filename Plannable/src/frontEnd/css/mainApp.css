@@ -18,15 +18,48 @@
 	src: url('../../../src/frontEnd/fonts/SF-UI-Text-Bold.otf');
 }
 
+.accentColor1 {
+	-fx-background-color: #f8f8f8;
+}
+
+.accentColor2Text {
+	-fx-text-fill: rgb(14, 122, 254, 1);
+}
+
+.accentColor3Text {
+	-fx-text-fill: #95989A;
+}
+
+.fontRegular {
+	-fx-font-family: 'SF UI Text Regular';
+}
+
+.fontThin {
+	-fx-font-family: 'SF UI Display Thin';
+}
+
+.decrement-arrow, .increment-arrow {
+	-fx-background-color: none;
+}
+
 .subTitleThick {
 	-fx-font-family: 'SF UI Text Bold';
 	-fx-text-fill: rgb(14, 122, 254, 1);
 }
 
+.generalButton {
+	-fx-cursor: hand;
+	-fx-background-color: none;
+}
+
+.generalButton:hover {
+	-fx-text-fill: rgb(14, 122, 254, 0.2);
+}
+
 .navButton {
 	-fx-cursor: hand;
 	-fx-font-family: 'SF UI Text Bold';
-	-fx-text-fill: rgb(14, 122, 254, 1);
+	-fx-text-fill: #95989A;
 	-fx-background-color: none;
 }
 
@@ -42,12 +75,19 @@
 	-fx-background-color: white;
 }
 
-.titleThin {
-	-fx-font-family: 'SF UI Display Thin';
-	-fx-font-size: 30;
+.scroll-bar:vertical {
+	-fx-background-color: white;
 }
 
-.titleThick {
-	-fx-font-size: 30;
-	-fx-font-family: 'SF UI Text Medium'
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scrollPane {
+	-fx-background-color: white;
+	-fx-border-color: none;
+}
+
+.thumb {
+	-fx-background-color: #f8f8f8;
 }
