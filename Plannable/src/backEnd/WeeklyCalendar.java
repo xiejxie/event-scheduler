@@ -33,9 +33,9 @@ public class WeeklyCalendar {
 	
 	@Override
 	public String toString(){
-		return "M" + monTasks + "\nT" + tuesTasks +
+		return  "N" + sunTasks +"\nM" + monTasks + "\nT" + tuesTasks +
 				"\nW" + wedTasks +"\nR" + thursTasks +"\nF" + friTasks +
-				"\nS" + satTasks + "\nN" + sunTasks;
+				"\nS" + satTasks;
 		
 	}
 }
