@@ -52,7 +52,6 @@ public class ParseInput {
 	}
 
 	public void addFreeAndStudyTimeToCal(String description, HashMap<Character, LocalTime[]> timeInfo){
-
 		Iterator<Character> timeInfoIterator = timeInfo.keySet().iterator();
 		
 		while(timeInfoIterator.hasNext()){
@@ -74,7 +73,6 @@ public class ParseInput {
 	}
 
 	public void addECToCal(String description, HashMap<Character, LocalTime[]> extraInfo){
-		
 		Iterator<Character> extraInfoIterator = extraInfo.keySet().iterator();
 		
 		while(extraInfoIterator.hasNext()){

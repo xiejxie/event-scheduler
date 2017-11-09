@@ -112,7 +112,6 @@ public class TaskManager {
 	}
 
     public Sleep getSleepTime(Task commute, int time, char which){
-    	
     	//Morning sleep portion (Between 0:00 and departure time)
     	if(which == 'm'){
     		LocalTime departureTime = commute.getStartTime();
