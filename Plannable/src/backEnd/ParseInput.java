@@ -14,26 +14,60 @@ import backEnd.tasks.StudyTimeTask;
 /**
  * ParseInput is a class that:
  * - takes in raw text input
- * - processes the information
- * - calls the appropriate methods in TaskManager
- * to add new tasks
+ * - processes the input and converts it into task object and information
+ * - calls the appropriate methods in TaskManager to add these tasks  
+ *  to the instance of WeeklyCalendar
  */
 public class ParseInput {
 
+	/**The instance of TaskManager whose methods will be called by this instance of ParseInput */
 	private TaskManager manager;
 	
+	/**
+	 * A new ParseInput instance 
+	 * 
+	 * @param w
+	 * 		The WeeklyCalendar instance that will be populated by this ParseInput
+	 */
 	public ParseInput(WeeklyCalendar w){
 		manager = new TaskManager(w);
 	}
 	
+	
+	/**
+	 * Calls the TaskManager instance to add the user's weekly commutes to the WeeklyCalendar
+	 * 
+	 * @param time
+	 * 		The duration, in minutes, of the user's one way commute 
+	 */
 	public void createCommuteAddToCal(int time){
 		manager.addCommute(time);
 	}
 	
+	
+	/**
+	 * Calls the TaskManager instance to add the user's weekly sleep schedule to the WeeklyCalendar
+	 * 
+	 * @param time
+	 * 		The duration, in hours, of the user's intended nightly sleep
+	 */
 	public void createRestTimeAddToCal(int time){
 		manager.addRest(time);
 	}
 	
+	
+	/**
+	 * Calls TaskManager to add a specific course to the WeeklyCalendar instance based 
+	 * information that has been parsed from text input by createCourseAddToCal or passed by 
+	 * Front End.
+	 * 
+	 * @param courseName
+	 * 		A String representing the name of the course.
+	 * @param courseInfo
+	 * 		A HashMap with the days of the week when the course
+	 * 		occurs as the key and the start/end times for the course
+	 * 		on this day as the values.
+	 */
 	public void addCourseToCal(String courseName, HashMap<Character, LocalTime[]> courseInfo){
 		Iterator<Character> courseInfoIterator = courseInfo.keySet().iterator();
 		
@@ -51,6 +85,19 @@ public class ParseInput {
 		}	
 	}
 
+	
+	/**
+	 * Calls TaskManager to add designated weekly study or free time sessions 
+	 * to the WeeklyCalendar instance based information that has been parsed
+	 *  from text input by createStudyFreeTimeAddToCal or passed by Front End.
+	 * 
+	 * @param description
+	 * 		A String describing the type of task (Free or Study time).
+	 * @param timeInfo
+	 * 		A HashMap with the days of the week when this task
+	 * 		occurs as the key and the start/end times for the task 
+	 * 		on this day as the values.	
+	 */
 	public void addFreeAndStudyTimeToCal(String description, HashMap<Character, LocalTime[]> timeInfo){
 		Iterator<Character> timeInfoIterator = timeInfo.keySet().iterator();
 		
@@ -72,6 +119,19 @@ public class ParseInput {
 		}
 	}
 
+	/**
+	 * Calls TaskManager to add a specific weekly ExtraCurricular activity 
+	 * to the WeeklyCalendar instance based information that has been 
+	 * parsed from text input by createStudyFreeTimeAddToCal or passed
+	 * by Front End.
+	 * 
+	 * @param description
+	 * 			A String describing the type of ExtraCurricular task.
+	 * @param extraInfo
+	 * 		A HashMap with the days of the week when this task
+	 * 		occurs as the key and the start/end times for the task 
+	 * 		on this day as the values.	
+	 */
 	public void addECToCal(String description, HashMap<Character, LocalTime[]> extraInfo){
 		Iterator<Character> extraInfoIterator = extraInfo.keySet().iterator();
 		
@@ -90,6 +150,14 @@ public class ParseInput {
 		}
 	}
 	
+	/**
+	 * Takes a "todo" list item, and adds it to the instance of TODOManager
+	 * 
+	 * @param item
+	 * 		A String representing name of the item "todo"
+	 * @param tManage
+	 * 		The instance of TODOManager to add the item to 
+	 */
 	public void createThingTODO(String item, TODOManager tManage){
 		String [] parts = item.split(":");
 		String name = parts[0];
@@ -97,6 +165,29 @@ public class ParseInput {
 		int dur = Integer.parseInt(parts[1].substring(3));
 		TODO t = new TODO(day, dur, name);
 		tManage.addThingTODO(t);
+	}
+	
+	// ==================================================
+	// Helper methods
+	// ==================================================
+
+	/**
+	 * This is a helper method that takes a String in the time 
+	 * format "hh:mm" and converts it to a LocalTime instance 
+	 * representing that time.
+	 * 
+	 * @param stringTime
+	 * 		A String in the standard time format of "hh:mm".
+	 * @return
+	 * 		A LocalTime instance representing the time of 
+	 * 		the String passed as input. 
+	 */
+	public LocalTime convertToTime(String stringTime){
+		String [] timeParts = stringTime.split(":");
+		int hours = Integer.valueOf(timeParts[0]);
+		int minutes = Integer.valueOf(timeParts[1]);
+		LocalTime curTime = LocalTime.of(hours, minutes);
+		return curTime;
 	}
 	
 	// ==================================================
@@ -178,18 +269,4 @@ public class ParseInput {
 	      }
 	      addECToCal(ECName, extraInfo);
 	}
-	
-	// ==================================================
-	// Helper methods
-	// ==================================================
-
-	//Helper function for converting string format time to the Java LocalTime class
-	public LocalTime convertToTime(String stringTime){
-		String [] timeParts = stringTime.split(":");
-		int hours = Integer.valueOf(timeParts[0]);
-		int minutes = Integer.valueOf(timeParts[1]);
-		LocalTime curTime = LocalTime.of(hours, minutes);
-		return curTime;
-	}
-	
 }
