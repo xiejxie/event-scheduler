@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import api.Api;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -265,6 +266,7 @@ public class ScheduleSelectController extends Controller {
 			}
 			permanentlyBlockedTimes.add(addIndex, newBlockedTimes);
 			String timeBlockText = addNewTextField.getText().trim();
+			Api.sendTaskToParse(newBlockedTimes, timeBlockText);
 			Label timeBlockLabel = new Label(timeBlockText);
 			timeBlockLabel.getStyleClass().add("timeBlock");
 			timeBlockLabel.getStyleClass().add("fontRegular");
