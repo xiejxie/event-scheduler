@@ -31,6 +31,7 @@ public class ScheduleSelectController extends Controller {
 	Set<Region> blockedTimes = new HashSet<Region>(); //Selected times
 	//Code representation of the grayed in cells
 	Map<Integer, ArrayList<Region>> sortByRows = new HashMap<Integer, ArrayList<Region>>();
+	Map<Label, Set<Region>> labelToRegion = new HashMap<Label, Set<Region>>();
 	Boolean addTimesFlag = true;
 	ArrayList<Set<Region>> permanentlyBlockedTimes = new ArrayList<Set<Region>>();
 	ArrayList<VBox> steps = new ArrayList<VBox>();
@@ -110,7 +111,7 @@ public class ScheduleSelectController extends Controller {
 		            	ArrayList<Region> newList = new ArrayList<Region>();
 		            	newList.add(cell);
 		            	sortByRows.put(y, newList);
-		            }		            
+		            }
 		            GridPane.setColumnIndex(cell, x);
 		            GridPane.setRowIndex(cell, y);
 		        }
@@ -127,11 +128,24 @@ public class ScheduleSelectController extends Controller {
 	private void disableCalendar() {
 		for (Node n : scheduleGrid.getChildren()) {
 			if (n.getClass() == Region.class) {
-				n.getStyleClass().remove("activeCell");
-				n.getStyleClass().add("inactiveCell");
+				if (n.getStyleClass().contains("activeCell")) {
+					n.getStyleClass().remove("activeCell");
+					n.getStyleClass().add("inactiveCell");
+				}
 				n.setDisable(true);
 			}
 	    }
+	}
+	
+	private void parseTimeBlocks() {
+		for (int i = 0; i < leftPaneBox.getChildren().size()-1; i++) {
+			HBox box = (HBox) leftPaneBox.getChildren().get(i);
+			box.setDisable(false);
+			Button but = (Button) box.getChildren().get(0);
+			but.setDisable(true);
+	    }
+		leftPaneBox.getChildren().remove(leftPaneBox.getChildren().size()-1);
+		MainApp.setScheduleGridInformation(leftPaneBox);
 	}
 	
 	// Event handlers
@@ -233,6 +247,7 @@ public class ScheduleSelectController extends Controller {
 		} else {
 			disableCalendar();
 			MainApp.setScheduleGridDisplay(scheduleGridDisplay);
+			parseTimeBlocks();
 			MainApp.switchScene("ScheduleDisplay");
 		}
 		
@@ -281,6 +296,7 @@ public class ScheduleSelectController extends Controller {
 			timeBlockHBox.getChildren().add(timeBlockLabel);
 			timeBlockHBox.setId(state+"");
 			leftPaneBox.getChildren().add(addIndex, timeBlockHBox);
+			MainApp.setScheduleGridMap(timeBlockLabel, newBlockedTimes);
 			addNewTextField.clear();
 			blockedTimes.clear();
 		}

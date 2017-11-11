@@ -8,6 +8,9 @@ import java.util.Set;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -21,6 +24,8 @@ public class MainApp extends Application {
      */
     private static Map<String, Controller> sceneOrderings = new HashMap<String, Controller>();
     private static Node scheduleGridDisplay;
+    private static VBox scheduleGridInformation = new VBox();
+    private static Map<Label, Set<Region>> scheduleGridMap = new HashMap<Label, Set<Region>>();
     private static Set<Controller> controllers = new HashSet<Controller>();
     
     /**
@@ -73,6 +78,40 @@ public class MainApp extends Application {
      */
     public static Node getScheduleGridDisplay() {
     	return scheduleGridDisplay;
+    }
+    
+    /**
+     * Update the state of the shared schedule grid
+     * @param sg	the shared schedule grid
+     */
+    public static void setScheduleGridInformation(VBox sg) {
+    	scheduleGridInformation = sg;
+    }
+    
+    /**
+     * @return	the shared schedule grid
+     */
+    public static Node getScheduleGridInformation() {
+    	return scheduleGridInformation;
+    }
+    
+    /**
+     * Update the state of the shared schedule grid
+     * @param sg	the shared schedule grid
+     */
+    public static void setScheduleGridMap(Label l, Set<Region> r) {
+    	scheduleGridMap.put(l, r);
+    }
+    
+    /**
+     * @return	the shared schedule grid
+     */
+    public static Map<Label, Set<Region>> getScheduleGridMap() {
+    	return scheduleGridMap;
+    }
+    
+    public static void clearScheduleGridMap() {
+    	scheduleGridMap.clear();
     }
     
     /**

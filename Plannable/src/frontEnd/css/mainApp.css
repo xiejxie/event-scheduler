@@ -34,6 +34,18 @@
 	-fx-text-fill: #95989A;
 }
 
+.whiteText {
+	-fx-text-fill: white;
+}
+
+.fontBold {
+	-fx-font-family: 'SF UI Text Bold';
+}
+
+.fontMedium {
+	-fx-font-family: 'SF UI Text Medium';
+}
+
 .fontRegular {
 	-fx-font-family: 'SF UI Text Regular';
 }

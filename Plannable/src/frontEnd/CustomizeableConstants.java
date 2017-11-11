@@ -7,8 +7,9 @@ import java.util.concurrent.ThreadLocalRandom;
  * of the header of each step
  */
 public class CustomizeableConstants {
-	static private String[] colourSet = {"#ffb3ba", "#ffdfba", "#ffffba", "#baffc9", "#bae1ff"};
-	static private String[] steps = {"Your Courses", "Your Extracurriculars", "Your Evaluations", "Your ????"};
+	static private final String[] colourSet = {"#5B0028", "#820139", "#960042", "#DD0061", "#E20063", "#6C1100", "#991902",
+			"#B11B00", "#FF2800", "#FF2800", "#380147",  "#500465", "#5C0275", "#8C02B4", "#9505BE"};
+	static private final String[] steps = {"Your Courses", "Your Extracurriculars", "Your Evaluations", "Your ????"};
 	/**
 	 * @return	colour of the new time block
 	 */
