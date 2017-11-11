@@ -10,6 +10,7 @@ import java.util.Set;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -71,6 +72,9 @@ public class ScheduleSelectController extends Controller {
 	@FXML
 	Button backButton;
 	
+	@FXML
+	VBox scheduleGridDisplay;
+	
 	/**
 	 * Set up
 	 */
@@ -110,6 +114,23 @@ public class ScheduleSelectController extends Controller {
 		            GridPane.setRowIndex(cell, y);
 		        }
 		    }
+	}
+	
+	/**
+	 * Return a scene object that this class controls
+	 */
+	public Scene getScene() {
+		return this.getScene("./ScheduleSelect.fxml");
+	}
+	
+	private void disableCalendar() {
+		for (Node n : scheduleGrid.getChildren()) {
+			if (n.getClass() == Region.class) {
+				n.getStyleClass().remove("activeCell");
+				n.getStyleClass().add("inactiveCell");
+				n.setDisable(true);
+			}
+	    }
 	}
 	
 	// Event handlers
@@ -195,23 +216,26 @@ public class ScheduleSelectController extends Controller {
 	 */
 	public void goToDifferentStep(MouseEvent e, boolean forward) {
 		int newState = forward ? state+1 : state-1;
-		shiftHeader(newState, CustomizeableConstants.getHeaderString(newState));
-		shiftPanel(newState);
-		state = newState;
-		addIndex = 0;
-		List<Node> timeBlockList = leftPaneBox.getChildren();
-		for (int i = 0; i < timeBlockList.size()-1; i++) {
-			int currentId = Integer.parseInt(timeBlockList.get(i).getId());
-			if (currentId < state && !timeBlockList.get(i+1).getId().equals(currentId+"")) {
-				//found the last item
-				addIndex = i + 1;
+		if (newState < 5) { 
+			shiftHeader(newState, CustomizeableConstants.getHeaderString(newState));
+			shiftPanel(newState);
+			state = newState;
+			addIndex = 0;
+			List<Node> timeBlockList = leftPaneBox.getChildren();
+			for (int i = 0; i < timeBlockList.size()-1; i++) {
+				int currentId = Integer.parseInt(timeBlockList.get(i).getId());
+				if (currentId < state && !timeBlockList.get(i+1).getId().equals(currentId+"")) {
+					//found the last item
+					addIndex = i + 1;
+				}
 			}
+		} else {
+			disableCalendar();
+			MainApp.setScheduleGridDisplay(scheduleGridDisplay);
+			MainApp.switchScene("ScheduleDisplay");
 		}
 		
 		backButton.setDisable(newState == 1 ? true : false);
-		nextButton.setDisable(newState == 4 ? true : false);
-		//Keep this here in case we need
-		//MainApp.switchScene("CalendarSelectControllerNext");
 	}
 	
 	/**

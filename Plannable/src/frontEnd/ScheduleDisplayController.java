@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 
 /**
@@ -19,44 +22,38 @@ public class ScheduleDisplayController extends Controller {
 	 * The graphic representation of the grayed out schedule grid
 	 */
 	@FXML
-	GridPane scheduleGrid;
+	BorderPane rootNode;
+	
+	@FXML
+	Button restartButton;
 	
 	/**
 	 * The code representation of the grayed out schedule grid
 	 */
 	Map<Integer, ArrayList<Region>> sortByRows = new HashMap<Integer, ArrayList<Region>>();
-	
+	Node root;
 	/**
 	 * Set up the schedule grid
 	 */
 	@FXML
 	public void initialize() {
-		 for (int x = 1 ; x < 8; x++) {
-		        for (int y = 1 ; y < 48 ; y++) {
-		            Region cell = new Region();
-		            scheduleGrid.getChildren().add(cell);
-		            cell.getStyleClass().add("inactiveCell");
-		            cell.setOnMouseEntered((MouseEvent e) -> ScheduleSelectController.drawHoverLine(e, this.sortByRows));
-		            cell.setOnMouseExited((MouseEvent e) -> ScheduleSelectController.cleanUpHoverLine(e, this.sortByRows));
-		            
-		            if (sortByRows.containsKey(y)) {
-		            	sortByRows.get(y).add(cell);
-		            } else {
-		            	ArrayList<Region> newList = new ArrayList<Region>();
-		            	newList.add(cell);
-		            	sortByRows.put(y, newList);
-		            }		            
-		            GridPane.setColumnIndex(cell, x);
-		            GridPane.setRowIndex(cell, y);
-		        }
-		    }
+		rootNode.setCenter(MainApp.getScheduleGridDisplay());
+		 //rootNode.setCenter(MainApp.getScheduleGridDisplay());
+		restartButton.setOnMousePressed((MouseEvent e) -> restart(e));
 	}
 	
 	/**
-	 * Click back to the calendar select screen
+	 * Return a scene object that this class controls
+	 */
+	public Scene getScene() {
+		return this.getScene("./ScheduleDisplay.fxml");
+	}
+	
+	/**
+	 * Click back to the schedule select screen
 	 * @param e
 	 */
-	public void handleOnMouseClickedBack(MouseEvent e) {
-		MainApp.switchScene("CalendarDisplayControllerBack");
+	public void restart(MouseEvent e) {
+		MainApp.switchScene("ScheduleSelect");
 	}
 }

@@ -22,11 +22,15 @@
 	-fx-background-color: #f8f8f8;
 }
 
+.accentColor3, .thumb {
+	-fx-background-color: #95989A;
+}
+
 .accentColor2Text {
 	-fx-text-fill: rgb(14, 122, 254, 1);
 }
 
-.accentColor3Text {
+.accentColor3Text, .thumb {
 	-fx-text-fill: #95989A;
 }
 
@@ -76,6 +80,8 @@
 }
 
 .scroll-bar:vertical {
+	-fx-background-radius: 0em;
+	-fx-pref-width: 8;
 	-fx-background-color: white;
 }
 
@@ -89,5 +95,6 @@
 }
 
 .thumb {
-	-fx-background-color: #f8f8f8;
+	-fx-background-radius: 0em;
+	-fx-border-radius: 0px;
 }
