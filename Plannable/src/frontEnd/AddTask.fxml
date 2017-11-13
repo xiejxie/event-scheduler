@@ -98,7 +98,7 @@
                               <String fx:value="fontRegular" />
                               <String fx:value="accentColor2Text" />
                            </styleClass></Label>
-                        <Label stylesheets="@css/StepOne.css" text="Your Evaluations">
+                        <Label text="Your Evaluations">
                            <styleClass>
                               <String fx:value="stepBig" />
                               <String fx:value="fontRegular" />
@@ -115,6 +115,6 @@
       </BorderPane>
    </top>
    <right>
-      <Button fx:id="nextButton" mnemonicParsing="false" text="Next" BorderPane.alignment="CENTER" />
+      <Button mnemonicParsing="false" text="Next" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>
