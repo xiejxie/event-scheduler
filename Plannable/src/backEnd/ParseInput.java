@@ -269,4 +269,9 @@ public class ParseInput {
 	      }
 	      addECToCal(ECName, extraInfo);
 	}
+	
+	// RETURNS CALENDAR STRING
+	public String returnCal() {
+		return this.manager.getWeek().toString();
+	}
 }

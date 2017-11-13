@@ -24,10 +24,11 @@ public final class Api {
 	private Api(){}
 	
 	/**
-	 * Takes the frontend input for Courses and Extracurriculars and sends 
-	 * the data to the appropriate functions in ParseInput.
+	 * Takes the frontend input for Courses, Extracurriculars and
+	 * Free or Study time and sends the data to the appropriate
+	 * functions in ParseInput.
 	 */
-	public static void sendTaskToParse(Set<Region> blocks, String name){
+	public static void sendTaskToParse(Set<Region> blocks, String name, int state){
 		HashMap<Character, LocalTime []> info = new HashMap<>();
 		Iterator<Region> r = blocks.iterator();
 		while(r.hasNext()){
@@ -52,7 +53,22 @@ public final class Api {
 		}
 		
 		/** Call to ParseInput **/
-		parse.addCourseToCal(name, info);
+		switch(state) {
+		case 1:
+			parse.addCourseToCal(name, info);
+			break;
+		case 2:
+			parse.addECToCal(name, info);
+			break;
+		case 3:
+			// TODO
+			break;
+		case 4:
+			parse.addFreeAndStudyTimeToCal(name, info);
+			break;
+		default:
+			break;
+		}
 		
 		/*
 		// For debugging
@@ -62,6 +78,8 @@ public final class Api {
 			System.out.println(curr + " " + info.get(curr)[0] + "-" + info.get(curr)[1]);
 		}
 		*/
+		
+		System.out.println(parse.returnCal());
 	}
 	
 	/**

@@ -250,7 +250,6 @@ public class ScheduleSelectController extends Controller {
 			parseTimeBlocks();
 			MainApp.switchScene("ScheduleDisplay");
 		}
-		
 		backButton.setDisable(newState == 1 ? true : false);
 	}
 	
@@ -281,7 +280,7 @@ public class ScheduleSelectController extends Controller {
 			}
 			permanentlyBlockedTimes.add(addIndex, newBlockedTimes);
 			String timeBlockText = addNewTextField.getText().trim();
-			Api.sendTaskToParse(newBlockedTimes, timeBlockText);
+			Api.sendTaskToParse(newBlockedTimes, timeBlockText, state);
 			Label timeBlockLabel = new Label(timeBlockText);
 			timeBlockLabel.getStyleClass().add("timeBlock");
 			timeBlockLabel.getStyleClass().add("fontRegular");
