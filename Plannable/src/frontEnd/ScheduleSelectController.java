@@ -84,7 +84,6 @@ public class ScheduleSelectController extends Controller {
 	public void initialize() {
 		backButton.setOnMousePressed((MouseEvent e) -> goToDifferentStep(e, false));
 		nextButton.setOnMousePressed((MouseEvent e) -> goToDifferentStep(e, true));
-		backButton.setDisable(true);
 		addNew.setId("addNew");
 		addNew.setOnMousePressed((MouseEvent e) -> addNewTimeBlock(e));
 		addNewTextField.setOnKeyPressed((KeyEvent e) -> addNewTimeBlockWrapper(e));
@@ -231,7 +230,10 @@ public class ScheduleSelectController extends Controller {
 	 */
 	public void goToDifferentStep(MouseEvent e, boolean forward) {
 		int newState = forward ? state+1 : state-1;
-		if (newState < 5) { 
+		if (state == 1) {
+			MainApp.switchScene("AddTask");
+		}
+		else if (newState < 5) { 
 			shiftHeader(newState, CustomizeableConstants.getHeaderString(newState));
 			shiftPanel(newState);
 			state = newState;
@@ -250,7 +252,6 @@ public class ScheduleSelectController extends Controller {
 			parseTimeBlocks();
 			MainApp.switchScene("ScheduleDisplay");
 		}
-		backButton.setDisable(newState == 1 ? true : false);
 	}
 	
 	/**

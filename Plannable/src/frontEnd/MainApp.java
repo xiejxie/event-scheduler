@@ -51,7 +51,9 @@ public class MainApp extends Application {
         newController(csc, "ScheduleSelect");
         ScheduleDisplayController cdc = new ScheduleDisplayController();
         newController(cdc, "ScheduleDisplay");
-        Scene startScene = csc.getScene("./ScheduleSelect.fxml");
+        AddTaskController atc = new AddTaskController();
+        newController(atc, "AddTask");
+        Scene startScene = atc.getScene("./AddTask.fxml");
         primaryStage.setScene(startScene);
         primaryStage.show();
     }
