@@ -10,7 +10,7 @@ import javafx.scene.Scene;
  *
  */
 public abstract class Controller {
-	
+	Scene currentScene;
 	/**
 	 * Produce the Scene object from an FXML file
 	 * For child implementation use ONLY
@@ -22,6 +22,7 @@ public abstract class Controller {
 			FXMLLoader loader = new FXMLLoader();
         	loader.setLocation(MainApp.class.getResource(location));
         	Scene scene = new Scene(loader.load(), 1000, 600);
+        	currentScene = scene;
         	return scene;
 		} catch (IOException e) {
 			e.printStackTrace();

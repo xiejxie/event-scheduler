@@ -31,7 +31,6 @@ public class ScheduleSelectController extends Controller {
 	Set<Region> blockedTimes = new HashSet<Region>(); //Selected times
 	//Code representation of the grayed in cells
 	Map<Integer, ArrayList<Region>> sortByRows = new HashMap<Integer, ArrayList<Region>>();
-	Map<Label, Set<Region>> labelToRegion = new HashMap<Label, Set<Region>>();
 	Boolean addTimesFlag = true;
 	ArrayList<Set<Region>> permanentlyBlockedTimes = new ArrayList<Set<Region>>();
 	ArrayList<VBox> steps = new ArrayList<VBox>();
@@ -230,8 +229,9 @@ public class ScheduleSelectController extends Controller {
 	 */
 	public void goToDifferentStep(MouseEvent e, boolean forward) {
 		int newState = forward ? state+1 : state-1;
-		if (state == 1) {
-			MainApp.switchScene("AddTask");
+		if (!forward && state == 1) {
+			System.out.println("add task");
+			MainApp.switchScene("AddTask", false);
 		}
 		else if (newState < 5) { 
 			shiftHeader(newState, CustomizeableConstants.getHeaderString(newState));
@@ -250,7 +250,7 @@ public class ScheduleSelectController extends Controller {
 			disableCalendar();
 			MainApp.setScheduleGridDisplay(scheduleGridDisplay);
 			parseTimeBlocks();
-			MainApp.switchScene("ScheduleDisplay");
+			MainApp.switchScene("ScheduleDisplay", true);
 		}
 	}
 	
@@ -289,7 +289,7 @@ public class ScheduleSelectController extends Controller {
 			HBox timeBlockHBox = new HBox();
 			Button timeBlockRemoveButton = new Button("x");
 			timeBlockRemoveButton.getStyleClass().add("fontThin");
-			timeBlockRemoveButton.setOnMousePressed((MouseEvent me) -> removeBlockedTimes(newBlockedTimes));
+			timeBlockRemoveButton.setOnMousePressed((MouseEvent me) -> removeBlockedTimes(newBlockedTimes, timeBlockLabel));
 			timeBlockRemoveButton.getStyleClass().add("generalButton");
 			timeBlockRemoveButton.setStyle("-fx-text-fill: "+colour);
 			timeBlockHBox.getChildren().add(timeBlockRemoveButton);
@@ -310,7 +310,7 @@ public class ScheduleSelectController extends Controller {
 	 * Remove an existing time block
 	 * @param blockedTimes	set holding the time block to be deleted
 	 */
-	public void removeBlockedTimes(Set<Region> blockedTimes) {
+	public void removeBlockedTimes(Set<Region> blockedTimes, Label l) {
 		int index = permanentlyBlockedTimes.indexOf(blockedTimes);
 		for (Region region : blockedTimes) {
 			region.setDisable(false);
@@ -319,6 +319,7 @@ public class ScheduleSelectController extends Controller {
 		}
 		permanentlyBlockedTimes.remove(index);
 		leftPaneBox.getChildren().remove(index);
+		MainApp.rmScheduleGridMap(l);
 	}
 	
 	/**

@@ -35,6 +35,9 @@ public class ScheduleDisplayController extends Controller {
 	@FXML
 	Button restartButton;
 	
+	@FXML
+	Button editButton;
+	
 	Node grid;
 	
 	/**
@@ -50,9 +53,9 @@ public class ScheduleDisplayController extends Controller {
 		rootNode.setCenter(grid);
 		rootNode.setLeft(MainApp.getScheduleGridInformation());
 		stampTimes();
-		System.out.println(MainApp.getScheduleGridMap());
 		 //rootNode.setCenter(MainApp.getScheduleGridDisplay());
 		restartButton.setOnMousePressed((MouseEvent e) -> restart(e));
+		editButton.setOnMouseClicked((MouseEvent e) -> edit());
 	}
 	
 	private void stampTimes() {
@@ -97,6 +100,10 @@ public class ScheduleDisplayController extends Controller {
 	 */
 	public void restart(MouseEvent e) {
 		MainApp.clearScheduleGridMap();
-		MainApp.switchScene("ScheduleSelect");
+		MainApp.switchScene("AddTask", true);
+	}
+	
+	public void edit() {
+		MainApp.switchScene("AddTask", false);
 	}
 }

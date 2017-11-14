@@ -85,7 +85,7 @@ public class AddTaskController extends Controller {
 	 * @param e
 	 */
 	public void goNext(MouseEvent e) {
-		MainApp.switchScene("ScheduleSelect");
+		MainApp.switchScene("ScheduleSelect", false);
 	}
 
 	@Override

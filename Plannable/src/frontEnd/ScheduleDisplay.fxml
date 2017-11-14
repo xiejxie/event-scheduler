@@ -38,6 +38,14 @@
                </children>
             </HBox>
          </left>
+         <right>
+            <Button fx:id="editButton" mnemonicParsing="false" text="Edit" BorderPane.alignment="CENTER">
+               <styleClass>
+                  <String fx:value="accentColor2Text" />
+                  <String fx:value="generalButton" />
+               </styleClass>
+            </Button>
+         </right>
       </BorderPane>
    </top>
    <right>

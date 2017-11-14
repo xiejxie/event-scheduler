@@ -27,7 +27,7 @@ public class MainApp extends Application {
     private static VBox scheduleGridInformation = new VBox();
     private static Map<Label, Set<Region>> scheduleGridMap = new HashMap<Label, Set<Region>>();
     private static Set<Controller> controllers = new HashSet<Controller>();
-    
+    private static Scene startScene;
     /**
      * Start the application
      */
@@ -54,6 +54,7 @@ public class MainApp extends Application {
         AddTaskController atc = new AddTaskController();
         newController(atc, "AddTask");
         Scene startScene = atc.getScene("./AddTask.fxml");
+        this.startScene = startScene;
         primaryStage.setScene(startScene);
         primaryStage.show();
     }
@@ -62,9 +63,13 @@ public class MainApp extends Application {
      * Change from one scene to the next
      * @param key	the key to the sceneOrderings dictionary to return a Scene object
      */
-    public static void switchScene(String key) {
+    public static void switchScene(String key, boolean restart) {
+    	if (!restart && key.equals("AddTask")) {
+    		primaryStage.setScene(startScene);
+    	} else {
     	Controller ctrlr = sceneOrderings.get(key);
     	primaryStage.setScene(ctrlr.getScene());
+    	}
     }
     
     /**
@@ -112,6 +117,17 @@ public class MainApp extends Application {
     	return scheduleGridMap;
     }
     
+    /**
+     * Remove a time block and label pairing
+     * @param l	the label addressing the block needed to be removed
+     */
+    public static void rmScheduleGridMap(Label l) {
+    	scheduleGridMap.remove(l);
+    }
+    
+    /**
+     * Clear the time block and label pairings, i.e. restart the app
+     */
     public static void clearScheduleGridMap() {
     	scheduleGridMap.clear();
     }

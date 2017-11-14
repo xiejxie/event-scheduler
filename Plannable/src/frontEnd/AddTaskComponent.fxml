@@ -52,7 +52,7 @@
             <String fx:value="fontRegular" />
          </styleClass>
       </TextField>
-      <Button mnemonicParsing="false" text="x">
+      <Button mnemonicParsing="false" text="X">
          <styleClass>
             <String fx:value="generalButton" />
             <String fx:value="fontRegular" />
