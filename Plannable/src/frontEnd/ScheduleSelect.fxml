@@ -299,7 +299,7 @@
                                     <Insets bottom="32.0" right="10.0" />
                                  </padding>
                               </Label>
-                              <Label id="calendarTime" alignment="CENTER" layoutX="10.0" layoutY="445.0" text="10 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="20">
+                              <Label id="calendarTime" alignment="CENTER" layoutX="10.0" layoutY="445.0" text="10 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="20">
                                  <styleClass>
                                     <String fx:value="calendarTime" />
                                     <String fx:value="fontRegular" />
@@ -308,7 +308,7 @@
                                     <Insets bottom="32.0" right="10.0" />
                                  </padding>
                               </Label>
-                              <Label id="calendarTime" text="11 PM" GridPane.halignment="RIGHT" GridPane.rowIndex="22">
+                              <Label id="calendarTime" text="11 AM" GridPane.halignment="RIGHT" GridPane.rowIndex="22">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
