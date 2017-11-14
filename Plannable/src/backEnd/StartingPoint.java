@@ -60,7 +60,7 @@ public class StartingPoint {
 		}
 		
 		System.out.println("Please enter the times you would like to designate as study time, in the "
-				+ "same format as free time\n You should be studying everyday ;)\n"
+				+ "same format as free time\nYou should be studying everyday ;)\n"
 				+ "When you're finished entering times, type DONE");
 		String studyTime = in.nextLine();
 		while (!studyTime.equals("DONE")){
@@ -68,7 +68,21 @@ public class StartingPoint {
 			studyTime = in.nextLine();
 		}
 		
+		
+		TODOManager tManage = new TODOManager();
+		System.out.println("Please enter the things you need to complete, staring from tomorrow(Monday) to next Sunday"
+				+ "\nPlease also ensure to enter the total amount of time(in hours) it will take to complete this item"
+				+ "\nEnter in the format CSC369 Test: F 8"
+				+ "\nWhen you're finished, type DONE");
+		String item = in.nextLine();
+		while(!item.equals("DONE")){
+			createAdd.createThingTODO(item, tManage);
+			item = in.nextLine();
+		}
+		tManage.addToCalendar(week);
+		
 		in.close();
+
 		System.out.println(week);
 	}
 }

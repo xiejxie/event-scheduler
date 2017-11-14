@@ -1,9 +1,16 @@
 package frontEnd;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -15,8 +22,12 @@ public class MainApp extends Application {
      * Maps a key (currently of the format: <<NameofCallingClass>>+<<NameofButtonBeingCalled>>)
      * to a Scene object. It's objective is to organize the paths between different scenes.
      */
-    private static Map<String, Scene> sceneOrderings = new HashMap<String, Scene>();
-    
+    private static Map<String, Controller> sceneOrderings = new HashMap<String, Controller>();
+    private static Node scheduleGridDisplay;
+    private static VBox scheduleGridInformation = new VBox();
+    private static Map<Label, Set<Region>> scheduleGridMap = new HashMap<Label, Set<Region>>();
+    private static Set<Controller> controllers = new HashSet<Controller>();
+    private static Scene startScene;
     /**
      * Start the application
      */
@@ -26,18 +37,24 @@ public class MainApp extends Application {
         MainApp.primaryStage.setTitle("Plannable");
         setUpLayout();
     }
+    
+    private void newController(Controller c, String name) {
+    	controllers.add(c);
+    	sceneOrderings.put(name, c);
+    }
 
     /**
      * Initializes the map and sets the initial scene
      */
     public void setUpLayout() {
         ScheduleSelectController csc = new ScheduleSelectController();
-        //The below commented out is currently not in use, but I want to keep the infrastructure in case we want
-        //to switch to a different scene. Currently only working on one because all the steps seem exactly the same
-        //ScheduleDisplayController cdc = new ScheduleDisplayController();
-        //sceneOrderings.put("CalendarSelectControllerNext", cdc.getScene("./ScheduleDisplay.fxml"));
-        Scene startScene = csc.getScene("./ScheduleSelect.fxml");
-        //sceneOrderings.put("CalendarDisplayControllerBack", startScene);
+        newController(csc, "ScheduleSelect");
+        ScheduleDisplayController cdc = new ScheduleDisplayController();
+        newController(cdc, "ScheduleDisplay");
+        AddTaskController atc = new AddTaskController();
+        newController(atc, "AddTask");
+        Scene startScene = atc.getScene("./AddTask.fxml");
+        this.startScene = startScene;
         primaryStage.setScene(startScene);
         primaryStage.show();
     }
@@ -46,9 +63,73 @@ public class MainApp extends Application {
      * Change from one scene to the next
      * @param key	the key to the sceneOrderings dictionary to return a Scene object
      */
-    public static void switchScene(String key) {
-    	Scene nextScene = sceneOrderings.get(key);
-    	primaryStage.setScene(nextScene);
+    public static void switchScene(String key, boolean restart) {
+    	if (!restart && key.equals("AddTask")) {
+    		primaryStage.setScene(startScene);
+    	} else {
+    	Controller ctrlr = sceneOrderings.get(key);
+    	primaryStage.setScene(ctrlr.getScene());
+    	}
+    }
+    
+    /**
+     * Update the state of the shared schedule grid
+     * @param sg	the shared schedule grid
+     */
+    public static void setScheduleGridDisplay(Node sg) {
+    	scheduleGridDisplay = sg;
+    }
+    
+    /**
+     * @return	the shared schedule grid
+     */
+    public static Node getScheduleGridDisplay() {
+    	return scheduleGridDisplay;
+    }
+    
+    /**
+     * Update the state of the shared schedule grid
+     * @param sg	the shared schedule grid
+     */
+    public static void setScheduleGridInformation(VBox sg) {
+    	scheduleGridInformation = sg;
+    }
+    
+    /**
+     * @return	the shared schedule grid
+     */
+    public static Node getScheduleGridInformation() {
+    	return scheduleGridInformation;
+    }
+    
+    /**
+     * Update the state of the shared schedule grid
+     * @param sg	the shared schedule grid
+     */
+    public static void setScheduleGridMap(Label l, Set<Region> r) {
+    	scheduleGridMap.put(l, r);
+    }
+    
+    /**
+     * @return	the shared schedule grid
+     */
+    public static Map<Label, Set<Region>> getScheduleGridMap() {
+    	return scheduleGridMap;
+    }
+    
+    /**
+     * Remove a time block and label pairing
+     * @param l	the label addressing the block needed to be removed
+     */
+    public static void rmScheduleGridMap(Label l) {
+    	scheduleGridMap.remove(l);
+    }
+    
+    /**
+     * Clear the time block and label pairings, i.e. restart the app
+     */
+    public static void clearScheduleGridMap() {
+    	scheduleGridMap.clear();
     }
     
     /**

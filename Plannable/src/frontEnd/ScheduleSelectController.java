@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import api.Api;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -71,6 +73,9 @@ public class ScheduleSelectController extends Controller {
 	@FXML
 	Button backButton;
 	
+	@FXML
+	VBox scheduleGridDisplay;
+	
 	/**
 	 * Set up
 	 */
@@ -78,7 +83,6 @@ public class ScheduleSelectController extends Controller {
 	public void initialize() {
 		backButton.setOnMousePressed((MouseEvent e) -> goToDifferentStep(e, false));
 		nextButton.setOnMousePressed((MouseEvent e) -> goToDifferentStep(e, true));
-		backButton.setDisable(true);
 		addNew.setId("addNew");
 		addNew.setOnMousePressed((MouseEvent e) -> addNewTimeBlock(e));
 		addNewTextField.setOnKeyPressed((KeyEvent e) -> addNewTimeBlockWrapper(e));
@@ -105,11 +109,41 @@ public class ScheduleSelectController extends Controller {
 		            	ArrayList<Region> newList = new ArrayList<Region>();
 		            	newList.add(cell);
 		            	sortByRows.put(y, newList);
-		            }		            
+		            }
 		            GridPane.setColumnIndex(cell, x);
 		            GridPane.setRowIndex(cell, y);
 		        }
 		    }
+	}
+	
+	/**
+	 * Return a scene object that this class controls
+	 */
+	public Scene getScene() {
+		return this.getScene("./ScheduleSelect.fxml");
+	}
+	
+	private void disableCalendar() {
+		for (Node n : scheduleGrid.getChildren()) {
+			if (n.getClass() == Region.class) {
+				if (n.getStyleClass().contains("activeCell")) {
+					n.getStyleClass().remove("activeCell");
+					n.getStyleClass().add("inactiveCell");
+				}
+				n.setDisable(true);
+			}
+	    }
+	}
+	
+	private void parseTimeBlocks() {
+		for (int i = 0; i < leftPaneBox.getChildren().size()-1; i++) {
+			HBox box = (HBox) leftPaneBox.getChildren().get(i);
+			box.setDisable(false);
+			Button but = (Button) box.getChildren().get(0);
+			but.setDisable(true);
+	    }
+		leftPaneBox.getChildren().remove(leftPaneBox.getChildren().size()-1);
+		MainApp.setScheduleGridInformation(leftPaneBox);
 	}
 	
 	// Event handlers
@@ -195,23 +229,29 @@ public class ScheduleSelectController extends Controller {
 	 */
 	public void goToDifferentStep(MouseEvent e, boolean forward) {
 		int newState = forward ? state+1 : state-1;
-		shiftHeader(newState, CustomizeableConstants.getHeaderString(newState));
-		shiftPanel(newState);
-		state = newState;
-		addIndex = 0;
-		List<Node> timeBlockList = leftPaneBox.getChildren();
-		for (int i = 0; i < timeBlockList.size()-1; i++) {
-			int currentId = Integer.parseInt(timeBlockList.get(i).getId());
-			if (currentId < state && !timeBlockList.get(i+1).getId().equals(currentId+"")) {
-				//found the last item
-				addIndex = i + 1;
-			}
+		if (!forward && state == 1) {
+			System.out.println("add task");
+			MainApp.switchScene("AddTask", false);
 		}
-		
-		backButton.setDisable(newState == 1 ? true : false);
-		nextButton.setDisable(newState == 4 ? true : false);
-		//Keep this here in case we need
-		//MainApp.switchScene("CalendarSelectControllerNext");
+		else if (newState < 5) { 
+			shiftHeader(newState, CustomizeableConstants.getHeaderString(newState));
+			shiftPanel(newState);
+			state = newState;
+			addIndex = 0;
+			List<Node> timeBlockList = leftPaneBox.getChildren();
+			for (int i = 0; i < timeBlockList.size()-1; i++) {
+				int currentId = Integer.parseInt(timeBlockList.get(i).getId());
+				if (currentId < state && !timeBlockList.get(i+1).getId().equals(currentId+"")) {
+					//found the last item
+					addIndex = i + 1;
+				}
+			}
+		} else {
+			disableCalendar();
+			MainApp.setScheduleGridDisplay(scheduleGridDisplay);
+			parseTimeBlocks();
+			MainApp.switchScene("ScheduleDisplay", true);
+		}
 	}
 	
 	/**
@@ -241,6 +281,7 @@ public class ScheduleSelectController extends Controller {
 			}
 			permanentlyBlockedTimes.add(addIndex, newBlockedTimes);
 			String timeBlockText = addNewTextField.getText().trim();
+			Api.sendTaskToParse(newBlockedTimes, timeBlockText, state);
 			Label timeBlockLabel = new Label(timeBlockText);
 			timeBlockLabel.getStyleClass().add("timeBlock");
 			timeBlockLabel.getStyleClass().add("fontRegular");
@@ -248,13 +289,14 @@ public class ScheduleSelectController extends Controller {
 			HBox timeBlockHBox = new HBox();
 			Button timeBlockRemoveButton = new Button("x");
 			timeBlockRemoveButton.getStyleClass().add("fontThin");
-			timeBlockRemoveButton.setOnMousePressed((MouseEvent me) -> removeBlockedTimes(newBlockedTimes));
+			timeBlockRemoveButton.setOnMousePressed((MouseEvent me) -> removeBlockedTimes(newBlockedTimes, timeBlockLabel));
 			timeBlockRemoveButton.getStyleClass().add("generalButton");
 			timeBlockRemoveButton.setStyle("-fx-text-fill: "+colour);
 			timeBlockHBox.getChildren().add(timeBlockRemoveButton);
 			timeBlockHBox.getChildren().add(timeBlockLabel);
 			timeBlockHBox.setId(state+"");
 			leftPaneBox.getChildren().add(addIndex, timeBlockHBox);
+			MainApp.setScheduleGridMap(timeBlockLabel, newBlockedTimes);
 			addNewTextField.clear();
 			blockedTimes.clear();
 		}
@@ -268,7 +310,7 @@ public class ScheduleSelectController extends Controller {
 	 * Remove an existing time block
 	 * @param blockedTimes	set holding the time block to be deleted
 	 */
-	public void removeBlockedTimes(Set<Region> blockedTimes) {
+	public void removeBlockedTimes(Set<Region> blockedTimes, Label l) {
 		int index = permanentlyBlockedTimes.indexOf(blockedTimes);
 		for (Region region : blockedTimes) {
 			region.setDisable(false);
@@ -277,6 +319,7 @@ public class ScheduleSelectController extends Controller {
 		}
 		permanentlyBlockedTimes.remove(index);
 		leftPaneBox.getChildren().remove(index);
+		MainApp.rmScheduleGridMap(l);
 	}
 	
 	/**

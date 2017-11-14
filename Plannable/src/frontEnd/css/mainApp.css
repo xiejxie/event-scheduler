@@ -22,12 +22,28 @@
 	-fx-background-color: #f8f8f8;
 }
 
+.accentColor3, .thumb {
+	-fx-background-color: #95989A;
+}
+
 .accentColor2Text {
 	-fx-text-fill: rgb(14, 122, 254, 1);
 }
 
-.accentColor3Text {
+.accentColor3Text, .thumb {
 	-fx-text-fill: #95989A;
+}
+
+.whiteText {
+	-fx-text-fill: white;
+}
+
+.fontBold {
+	-fx-font-family: 'SF UI Text Bold';
+}
+
+.fontMedium {
+	-fx-font-family: 'SF UI Text Medium';
 }
 
 .fontRegular {
@@ -53,7 +69,7 @@
 }
 
 .generalButton:hover {
-	-fx-text-fill: rgb(14, 122, 254, 0.2);
+	-fx-text-fill: rgb(14,122,254);
 }
 
 .navButton {
@@ -67,6 +83,10 @@
 	-fx-text-fill: rgb(14, 122, 254, 0.6);
 }
 
+.nextButton {
+	-fx-text-fill: rgb(14,122,254,1);
+}
+
 .root {
 	-fx-border-style: solid;
 	-fx-border-width: 5 0 0 0;
@@ -76,6 +96,8 @@
 }
 
 .scroll-bar:vertical {
+	-fx-background-radius: 0em;
+	-fx-pref-width: 8;
 	-fx-background-color: white;
 }
 
@@ -89,5 +111,6 @@
 }
 
 .thumb {
-	-fx-background-color: #f8f8f8;
+	-fx-background-radius: 0em;
+	-fx-border-radius: 0px;
 }
