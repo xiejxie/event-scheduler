@@ -58,9 +58,7 @@ Next, we implemented all the necessary classes in the backEnd. We also created a
 ![ARTIFACT_07](/deliverables/images/deliverable_2/Artifact_07.jpg)
 
 4. Build frontEnd Code to display calendar and promote user interactivity
-At the same time as the backEnd code was being built, the other part of our group was building the frontEnd code. They were creating a user friendly page so users could enter their assignments/tests for the week. They also created a page where tasks can be added on the side panel and the calendar for the week is shown on the main panel. Artifact_08 is our code for the frontEnd. It can be found under Plannable/src/frontEnd. Artifact_09 is an early image of the calendar at the beginning of the iteration. 
-
-![ARTIFACT_08](/deliverables/images/deliverable_2/Artifact_08.jpg)
+At the same time as the backEnd code was being built, the other part of our group was building the frontEnd code. They were creating a user friendly page so users could enter their assignments/tests for the week. They also created a page where tasks can be added on the side panel and the calendar for the week is shown on the main panel. Artifact_09 is an early image of the calendar at the beginning of the iteration. 
 
 ![ARTIFACT_09](/deliverables/images/deliverable_2/Artifact_09.jpg)
 
