@@ -22,7 +22,7 @@ FrontEnd Coders: Jing Yi, Alison, Egan
 (These individuals have the same role as the BackEnd coders but they develop the frontend).
 
 Merging: Jing Yi, Alison
-(These individuals review, request changes and merge pull requests made by team members: Jing Yi for frontend, Alison for backend.)
+(These individuals review, request changes and merge pull requests made by team members: Jing Yi for frontend, Alison for backend).
 
 Designer: Egan
 (This individual is in charge of creating mockups to indicate what we would like the UI of the application to look like. We had initially created some designs in iteration 1, but since then our plans have changed. This individual creates designs as specified by our group discussions. He then shares his designs with the FrontEnd coders who work together to implement the design in code).
