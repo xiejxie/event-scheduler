@@ -1,6 +1,6 @@
 # YOUR PRODUCT/TEAM NAME
 
-## Iteration XX - Review & Retrospect
+## Iteration 02 - Review & Retrospect
 
  * When: November 17, 2017
  * Where: Bahen 2nd Floor
