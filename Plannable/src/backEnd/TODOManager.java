@@ -5,7 +5,12 @@ import java.util.Collections;
 
 import backEnd.tasks.StudyTimeTask;
 import backEnd.tasks.Task;
-
+/**
+ * TODOManager is a class that
+ * - takes all the tasks entered and enters them into the calendar
+ * - contains the algorithm that organizes the users study time optimally
+ * - returns the optimized calendar to the user
+ */
 public class TODOManager {
 	
 	private ArrayList<TODO> thingsTODO;
