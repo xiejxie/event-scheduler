@@ -1,4 +1,4 @@
-# YOUR PRODUCT/TEAM NAME
+# PLANNABLE
 
 ## Iteration 02 - Review & Retrospect
 
