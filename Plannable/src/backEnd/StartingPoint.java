@@ -72,7 +72,8 @@ public class StartingPoint {
 		TODOManager tManage = new TODOManager();
 		System.out.println("Please enter the things you need to complete, staring from tomorrow(Monday) to next Sunday"
 				+ "\nPlease also ensure to enter the total amount of time(in hours) it will take to complete this item"
-				+ "\nEnter in the format CSC369 Test: F 8"
+				+ "\nFinally, include the weighting (from 0-100) and difficulty (from 1-5) of the task, and an optional user priority"
+				+ "\nEnter in the format CSC369 Test: F, 8, 20, 3"
 				+ "\nWhen you're finished, type DONE");
 		String item = in.nextLine();
 		while(!item.equals("DONE")){

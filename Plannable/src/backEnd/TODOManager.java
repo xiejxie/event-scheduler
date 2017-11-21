@@ -27,6 +27,11 @@ public class TODOManager {
 		Collections.sort(thingsTODO);
 	}
 	
+	/**
+	 * Adds all the tasks inputted by the user into the weekly calendar
+	 * @param w
+	 * The weekly calendar object
+	 */
 	public void addToCalendar(WeeklyCalendar w){
 		sortList();
 		ArrayList<ArrayList<Task>> days = w.daysOfWeek;
@@ -43,6 +48,13 @@ public class TODOManager {
 		}
 	}
 	
+	/**
+	 * Our main algorithm for organizing the study times based on a number of 
+	 * factors such as deadline, difficulty, weight, and user priority.
+	 * @param studyToday
+	 * An initially empty StudyTimeTask object that will be allocated by the 
+	 * algorithm for a specific study task.
+	 */
 	public void manageStudyTime(StudyTimeTask studyToday){
 		int totalTime = studyToday.getDuration();
 		int currTime = 0;
@@ -81,6 +93,9 @@ public class TODOManager {
 		}
 	}
 	
+	/**
+	 * Updates priorities (decrementing them)
+	 */
 	public void updatePriorities(){
 		for (int i = 0; i < thingsTODO.size(); i++){
 			if(thingsTODO.get(i).getPriority() != 0){

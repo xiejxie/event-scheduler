@@ -17,6 +17,12 @@ public class TODO implements Comparable<TODO> {
 	private String name;
 	/** A integer representing the priority of the task. A lower priority represents a more important task.*/
 	private int priority;
+	/** An integer representing the difficulty of the task.*/
+	private int difficulty;
+	/** An integer representing the grade weight of the task.*/
+    private double weight;
+    /** An integer representing user priority. */
+    private int user_priority;
 	
 	/**
 	 * Makes a new todo object instance.
@@ -28,11 +34,37 @@ public class TODO implements Comparable<TODO> {
 	 * @param n
 	 * 		The name of this todo task.
 	 */
-	public TODO (char d, int t, String n){
+	public TODO (char d, int t, String n, double w, int diff){
 		dueDate = d;
 		timeAllocated = t;
 		name = n;
+		weight = w;
+		difficulty = diff;
 		assignPriority();
+	}
+	
+	   /**
+     * Makes a new todo object instance. An overloaded constructor with an 
+     * additional priority parameter.
+     * 
+     * @param d
+     *      The required completion day of this todo task.
+     * @param t
+     *      The time allocated for this todo task.
+     * @param n
+     *      The name of this todo task.
+     * @param w
+     *      The weighting of the task
+     * @param diff
+     *      The difficulty of the task
+     */
+	public TODO (char d, int t, String n, int p, double w, int diff){
+      dueDate = d;
+      timeAllocated = t;
+      name = n;
+      weight = w;
+      difficulty = diff;
+      user_priority = p;
 	}
 	
 	/**
@@ -65,8 +97,8 @@ public class TODO implements Comparable<TODO> {
 	}
 	
 	/**
-	 * The method that assigns an priority to the todo task based on its completion date.
-	 * 
+	 * The method that assigns a priority to the todo task based on its completion date.
+	 * TODO: Assign priority based on difficulty, weight, and user priority
 	 */
 	public void assignPriority(){
 		switch(dueDate){
