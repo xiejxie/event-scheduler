@@ -7,7 +7,7 @@ import backEnd.tasks.Task;
 /**
  * The WeeklyCalendar class represents seven days
  * of one week and holds the information regarding
- * all Tasks given by the user.
+ * all Tasks given by the user for the week.
  */
 public class WeeklyCalendar {
 		
@@ -21,6 +21,11 @@ public class WeeklyCalendar {
 
 	ArrayList<ArrayList<Task>> daysOfWeek = new ArrayList<ArrayList<Task>>();
 	
+	/**
+	 * Creates a WeeklyCalendar instance with seven ArrayLists to be
+	 * filled with tasks.
+	 * 
+	 */
 	public WeeklyCalendar(){
 		daysOfWeek.add(sunTasks);
 		daysOfWeek.add(monTasks);
@@ -32,6 +37,10 @@ public class WeeklyCalendar {
 	}
 	
 	@Override
+	/**
+	 * Prints each daily ArrayList of tasks as a String
+	 * 
+	 */
 	public String toString(){
 		return  "N" + sunTasks +"\nM" + monTasks + "\nT" + tuesTasks +
 				"\nW" + wedTasks +"\nR" + thursTasks +"\nF" + friTasks +

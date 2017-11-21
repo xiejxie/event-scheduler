@@ -5,15 +5,27 @@
 }
 
 .activeRow {
-	-fx-border-color: rgb(14,122,254,1);
+	-fx-border-color: rgb(14,122,254,1) !important;
 	-fx-border-style: solid;
-	-fx-border-width: 2 0 0 0;
+	-fx-border-width: 2 0 0 0 !important;
 	-fx-border-insets: 0 -5 0 -5;
+	-fx-cursor: hand;
+	-fx-background-color: #fcfcfc;
 }
 
 .addNewTextField {
 	-fx-border-color: none;
 	-fx-background-color: none;
+}
+
+.textBoxStyle1 {
+	-fx-background-color: none;
+	-fx-border-color: #95989A;
+	-fx-border-width: 0 0 2 0 !important;
+}
+
+.textBoxStyle1:focused {
+	-fx-border-color: rgb(14,122,254,1);
 }
 
 .calendarDateNumber{
@@ -25,9 +37,25 @@
 	-fx-text-fill: grey;
 }
 
+.date-picker > .text-field {
+    -fx-background-color: none;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.date-picker > .arrow-button {
+    -fx-background-color: none;
+    -fx-border-color: black;
+	-fx-border-width: 1 !important;
+}
+
 .inactiveCell {
+	-fx-border-insets: 0 -5 0 -5;
+	-fx-border-style: solid;
+	-fx-border-width: 1 0 0 0;
+	-fx-border-color: #dbdbdb;
 	-fx-cursor: hand;
-	-fx-background-color: #fcfcfc;
+	-fx-background-color: white;
 }
 
 .inactiveCell:hover {
