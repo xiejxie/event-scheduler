@@ -163,9 +163,9 @@ public class ParseInput {
 		String [] more_parts = parts[1].split(",");
 		String name = parts[0];
 		char day = more_parts[0].charAt(0);
-		int dur = Integer.parseInt(more_parts[1]);
-		double weight = Integer.parseInt(more_parts[2]);
-		int difficulty = Integer.parseInt(more_parts[3]);
+		int dur = Integer.parseInt(more_parts[1].substring(1));
+		double weight = Integer.parseInt(more_parts[2].substring(1));
+		int difficulty = Integer.parseInt(more_parts[3].substring(1));
 		
 		TODO t = new TODO(day, dur, name, weight, difficulty);
 		tManage.addThingTODO(t);
