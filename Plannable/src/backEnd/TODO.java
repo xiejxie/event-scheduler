@@ -20,32 +20,15 @@ public class TODO implements Comparable<TODO> {
 	/** An integer representing the difficulty of the task.*/
 	private int difficulty;
 	/** An integer representing the grade weight of the task.*/
-    private double weight;
+    private int weight;
     /** An integer representing user priority. */
     private int user_priority;
+    /** An integer representing due date priority */
+    private int duedate_priority;
 	
-	/**
-	 * Makes a new todo object instance.
-	 * 
-	 * @param d
-	 * 		The required completion day of this todo task.
-	 * @param t
-	 * 		The time allocated for this todo task.
-	 * @param n
-	 * 		The name of this todo task.
-	 */
-	public TODO (char d, int t, String n, double w, int diff){
-		dueDate = d;
-		timeAllocated = t;
-		name = n;
-		weight = w;
-		difficulty = diff;
-		assignPriority();
-	}
 	
 	   /**
-     * Makes a new todo object instance. An overloaded constructor with an 
-     * additional priority parameter.
+     * Makes a new todo object instance. 
      * 
      * @param d
      *      The required completion day of this todo task.
@@ -53,25 +36,54 @@ public class TODO implements Comparable<TODO> {
      *      The time allocated for this todo task.
      * @param n
      *      The name of this todo task.
+     * @param p
+     *      The user priority of this todo task.
      * @param w
      *      The weighting of the task
      * @param diff
      *      The difficulty of the task
      */
-	public TODO (char d, int t, String n, int p, double w, int diff){
-      dueDate = d;
-      timeAllocated = t;
-      name = n;
-      weight = w;
-      difficulty = diff;
-      user_priority = p;
+	public TODO (char d, int t, String n, int p, int w, int diff) throws
+	  IllegalArgumentException {
+	  if(p < 1 || p > 5) { 
+	    throw new IllegalArgumentException(); 
+	  }
+	  if(w < 0 || w > 100) { 
+	    throw new IllegalArgumentException(); 
+	  }
+	  if(diff < 1 || diff > 5) { 
+	    throw new IllegalArgumentException(); 
+	  }
+	  else {
+	    dueDate = d;
+	    timeAllocated = t;
+	    name = n;
+	    weight = convertWeight(w);
+	    difficulty = diff;
+	    user_priority = p;
+	    assignPriority();
+	  }
+      
 	}
 	
+	/**
+	 * Converts a number from 0 to 100 to a number from 1 to 5
+	 * @param weight   The weight of the assignment
+	 * @return num     A number from 1 to 5 representing the weight
+	 */
+	public int convertWeight(int weight){
+	  int num;
+	  if(weight >= 40){ num = 5;}
+	  else {
+	    num = weight / 10;
+	  }
+	  return num;
+	}
 	/**
 	 * A getter that returns the priority of this todo task. 
 	 * 
 	 * @return
-	 * 		An integer from 1-7 representing the priority of the task.
+	 * 		An integer representing the priority of the task
 	 */
 	public int getPriority(){
 		return priority;
@@ -101,37 +113,66 @@ public class TODO implements Comparable<TODO> {
 	 * TODO: Assign priority based on difficulty, weight, and user priority
 	 */
 	public void assignPriority(){
+	    /**
+	     * Uses a simple algorithm, where user priority and difficulty are weighted equally
+	     * Weight is given highest flat priority
+	     * Due date is given lowest priority
+	     * This implementation could be changed without affecting the overall algorithm
+	     */
+	    int user_priority_factor = user_priority * 3;
+	    int difficulty_factor = difficulty * 3;
+	    int weight_factor = weight * 5;
+	    
+	    //Assigns a priority based on the due date
 		switch(dueDate){
 		case 'M':
-			priority = 1;
+			duedate_priority = 6;
 			break;
 		case 'T':
-			priority = 2;
+		    duedate_priority = 5;
 			break;
 		case 'W':
-			priority = 3;
+		    duedate_priority = 4;
 			break;
 		case 'R':
-			priority = 4;
+		    duedate_priority = 3;
 			break;
 		case 'F':
-			priority = 5;
+			duedate_priority = 2;
 			break;
 		case 'S':
-			priority = 6;
+			duedate_priority = 1;
 			break;
 		case 'N':
-			priority = 7;
+			duedate_priority = 7;
 			break;
 		}
+		
+		int duedate_factor = duedate_priority * 2;
+	    priority = user_priority_factor + difficulty_factor + weight_factor
+	        + duedate_factor;
 	}
 	
 	/**
 	 * A method that reduces the priority of this todo task.
 	 * 
 	 */
-	public void decrementPriority(){
-		priority--;
+	public void updatePriority(){
+		priority = (int) priority / 2;
+	}
+	
+	/**
+	 * A method that updates the due date
+	 */
+	public void updateDate(){
+	    duedate_priority++;
+	}
+	
+	/**
+	 * A method that gets the duedate priority
+	 */
+	public int getDueDatePriority(){
+	  return duedate_priority;
 	}
 	
 	/**
@@ -143,6 +184,7 @@ public class TODO implements Comparable<TODO> {
 	public void workedOnTODO(int hours){
 		timeAllocated -=hours;
 	}
+	
 	/**
 	 * Adds more allocated time to this todo task by an passed in amount.
 	 * 
