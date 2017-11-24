@@ -160,10 +160,15 @@ public class ParseInput {
 	 */
 	public void createThingTODO(String item, TODOManager tManage){
 		String [] parts = item.split(":");
+		String [] more_parts = parts[1].split(",");
 		String name = parts[0];
-		char day = parts[1].charAt(1);
-		int dur = Integer.parseInt(parts[1].substring(3));
-		TODO t = new TODO(day, dur, name);
+		char day = more_parts[0].charAt(1);
+		int dur = Integer.parseInt(more_parts[1].substring(1));
+		int weight = Integer.parseInt(more_parts[2].substring(1));
+		int difficulty = Integer.parseInt(more_parts[3].substring(1));
+		int user_p = Integer.parseInt(more_parts[4].substring(1));
+		
+		TODO t = new TODO(day, dur, name, user_p, weight, difficulty);
 		tManage.addThingTODO(t);
 	}
 	
