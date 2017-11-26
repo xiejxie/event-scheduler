@@ -29,7 +29,7 @@ public class StudyTimeTask extends Task {
 	 * The weighting of the task
 	 */
 	public StudyTimeTask(LocalTime sT, LocalTime eT, int p ,char day){
-		super("StudyTime", sT, eT, p);
+		super("Study Time", sT, eT, p);
 		work = new HashMap<>();
 		duration = sT.until(eT, ChronoUnit.HOURS);
 	}
