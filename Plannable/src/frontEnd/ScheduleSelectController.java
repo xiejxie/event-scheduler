@@ -225,6 +225,7 @@ public class ScheduleSelectController extends Controller {
 	 */
 	public void goToDifferentStep(MouseEvent e, boolean forward) {
 		int newState = forward ? state+1 : state-1;
+		System.out.println(newState);
 		if (!forward && state == 1) {
 			MainApp.switchScene("AddTask", false);
 		}
@@ -314,6 +315,7 @@ public class ScheduleSelectController extends Controller {
 			region.getStyleClass().add("inactiveCell");
 		}
 		permanentlyBlockedTimes.remove(index);
+		Api.deleteBlock(((Label)((HBox)leftPaneBox.getChildren().get(0)).getChildren().get(1)).getText());
 		leftPaneBox.getChildren().remove(index);
 		MainApp.rmScheduleGridMap(l);
 	}

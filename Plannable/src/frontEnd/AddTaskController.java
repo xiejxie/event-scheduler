@@ -1,15 +1,20 @@
 package frontEnd;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import api.Api;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -85,6 +90,27 @@ public class AddTaskController extends Controller {
 	 * @param e
 	 */
 	public void goNext(MouseEvent e) {
+		int size = inputRow.getChildren().size();
+		
+		for(int i = 0; i < size; i++) {
+			String name = ((TextField)((VBox)(((HBox)inputRow.getChildren().get(i)).getChildren().get(0))).getChildren().get(1)).getText();
+			String date = ((TextField)((DatePicker)((VBox)(((HBox)inputRow.getChildren().get(i)).getChildren().get(1))).getChildren().get(1)).getChildrenUnmodifiable().get(1)).getText();
+			String hour = ((TextField)((VBox)(((HBox)inputRow.getChildren().get(i)).getChildren().get(2))).getChildren().get(1)).getText();
+			String toFinish = ((TextField)((VBox)(((HBox)inputRow.getChildren().get(i)).getChildren().get(3))).getChildren().get(1)).getText();
+			String difficulty = ((Label)((ChoiceBox)(((VBox)(((HBox)inputRow.getChildren().get(i)).getChildren().get(4))).getChildren().get(1))).getChildrenUnmodifiable().get(0)).getText();
+			String weight = ((TextField)((VBox)(((HBox)inputRow.getChildren().get(i)).getChildren().get(5))).getChildren().get(1)).getText();
+			
+			difficulty = difficulty.substring(0, 1);
+			
+			Api.sendTODOToCal(
+					name, 
+					date, 
+					Integer.parseInt(hour), 
+					Integer.parseInt(toFinish), 
+					Integer.parseInt(difficulty), 
+					Integer.parseInt(weight));
+		}
+		
 		MainApp.switchScene("ScheduleSelect", false);
 	}
 
