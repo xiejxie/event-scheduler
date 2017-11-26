@@ -68,6 +68,18 @@ public class StartingPoint {
 			studyTime = in.nextLine();
 		}
 		
+		System.out.println("If you've made a mistake when you were entering tasks, now's the time to delete!\n"
+				+ "On each new line, enter a single task you'd like to delete.\n"
+				+ "For courses and extracurrciulars, enter the name of the course or extracurricular\n"
+				+ "Otherwise enter the task name such as Sleep or Study Time or Commute or Free Time. Enter DONE at the end\n");
+		
+		String delete = in.nextLine();
+		while(!delete.equals("DONE")){
+			if(week.deleteItem(delete) == -1){
+				System.out.println("Task never existed!!!");
+			}
+			delete = in.nextLine();
+		}
 		
 		TODOManager tManage = new TODOManager();
 		System.out.println("Please enter the things you need to complete, staring from tomorrow(Monday) to next Sunday"
@@ -81,6 +93,7 @@ public class StartingPoint {
 			item = in.nextLine();
 		}
 		tManage.addToCalendar(week);
+		
 		
 		in.close();
 
