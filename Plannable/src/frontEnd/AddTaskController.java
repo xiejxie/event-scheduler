@@ -10,6 +10,7 @@ import java.util.Map;
 import api.Api;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -49,7 +50,7 @@ public class AddTaskController extends Controller {
 	
 	@FXML
 	Button addNew;
-	
+		
 	/**
 	 * The code representation of the grayed out schedule grid
 	 */
@@ -62,7 +63,7 @@ public class AddTaskController extends Controller {
 	public void initialize() {
 		nextButton.setOnMouseClicked((MouseEvent e) -> goNext(e));
 		addNew.setOnMouseClicked((MouseEvent e) -> addBox());
-		//addBox();
+		addBox();
 	}
 	
 	public void addBox() {
@@ -76,12 +77,12 @@ public class AddTaskController extends Controller {
 		}
 		inputRow.getChildren().add(component);
 		Button rmButton = (Button) component.getChildren().get(component.getChildren().size()-1);
-		int index = inputRow.getChildren().indexOf(component);
-		rmButton.setOnMouseClicked((MouseEvent e) -> removeBox(index));
+		rmButton.setOnMouseClicked((MouseEvent e) -> removeBox(rmButton));
 	}
 	
-	public void removeBox(int index) {
-		inputRow.getChildren().remove(index);
+	public void removeBox(Button index) {
+		Node parent = index.getParent();
+		inputRow.getChildren().remove(inputRow.getChildren().indexOf(parent));
 	}
 	
 	/**

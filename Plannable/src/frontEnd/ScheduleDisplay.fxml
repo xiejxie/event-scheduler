@@ -39,7 +39,7 @@
             </HBox>
          </left>
          <right>
-            <Button fx:id="editButton" mnemonicParsing="false" text="Edit" BorderPane.alignment="CENTER">
+            <Button fx:id="printButton" mnemonicParsing="false" text="Screenshot" BorderPane.alignment="CENTER">
                <styleClass>
                   <String fx:value="accentColor2Text" />
                   <String fx:value="generalButton" />

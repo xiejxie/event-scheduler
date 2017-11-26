@@ -54,7 +54,7 @@ public class MainApp extends Application {
         AddTaskController atc = new AddTaskController();
         newController(atc, "AddTask");
         Scene startScene = atc.getScene("./AddTask.fxml");
-        this.startScene = startScene;
+        MainApp.startScene = startScene;
         primaryStage.setScene(startScene);
         primaryStage.show();
     }

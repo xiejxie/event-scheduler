@@ -36,7 +36,7 @@
                         <TextField fx:id="addNewTextField" prefHeight="27.0" prefWidth="178.0" promptText="ADD NEW" styleClass="addNewTextField" />
                      </children>
                   </HBox>
-                  <VBox fx:id="inputRow" />
+                  <VBox fx:id="inputRow" spacing="20.0" />
                </children>
                <padding>
                   <Insets bottom="15.0" right="15.0" top="15.0" />
