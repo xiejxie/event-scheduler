@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="inputBox" alignment="CENTER" spacing="40.0" styleClass="addTaskComponent" stylesheets="@css/calendarSelect.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontEnd.AddTaskComponentController">
+<HBox fx:id="inputBox" alignment="CENTER" spacing="25.0" styleClass="addTaskComponent" stylesheets="@css/calendarSelect.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontEnd.AddTaskComponentController">
    <children>
       <VBox>
          <HBox.margin>
@@ -25,7 +25,7 @@
                   <String fx:value="accentColor3Text" />
                </styleClass>
             </Label>
-            <TextField fx:id="addNewTextField1" prefHeight="30.0" prefWidth="184.0">
+            <TextField fx:id="addNewTextField1" prefHeight="30.0" prefWidth="129.0">
                <styleClass>
                   <String fx:value="addNewTextField" />
                   <String fx:value="fontRegular" />
@@ -57,7 +57,13 @@
                   <String fx:value="accentColor3Text" />
                </styleClass>
             </Label>
-            <ChoiceBox fx:id="cb" prefWidth="150.0" />
+            <TextField fx:id="dueHour" prefHeight="30.0" prefWidth="71.0" promptText="0-23">
+               <styleClass>
+                  <String fx:value="addNewTextField" />
+                  <String fx:value="fontRegular" />
+                  <String fx:value="textBoxStyle1" />
+               </styleClass>
+            </TextField>
          </children>
       </VBox>
       <VBox>
@@ -68,11 +74,39 @@
                   <String fx:value="accentColor3Text" />
                </styleClass>
             </Label>
-            <TextField fx:id="addNewTextField121" prefHeight="27.0" prefWidth="53.0" promptText="Hr">
+            <TextField prefHeight="27.0" prefWidth="53.0" promptText="Hr">
                <styleClass>
                   <String fx:value="addNewTextField" />
                   <String fx:value="textBoxStyle1" />
                   <String fx:value="fontRegular" />
+               </styleClass>
+            </TextField>
+         </children>
+      </VBox>
+      <VBox layoutX="450.0" layoutY="20.0" prefHeight="49.0" prefWidth="90.0">
+         <children>
+            <Label text="DIFFICULTY">
+               <styleClass>
+                  <String fx:value="fontRegular" />
+                  <String fx:value="accentColor3Text" />
+               </styleClass>
+            </Label>
+            <ChoiceBox fx:id="difficultyCb" prefHeight="30.0" prefWidth="96.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="716.0" layoutY="20.0">
+         <children>
+            <Label text="WEIGHTING">
+               <styleClass>
+                  <String fx:value="fontRegular" />
+                  <String fx:value="accentColor3Text" />
+               </styleClass>
+            </Label>
+            <TextField fx:id="priority" prefHeight="30.0" prefWidth="50.0" promptText="0-100">
+               <styleClass>
+                  <String fx:value="addNewTextField" />
+                  <String fx:value="fontRegular" />
+                  <String fx:value="textBoxStyle1" />
                </styleClass>
             </TextField>
          </children>

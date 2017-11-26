@@ -26,9 +26,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 /**
  * Controller class for calendarDisplay.fxml - the screen where you see your schedule output
@@ -70,9 +68,9 @@ public class ScheduleDisplayController extends Controller {
 	
 	private void stampTimes() {
 		Set<String> textRepresentation = new HashSet<String>();
-		System.out.println("LSKJFLKSDJFLKSDJF"+textRepresentation.size());
 		for (Label l : MainApp.getScheduleGridMap().keySet()) {
 			for (Region r : MainApp.getScheduleGridMap().get(l)) {
+				// System.out.println(r.getId()); Prints 1, 2, 3, 4 depending on which section it was added in
 				textRepresentation.add(GridPane.getRowIndex(r) + " " + GridPane.getColumnIndex(r));
 			}
 			for (Region r : MainApp.getScheduleGridMap().get(l)) {
