@@ -3,19 +3,44 @@ package frontEnd;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 
 public class AddTaskComponentController {
 	@FXML
-	ChoiceBox<String> cb;
+	ChoiceBox<String> difficultyCb;
+	
+	@FXML
+	TextField dueHour;
+	
+	@FXML
+	TextField priority;
 	
 	public void initialize() {
-		System.out.println("SLDKFJKL");
 		addItems();
 	}
 	
 	private void addItems() {
-		System.out.println("SLDKFJ");
-		cb.setItems(FXCollections.observableArrayList("12AM - 6AM", "6AM - 12PM", "12PM - 6PM", "6PM - 12AM"));
+		difficultyCb.setItems(FXCollections.observableArrayList("1 (Easy)", "2", "3", "4", "5 (Hard)"));
+		validateTextfields();
+	}
+	
+	private void validateTextfields() {
+		dueHour.focusedProperty().addListener((arg0, oldVal, newVal) -> {
+			if (!newVal) {
+				String text = dueHour.getText();
+				if (!text.matches("\\d+") || Integer.parseInt(text) < 0 || Integer.parseInt(text) > 23) {
+					dueHour.setText("");
+				}
+			}
+		});
+		priority.focusedProperty().addListener((arg0, oldVal, newVal) -> {
+			if (!newVal) {
+				String text = priority.getText();
+				if (!text.matches("\\d+") || Integer.parseInt(text) < 0 || Integer.parseInt(text) > 100) {
+					priority.setText("");
+				}
+			}
+		});
 	}
 
 }
