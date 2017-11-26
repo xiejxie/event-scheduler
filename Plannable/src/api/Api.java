@@ -103,9 +103,16 @@ public final class Api {
 	 * @param time the time of the task
 	 * @param toFinish the time it may take to finish the task
 	 */
-	public static void sendTODOToCal(String name, LocalDate date, LocalTime time, int toFinish) {
+	public static void sendTODOToCal(String name, String date, int hour, int toFinish, int difficulty, int weighting) {
 		// send to backend to process
-		System.out.println("Task: " + name + "\tDate: " + date.toString() + "\tTime: " + time.toString() + "\tTo Finish: " + toFinish + " hours.");
+		System.out.println("Task: " + name 
+				+ "\tDate: " + date 
+				+ "\tTime: " + hour + "th hour of day"
+				+ "\tTo Finish: " + toFinish + " hours."
+				+ "\tDifficulty: " + difficulty
+				+ "\tWeighting: " + weighting);
+		
+		//parse.createThingTODO(name + ": " + dayAt(LocalDate.parse(date).getDayOfWeek().getValue()) + toFinish + ", " + hour + ", " + weighting + ", " + difficulty , tManage);
 	}
 	
 	/**
