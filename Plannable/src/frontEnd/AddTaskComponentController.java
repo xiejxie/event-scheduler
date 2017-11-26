@@ -10,10 +10,10 @@ public class AddTaskComponentController {
 	ChoiceBox<String> difficultyCb;
 	
 	@FXML
-	TextField dueHour;
+	ChoiceBox<String> priority;
 	
 	@FXML
-	TextField priority;
+	TextField weighting;
 	
 	public void initialize() {
 		addItems();
@@ -21,23 +21,16 @@ public class AddTaskComponentController {
 	
 	private void addItems() {
 		difficultyCb.setItems(FXCollections.observableArrayList("1 (Easy)", "2", "3", "4", "5 (Hard)"));
+		priority.setItems(FXCollections.observableArrayList("1 (Low)", "2", "3", "4", "5 (High)"));
 		validateTextfields();
 	}
 	
 	private void validateTextfields() {
-		dueHour.focusedProperty().addListener((arg0, oldVal, newVal) -> {
+		weighting.focusedProperty().addListener((arg0, oldVal, newVal) -> {
 			if (!newVal) {
-				String text = dueHour.getText();
-				if (!text.matches("\\d+") || Integer.parseInt(text) < 0 || Integer.parseInt(text) > 23) {
-					dueHour.setText("");
-				}
-			}
-		});
-		priority.focusedProperty().addListener((arg0, oldVal, newVal) -> {
-			if (!newVal) {
-				String text = priority.getText();
+				String text = weighting.getText();
 				if (!text.matches("\\d+") || Integer.parseInt(text) < 0 || Integer.parseInt(text) > 100) {
-					priority.setText("");
+					weighting.setText("");
 				}
 			}
 		});

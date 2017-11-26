@@ -1,10 +1,11 @@
 package frontEnd;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import api.Api;
 import javafx.fxml.FXML;
@@ -14,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -91,27 +91,55 @@ public class AddTaskController extends Controller {
 	 */
 	public void goNext(MouseEvent e) {
 		int size = inputRow.getChildren().size();
-		
+		Set<Map<String, String>> allInputs = new HashSet<Map<String, String>>();
+		// Extract all information and put it inside a map
 		for(int i = 0; i < size; i++) {
-			String name = ((TextField)((VBox)(((HBox)inputRow.getChildren().get(i)).getChildren().get(0))).getChildren().get(1)).getText();
-			String date = ((TextField)((DatePicker)((VBox)(((HBox)inputRow.getChildren().get(i)).getChildren().get(1))).getChildren().get(1)).getChildrenUnmodifiable().get(1)).getText();
-			String hour = ((TextField)((VBox)(((HBox)inputRow.getChildren().get(i)).getChildren().get(2))).getChildren().get(1)).getText();
-			String toFinish = ((TextField)((VBox)(((HBox)inputRow.getChildren().get(i)).getChildren().get(3))).getChildren().get(1)).getText();
-			String difficulty = ((Label)((ChoiceBox)(((VBox)(((HBox)inputRow.getChildren().get(i)).getChildren().get(4))).getChildren().get(1))).getChildrenUnmodifiable().get(0)).getText();
-			String weight = ((TextField)((VBox)(((HBox)inputRow.getChildren().get(i)).getChildren().get(5))).getChildren().get(1)).getText();
-			
-			difficulty = difficulty.substring(0, 1);
-			
-			Api.sendTODOToCal(
-					name, 
-					date, 
-					Integer.parseInt(hour), 
-					Integer.parseInt(toFinish), 
-					Integer.parseInt(difficulty), 
-					Integer.parseInt(weight));
+			Map<String, String> inputCollection = new HashMap<String, String>();
+			setValue("#taskName", i, inputCollection);
+			setValue("#dueDate", i, inputCollection);
+			setValue("#priority", i, inputCollection);
+			setValue("#estHours", i, inputCollection);
+			setValue("#difficulty", i, inputCollection);
+			setValue("#weighting", i, inputCollection);
+			for (String input : inputCollection.values()) {
+				if (input == null || input.isEmpty()) {
+					return;
+				}
+			}
+			allInputs.add(inputCollection);
 		}
-		
+		// Check that no fields are blank
+		for (Map<String, String> input : allInputs) {
+		Api.sendTODOToCal(
+				input.get("#taskName"), 
+				input.get("#dueDate"), 
+				Integer.parseInt(input.get("#priority")), 
+				Integer.parseInt(input.get("#estHours")), 
+				Integer.parseInt(input.get("#difficulty")), 
+				Integer.parseInt(input.get("#weighting")));
+		}
 		MainApp.switchScene("ScheduleSelect", false);
+	}
+	
+	/**
+	 * Extract information from the javafx fields
+	 * @param id			the identifying information
+	 * @param row			the row number of inputRow
+	 * @param collection	the map to add it to
+	 * @return
+	 */
+	private void setValue(String id, int row, Map<String, String> collection) {
+		Node node = inputRow.getChildren().get(row).lookup(id);
+		String result = null;
+		if (node instanceof TextField) {
+			result = ((TextField) node).getText();
+		} else if (node instanceof ChoiceBox) {
+			ChoiceBox<String> cb = (ChoiceBox<String>) node;
+			result = cb.getValue() == null ? cb.getValue() : cb.getValue().substring(0, 1);
+		} else if (node instanceof DatePicker) {
+			result = ((TextField)((DatePicker) node).getChildrenUnmodifiable().get(1)).getText();
+		}
+		collection.put(id, result);
 	}
 
 	@Override
