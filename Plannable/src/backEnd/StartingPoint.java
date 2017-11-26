@@ -81,6 +81,8 @@ public class StartingPoint {
 			delete = in.nextLine();
 		}
 		
+		System.out.println(week);
+		
 		TODOManager tManage = new TODOManager();
 		System.out.println("Please enter the things you need to complete, staring from tomorrow(Monday) to next Sunday"
 				+ "\nPlease also ensure to enter the total amount of time(in hours) it will take to complete this item"
