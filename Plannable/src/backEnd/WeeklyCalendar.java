@@ -1,6 +1,7 @@
 package backEnd;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import backEnd.tasks.Task;
 
@@ -48,17 +49,21 @@ public class WeeklyCalendar {
 		
 	}
 	
+	/**
+	 * Deletes a task from the entire calendar
+	 */
 	public int deleteItem(String deletedTask){
 		boolean flag = false;
 		for(int i = 0; i < daysOfWeek.size(); i++){
 			
 			ArrayList<Task> currDay = daysOfWeek.get(i);
+			Iterator <Task> iter = currDay.iterator();
 			
-			for(int j = 0; j < currDay.size(); j++){
-				Task currTask = currDay.get(j);
+			while(iter.hasNext()){
+				Task currTask = iter.next();
 				if(currTask.getName().equals(deletedTask)){
 					flag = true;
-					currDay.remove(j);
+					iter.remove();
 				}
 			}
 		}
