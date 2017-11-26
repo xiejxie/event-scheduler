@@ -1,14 +1,18 @@
 package frontEnd;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import api.Api;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -58,7 +62,7 @@ public class AddTaskController extends Controller {
 	public void initialize() {
 		nextButton.setOnMouseClicked((MouseEvent e) -> goNext(e));
 		addNew.setOnMouseClicked((MouseEvent e) -> addBox());
-		addBox();
+		//addBox();
 	}
 	
 	public void addBox() {
@@ -85,6 +89,16 @@ public class AddTaskController extends Controller {
 	 * @param e
 	 */
 	public void goNext(MouseEvent e) {
+		int taskNum = inputRow.getChildren().size();
+		for(int i = 0; i < taskNum; i++) {
+			String name = ((TextField) ((HBox)inputRow.getChildren().get(i)).getChildren().get(1)).getText();
+			LocalDate date = ((DatePicker) ((HBox)inputRow.getChildren().get(i)).getChildren().get(2)).getValue();
+			String hour = ((TextField) ((HBox)inputRow.getChildren().get(i)).getChildren().get(3)).getText();
+			String minute = ((TextField) ((HBox)inputRow.getChildren().get(i)).getChildren().get(5)).getText();
+			String toFinish = ((TextField) ((HBox)inputRow.getChildren().get(i)).getChildren().get(7)).getText();
+			Api.sendTODOToCal(name, date, LocalTime.of(Integer.parseInt(hour), Integer.parseInt(minute)), Integer.parseInt(toFinish));
+		}
+		
 		MainApp.switchScene("ScheduleSelect", false);
 	}
 
