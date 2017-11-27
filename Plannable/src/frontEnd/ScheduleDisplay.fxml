@@ -21,7 +21,7 @@
                <children>
                   <VBox fx:id="header" alignment="CENTER_LEFT" prefHeight="200.0">
                      <children>
-                        <Label text="STEP">
+                        <Label text="FINAL STEP">
                            <styleClass>
                               <String fx:value="stepSmall" />
                               <String fx:value="fontRegular" />
@@ -39,7 +39,7 @@
             </HBox>
          </left>
          <right>
-            <Button fx:id="editButton" mnemonicParsing="false" text="Edit" BorderPane.alignment="CENTER">
+            <Button fx:id="printButton" mnemonicParsing="false" text="Screenshot" BorderPane.alignment="CENTER">
                <styleClass>
                   <String fx:value="accentColor2Text" />
                   <String fx:value="generalButton" />

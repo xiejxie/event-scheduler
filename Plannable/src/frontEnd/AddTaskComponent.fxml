@@ -3,62 +3,122 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="inputBox" spacing="10.0" stylesheets="@css/calendarSelect.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="inputBox" alignment="CENTER" spacing="25.0" styleClass="addTaskComponent" stylesheets="@css/calendarSelect.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontEnd.AddTaskComponentController">
    <children>
-      <Button mnemonicParsing="false" styleClass="generalButton" text="-" />
-      <TextField fx:id="addNewTextField1" prefHeight="27.0" prefWidth="211.0" promptText="Evaluation">
-         <styleClass>
-            <String fx:value="addNewTextField" />
-            <String fx:value="fontRegular" />
-            <String fx:value="textBoxStyle1" />
-         </styleClass>
+      <VBox>
          <HBox.margin>
             <Insets right="5.0" />
-         </HBox.margin></TextField>
-      <DatePicker promptText="Date" styleClass="addNewTextField">
-         <padding>
-            <Insets right="5.0" />
-         </padding></DatePicker>
-      <TextField fx:id="addNewTextField11" prefHeight="27.0" prefWidth="48.0" promptText="Hr">
-         <styleClass>
-            <String fx:value="addNewTextField" />
-            <String fx:value="textBoxStyle1" />
-            <String fx:value="fontRegular" />
-         </styleClass></TextField>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fontRegular" text=":">
-         <HBox.margin>
-            <Insets top="6.0" />
-         </HBox.margin></Text>
-      <TextField fx:id="addNewTextField12" prefHeight="27.0" prefWidth="53.0" promptText="Min">
-         <styleClass>
-            <String fx:value="addNewTextField" />
-            <String fx:value="textBoxStyle1" />
-            <String fx:value="fontRegular" />
-         </styleClass></TextField>
-      <Text layoutX="538.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fontRegular" text="Estimated hours to finish:">
-         <HBox.margin>
-            <Insets top="6.0" />
          </HBox.margin>
-      </Text>
-      <TextField fx:id="addNewTextField121" layoutX="543.0" layoutY="15.0" prefHeight="27.0" prefWidth="53.0" promptText="Hr">
-         <styleClass>
-            <String fx:value="addNewTextField" />
-            <String fx:value="textBoxStyle1" />
-            <String fx:value="fontRegular" />
-         </styleClass>
-      </TextField>
-      <Button mnemonicParsing="false" text="X">
+         <children>
+            <Label text="TASK NAME">
+               <styleClass>
+                  <String fx:value="fontRegular" />
+                  <String fx:value="accentColor3Text" />
+               </styleClass>
+            </Label>
+            <TextField id="taskName" fx:id="addNewTextField1" prefHeight="30.0" prefWidth="129.0">
+               <styleClass>
+                  <String fx:value="addNewTextField" />
+                  <String fx:value="fontRegular" />
+                  <String fx:value="textBoxStyle1" />
+               </styleClass>
+            </TextField>
+         </children>
+      </VBox>
+      <VBox>
+         <children>
+            <Label text="DUE DATE">
+               <styleClass>
+                  <String fx:value="fontRegular" />
+                  <String fx:value="accentColor3Text" />
+               </styleClass>
+            </Label>
+            <DatePicker id="dueDate" prefHeight="30.0" prefWidth="156.0" styleClass="addNewTextField">
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </DatePicker>
+         </children>
+      </VBox>
+      <VBox>
+         <children>
+            <Label text="PRIORITY">
+               <styleClass>
+                  <String fx:value="fontRegular" />
+                  <String fx:value="accentColor3Text" />
+               </styleClass>
+            </Label>
+            <ChoiceBox id="priority" fx:id="priority" prefHeight="30.0" prefWidth="96.0" />
+         </children>
+      </VBox>
+      <VBox>
+         <children>
+            <Label text="EST. HOURS">
+               <styleClass>
+                  <String fx:value="fontRegular" />
+                  <String fx:value="accentColor3Text" />
+               </styleClass>
+            </Label>
+            <TextField id="estHours" prefHeight="27.0" prefWidth="53.0" promptText="Hr">
+               <styleClass>
+                  <String fx:value="addNewTextField" />
+                  <String fx:value="textBoxStyle1" />
+                  <String fx:value="fontRegular" />
+               </styleClass>
+            </TextField>
+         </children>
+      </VBox>
+      <VBox layoutX="450.0" layoutY="20.0" prefHeight="49.0" prefWidth="90.0">
+         <children>
+            <Label text="DIFFICULTY">
+               <styleClass>
+                  <String fx:value="fontRegular" />
+                  <String fx:value="accentColor3Text" />
+               </styleClass>
+            </Label>
+            <ChoiceBox id="difficulty" fx:id="difficultyCb" prefHeight="30.0" prefWidth="96.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="716.0" layoutY="20.0">
+         <children>
+            <Label text="WEIGHTING">
+               <styleClass>
+                  <String fx:value="fontRegular" />
+                  <String fx:value="accentColor3Text" />
+               </styleClass>
+            </Label>
+            <TextField id="weighting" fx:id="weighting" prefHeight="30.0" prefWidth="50.0" promptText="0-100">
+               <styleClass>
+                  <String fx:value="addNewTextField" />
+                  <String fx:value="fontRegular" />
+                  <String fx:value="textBoxStyle1" />
+               </styleClass>
+            </TextField>
+         </children>
+      </VBox>
+      <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="X">
          <styleClass>
             <String fx:value="generalButton" />
             <String fx:value="fontRegular" />
-         </styleClass></Button>
+         </styleClass>
+         <graphic>
+            <ImageView fitHeight="16.0" fitWidth="16.0">
+               <image>
+                  <Image url="@icons/uekqxclctmzmvhjxiyjw.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
    <padding>
-      <Insets bottom="15.0" left="15.0" />
+      <Insets bottom="10.0" left="15.0" top="5.0" />
    </padding>
 </HBox>

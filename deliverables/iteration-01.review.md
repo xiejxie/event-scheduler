@@ -17,7 +17,7 @@ Although all of our team members did attend the tutorial during this sprint, it 
 
 Since this was our first sprint, there were a lot of decisions that had to be made about the idea we were picking and how we plan on implementing it. We first made a list of all the decisions we had to make before the meeting to ensure that by the end of the sprint, every team member had a solid idea of where our project is going. During our Friday meeting, we went through each item on the list and had a discussion surrounding the best way to approach and solve that problem. This ensured that we were able to have an organized and productive meeting.
 
-![ARTIFACT_01](/images/ARTIFACT_01.png)
+![ARTIFACT_01](/deliverables/images/deliverable_1/ARTIFACT_01.png)
 
 3) Agreeing on one prototyping software to use
 
@@ -51,19 +51,19 @@ Looking back at the process we drafted at the beginning of this sprint, we still
 
 In our team meeting, we will be able to meet up for 2 hours and discuss all the items on the to-do list we initially created in our planning meeting. We were able to go through the whole list and annotate it so everyone has a copy of what decisions we made. We also updated it throughout the sprint to reflect decisions we made through online communications. 
 
-![ARTIFACT_02](/images/ARTIFACT_02.png)
+![ARTIFACT_02](/deliverables/images/deliverable_1/ARTIFACT_02.png)
 
 2) Created communication channels
 
 We set up our Slack page (as shown below) and used it to communicate with each other on general design decisions about the project. Below is a screenshot of a sample conversation we had on Slack. 
 
-![ARTIFACT_03](/images/ARTIFACT_03.png)
+![ARTIFACT_03](/deliverables/images/deliverable_1/ARTIFACT_03.png)
 
 3) Built UI images for our app
 
 The designers in our team were able to put together some images of their visions for our app. These images were reviewed and approved by all members of the team (and relevant suggestions were made). Although, there was not enough time to build a full prototype, they were able to demonstrate minimal interactivity by letting users see the result of clicking on some buttons.
 
-![ARTIFACT_04](/images/ARTIFACT_04.png)
+![ARTIFACT_04](/deliverables/images/deliverable_1/ARTIFACT_04.png)
 
 #### Goals and/or tasks that were planned but not met/completed:
 

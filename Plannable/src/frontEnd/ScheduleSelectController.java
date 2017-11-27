@@ -209,15 +209,11 @@ public class ScheduleSelectController extends Controller {
 				(source).getStyleClass().remove("inactiveCell");
 				(source).getStyleClass().add("activeCell");
 				blockedTimes.add(source);
-				System.out.print("ADDING");
-				System.out.println(GridPane.getRowIndex(source)+" "+GridPane.getColumnIndex(source));
 			}
 			else if (!addTimesFlag) {
 				(source).getStyleClass().add("inactiveCell");
 				(source).getStyleClass().remove("activeCell");
 				blockedTimes.remove(source);
-				System.out.print("REMOVING");
-		        System.out.println(GridPane.getRowIndex(source)+" "+GridPane.getColumnIndex(source));
 			}
 		}
 	}
@@ -229,8 +225,8 @@ public class ScheduleSelectController extends Controller {
 	 */
 	public void goToDifferentStep(MouseEvent e, boolean forward) {
 		int newState = forward ? state+1 : state-1;
+		System.out.println(newState);
 		if (!forward && state == 1) {
-			System.out.println("add task");
 			MainApp.switchScene("AddTask", false);
 		}
 		else if (newState < 5) { 
@@ -277,6 +273,7 @@ public class ScheduleSelectController extends Controller {
 				region.setDisable(true);
 				region.getStyleClass().remove("activeCell");
 				region.setStyle("-fx-background-color: "+colour);
+				region.setId(String.valueOf(state));
 				newBlockedTimes.add(region);
 			}
 			permanentlyBlockedTimes.add(addIndex, newBlockedTimes);
@@ -318,6 +315,7 @@ public class ScheduleSelectController extends Controller {
 			region.getStyleClass().add("inactiveCell");
 		}
 		permanentlyBlockedTimes.remove(index);
+		Api.deleteBlock(((Label)((HBox)leftPaneBox.getChildren().get(0)).getChildren().get(1)).getText());
 		leftPaneBox.getChildren().remove(index);
 		MainApp.rmScheduleGridMap(l);
 	}
@@ -328,7 +326,6 @@ public class ScheduleSelectController extends Controller {
 	 */
 	public void shiftPanel(int stepIndex) {
 		for (Node node : leftPaneBox.getChildren()) {
-			System.out.println(node.getId());
 			if (!node.getId().equals("addNewHBox") && !node.getId().equals(stepIndex+"")) {
 				((HBox) node).setDisable(true);
 			}

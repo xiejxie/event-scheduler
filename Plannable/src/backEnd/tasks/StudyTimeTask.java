@@ -12,9 +12,24 @@ public class StudyTimeTask extends Task {
 	
 	private long duration;
 	private HashMap <String, Integer> work;
-	
-	public StudyTimeTask(LocalTime sT, LocalTime eT, int p, char day){
-		super("StudyTime", sT, eT, p);
+	/**
+	 * Constructor for StudyTimeTask, which is a subclass of task, and
+	 * takes the following arguments
+	 * @param sT 
+	 * The start time of the task
+	 * @param eT
+	 * The end time of the task
+	 * @param p
+	 * The priority given to the task
+	 * @param day
+	 * The day the task is assigned to
+	 * @param d
+	 * The difficulty of the task
+	 * @param w
+	 * The weighting of the task
+	 */
+	public StudyTimeTask(LocalTime sT, LocalTime eT, int p ,char day){
+		super("Study Time", sT, eT, p);
 		work = new HashMap<>();
 		duration = sT.until(eT, ChronoUnit.HOURS);
 	}
