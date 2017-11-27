@@ -139,7 +139,7 @@ public final class Api {
 	 */
 	public static void deleteBlock(String name) {
 		// Send request to backend
-		System.out.println("Delete: " + name);
+		parse.getCalendar().deleteItem(name);
 	}
 
 	/**
