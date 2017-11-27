@@ -243,6 +243,7 @@ public class ScheduleSelectController extends Controller {
 				}
 			}
 		} else {
+			Api.setCal();
 			disableCalendar();
 			MainApp.setScheduleGridDisplay(scheduleGridDisplay);
 			parseTimeBlocks();

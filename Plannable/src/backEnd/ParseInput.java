@@ -279,4 +279,8 @@ public class ParseInput {
 	public String returnCal() {
 		return this.manager.getWeek().toString();
 	}
+	
+	public WeeklyCalendar getCalendar(){
+		return this.manager.getWeek();
+	}
 }

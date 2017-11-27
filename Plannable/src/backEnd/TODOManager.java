@@ -51,6 +51,7 @@ public class TODOManager {
 			  thingsTODO.get(k).updateDate();
 			}
 		}
+		System.out.println(w.toString());
 	}
 	
 	/**
@@ -61,6 +62,7 @@ public class TODOManager {
 	 * algorithm for a specific study task.
 	 */
 	public void manageStudyTime(StudyTimeTask studyToday){
+		System.out.println("Managing study.");
 	    //variable setup
 		int totalTime = studyToday.getDuration();
 		int currTime = 0;
