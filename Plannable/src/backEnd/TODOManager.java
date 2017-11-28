@@ -48,10 +48,14 @@ public class TODOManager {
 			}
 			//Updates the due date priorities after a single day
 			for(int k = 0; k < thingsTODO.size(); k++){
-			  thingsTODO.get(k).updateDate();
+			  //Removes task from TODO list if it is finished.
+			  if(thingsTODO.get(k).getTimeAllocated() == 0){
+			    thingsTODO.remove(k);
+			  } else {
+			    thingsTODO.get(k).updateDate();
+			  }
 			}
 		}
-		System.out.println(w.toString());
 	}
 	
 	/**
@@ -62,7 +66,6 @@ public class TODOManager {
 	 * algorithm for a specific study task.
 	 */
 	public void manageStudyTime(StudyTimeTask studyToday){
-		System.out.println("Managing study.");
 	    //variable setup
 		int totalTime = studyToday.getDuration();
 		int currTime = 0;
@@ -84,12 +87,17 @@ public class TODOManager {
 		while(currTime < totalTime && index < thingsTODO.size()){
 		    //If total number of hours is 1
 		    if(totalTime < 2){
-		      currTODO = thingsTODO.get(index);
-		      currTime += totalTime;
-		      currTODO.workedOnTODO(totalTime);
-		      studyToday.addWork(currTODO.getName(), totalTime);
-		      break;
-		      
+		        //Checks if the due date has passed, moves on to the next task if
+		        //it did pass
+                currTODO = thingsTODO.get(index);
+                if(currTODO.getDueDatePriority() > 7){
+                  index++;
+                } else {
+                  currTime += totalTime;
+                  currTODO.workedOnTODO(totalTime);
+                  studyToday.addWork(currTODO.getName(), totalTime);
+                  break;
+                }
 		    //If total number of hours is 2
 		    } else if (totalTime < 3){
 		      currTODO = thingsTODO.get(index);
@@ -107,8 +115,6 @@ public class TODOManager {
             //If total number of hours is more than 3
 		    } else {
 		          currTODO = thingsTODO.get(index);
-		          System.out.println("name: " + currTODO.getName());
-		          System.out.println("due date priority: " + currTODO.getDueDatePriority());
 		          //moves on if due date has passed
 		          if(currTODO.getDueDatePriority() > 7){
 		            index++;
