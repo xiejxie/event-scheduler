@@ -48,6 +48,8 @@ public class ScheduleDisplayController extends Controller {
 	
 	Node grid;
 	
+	static Set<Region> studyTimes = new HashSet<Region>();
+	
 	/**
 	 * The code representation of the grayed out schedule grid
 	 */
@@ -64,13 +66,17 @@ public class ScheduleDisplayController extends Controller {
 		 //rootNode.setCenter(MainApp.getScheduleGridDisplay());
 		restartButton.setOnMousePressed((MouseEvent e) -> restart(e));
 		printButton.setOnMouseClicked((MouseEvent e) -> print());
+		System.out.println(getStudyTimes());
 	}
 	
 	private void stampTimes() {
 		Set<String> textRepresentation = new HashSet<String>();
 		for (Label l : MainApp.getScheduleGridMap().keySet()) {
 			for (Region r : MainApp.getScheduleGridMap().get(l)) {
-				// System.out.println(r.getId()); Prints 1, 2, 3, 4 depending on which section it was added in
+				//System.out.println(r.getId()); Prints 1, 2, 3, 4 depending on which section it was added in
+				if (r.getId().equals("4")) {
+					studyTimes.add(r);
+				}
 				textRepresentation.add(GridPane.getRowIndex(r) + " " + GridPane.getColumnIndex(r));
 			}
 			for (Region r : MainApp.getScheduleGridMap().get(l)) {
@@ -80,6 +86,10 @@ public class ScheduleDisplayController extends Controller {
 			}
 			textRepresentation.clear();
 		}
+	}
+	
+	public static Set<Region> getStudyTimes() {
+		return studyTimes;
 	}
 	
 	private void applyStamp(Label l, int row, int col) {
@@ -109,6 +119,7 @@ public class ScheduleDisplayController extends Controller {
 	 * @param e
 	 */
 	public void restart(MouseEvent e) {
+		studyTimes.clear();
 		MainApp.clearScheduleGridMap();
 		MainApp.switchScene("AddTask", true);
 	}
