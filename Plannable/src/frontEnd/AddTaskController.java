@@ -112,11 +112,11 @@ public class AddTaskController extends Controller {
 		for (Map<String, String> input : allInputs) {
 		Api.sendTODOToCal(
 				input.get("#taskName"), 
-				input.get("#dueDate"), 
-				Integer.parseInt(input.get("#priority")), 
+				input.get("#dueDate"),  
 				Integer.parseInt(input.get("#estHours")), 
 				Integer.parseInt(input.get("#difficulty")), 
-				Integer.parseInt(input.get("#weighting")));
+				Integer.parseInt(input.get("#weighting")),
+				Integer.parseInt(input.get("#priority")));
 		}
 		MainApp.switchScene("ScheduleSelect", false);
 	}

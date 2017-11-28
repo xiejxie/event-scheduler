@@ -243,6 +243,7 @@ public class ScheduleSelectController extends Controller {
 				}
 			}
 		} else {
+			Api.setCal();
 			disableCalendar();
 			MainApp.setScheduleGridDisplay(scheduleGridDisplay);
 			parseTimeBlocks();
@@ -314,8 +315,8 @@ public class ScheduleSelectController extends Controller {
 			region.setStyle("");
 			region.getStyleClass().add("inactiveCell");
 		}
+		Api.deleteBlock(l.getText());
 		permanentlyBlockedTimes.remove(index);
-		Api.deleteBlock(((Label)((HBox)leftPaneBox.getChildren().get(0)).getChildren().get(1)).getText());
 		leftPaneBox.getChildren().remove(index);
 		MainApp.rmScheduleGridMap(l);
 	}

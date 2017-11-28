@@ -2,6 +2,7 @@ package api;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -103,16 +104,33 @@ public final class Api {
 	 * @param time the time of the task
 	 * @param toFinish the time it may take to finish the task
 	 */
-	public static void sendTODOToCal(String name, String date, int hour, int toFinish, int difficulty, int weighting) {
-		// send to backend to process
+	public static void sendTODOToCal(String name, String date, int toFinish, int difficulty, int weighting, int priority) {
+		String dateFormatted = date.split("/")[2] + "-" + date.split("/")[1] + "-" + date.split("/")[0];
 		System.out.println("Task: " + name 
-				+ "\tDate: " + date 
-				+ "\tTime: " + hour + "th hour of day"
+				+ "\tDate: " + dayAt(LocalDate.parse(dateFormatted).getDayOfWeek().getValue() + 1)
 				+ "\tTo Finish: " + toFinish + " hours."
 				+ "\tDifficulty: " + difficulty
-				+ "\tWeighting: " + weighting);
-		
-		//parse.createThingTODO(name + ": " + dayAt(LocalDate.parse(date).getDayOfWeek().getValue()) + toFinish + ", " + hour + ", " + weighting + ", " + difficulty , tManage);
+				+ "\tWeighting: " + weighting
+				+ "\tPriority: " + priority);
+		System.out.println(name + ": " 
+		+ dayAt(LocalDate.parse(dateFormatted).getDayOfWeek().getValue() + 1) 
+		+ ", " + toFinish 
+		+ ", " + weighting 
+		+ ", " + difficulty 
+		+ ", " + priority);
+		parse.createThingTODO(name + ": " 
+		+ dayAt(LocalDate.parse(dateFormatted).getDayOfWeek().getValue() + 1) 
+		+ ", " + toFinish 
+		+ ", " + weighting 
+		+ ", " + difficulty 
+		+ ", " + priority, tManage);
+	}
+	
+	/**
+	 * Adds the calendar to  the TODOManager to apply the algorithm.
+	 */
+	public static void setCal() {
+		tManage.addToCalendar(parse.getCalendar());
 	}
 	
 	/**
@@ -121,9 +139,9 @@ public final class Api {
 	 */
 	public static void deleteBlock(String name) {
 		// Send request to backend
-		System.out.println("Delete: " + name);
+		parse.getCalendar().deleteItem(name);
 	}
-	
+
 	/**
 	 * Returns the character for the day of the week 
 	 * associated with 1-7 loop counter value num.
