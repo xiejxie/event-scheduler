@@ -1,8 +1,10 @@
 package backEnd;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,10 +53,11 @@ public class ParseInput {
 	 * @param time
 	 * 		The duration, in hours, of the user's intended nightly sleep
 	 */
+	/*
 	public void createRestTimeAddToCal(int time){
 		manager.addRest(time);
 	}
-	
+	*/
 	
 	/**
 	 * Calls TaskManager to add a specific course to the WeeklyCalendar instance based 
@@ -82,6 +85,40 @@ public class ParseInput {
 			
 			//based on the day of the course offering, have to add to right list
 			manager.addTaskToCalendar(currCouse, day);
+		}	
+	}
+	
+	/**
+	 * Calls TaskManager to add a specific course to the WeeklyCalendar instance based 
+	 * information that has been parsed from text input by createCourseAddToCal or passed by 
+	 * Front End.
+	 * 
+	 * @param courseName
+	 * 		A String representing the name of the course.
+	 * @param sleepInfo
+	 * 		A HashMap with the days of the week when the course
+	 * 		occurs as the key and the start/end times for the course
+	 * 		on this day as the values.
+	 */
+	public void addSleepToCal(String courseName, HashMap<Character, List<LocalTime[]>> sleepsInfo){
+		Iterator<Character> sleepsInfoIterator = sleepsInfo.keySet().iterator();
+		
+		while(sleepsInfoIterator.hasNext()){
+			Character nextSleep = sleepsInfoIterator.next();
+			char day = nextSleep;
+			
+			Iterator<LocalTime[]> sleepIterator = sleepsInfo.get(day).iterator();
+			
+			while(sleepIterator.hasNext()){
+				LocalTime[] sleep = sleepIterator.next();
+				LocalTime startTime = sleep[0];
+				LocalTime endTime = sleep[1];
+				
+				//treat sleep block as a Course object
+				Courses currSleep = new Courses("Sleep", startTime, endTime, 0, day);
+			
+				manager.addTaskToCalendar(currSleep, day);
+			}
 		}	
 	}
 
@@ -274,6 +311,35 @@ public class ParseInput {
 	      }
 	      addECToCal(ECName, extraInfo);
 	}
+	
+	//THIS FUNCTION DOES STRING CONVERSION AND IS FOR BACKEND TESTING PURPOSES
+	public void createSleepTimeAddToCal(String SleepDescr){
+		//getting each offering of the course on each day
+		String [] daily = SleepDescr.split(",");
+		
+		HashMap<Character, List<LocalTime[]>> sleepInfo = new HashMap<Character, List<LocalTime[]>>(); 
+		
+		for(int i = 0; i < daily.length; i++){
+			String currDay = daily[i];
+			char day;
+			if (i == 0) {
+				day = currDay.charAt(0);
+			} else {
+				day = currDay.charAt(1);
+			}
+			String startTimeString = currDay.substring(currDay.indexOf(day)+2, currDay.indexOf("-"));
+			String endTimeString = currDay.substring(currDay.indexOf("-")+1);
+			
+			LocalTime[] timeArr = {convertToTime(startTimeString), convertToTime(endTimeString)};
+			//sleepInfo.put(day, timeArr);
+			if (sleepInfo.get(day) == null) {
+				sleepInfo.put(day, new ArrayList<LocalTime[]>());
+			}
+			sleepInfo.get(day).add(timeArr);
+		}
+		addSleepToCal("Sleep", sleepInfo);
+	}
+	
 	
 	// RETURNS CALENDAR STRING
 	public String returnCal() {

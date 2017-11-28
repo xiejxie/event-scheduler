@@ -50,6 +50,23 @@ public class StartingPoint {
 		createAdd.createRestTimeAddToCal(restTimeHours);
 		in.nextLine();
 		*/
+	    
+	    
+		System.out.println("Please enter your desired sleep time in the"
+				+ "following format\n"
+			    + "M 00:00-07:30, M 23:00-23:59\n"
+			    + "When you're finished entering your extracurriculars, type DONE");
+		
+		String currSleep = in.nextLine();
+		while(! currSleep.equals("DONE")){
+			createAdd.createSleepTimeAddToCal(currSleep);
+			currSleep = in.nextLine();
+		}
+		System.out.println("Entering Sleep Time.......");
+		
+	    
+	    
+	    
 		System.out.println("Please enter the times you would like to designate as free time, in the "
 				+ "following format:\nM 10:00-11:00, R 10:00-11:00, F 18:00-19:00\n"
 				+ "When you're finished entering times, type DONE");
