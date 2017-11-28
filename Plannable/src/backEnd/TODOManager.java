@@ -85,89 +85,57 @@ public class TODOManager {
 		
 		//Allocation of tasks to study time
 		while(currTime < totalTime && index < thingsTODO.size()){
+          currTODO = thingsTODO.get(index);
+          //moves on if due date has passed
+          if(currTODO.getDueDatePriority() > 7){
+            index++;
+            continue;
+          }
 		    //If total number of hours is 1
-		    if(totalTime < 2){
-		        //Checks if the due date has passed, moves on to the next task if
-		        //it did pass
-                currTODO = thingsTODO.get(index);
-                if(currTODO.getDueDatePriority() > 7){
-                  index++;
-                } else {
-                  currTime += totalTime;
-                  currTODO.workedOnTODO(totalTime);
-                  studyToday.addWork(currTODO.getName(), totalTime);
-                  break;
-                }
+		  if(totalTime < 2){
+            currTime += totalTime;
+            currTODO.workedOnTODO(totalTime);
+            studyToday.addWork(currTODO.getName(), totalTime);
+            break;
 		    //If total number of hours is 2
-		    } else if (totalTime < 3){
-		      currTODO = thingsTODO.get(index);
-              currTime += 1;
-              currTODO.workedOnTODO(1);
-              studyToday.addWork(currTODO.getName(), 1);
-              index++;
-              
-              currTODO = thingsTODO.get(index);
-              currTime += 1;
-              currTODO.workedOnTODO(1);
-              studyToday.addWork(currTODO.getName(), 1);
+		   } else if (totalTime < 3){
+		      ScheduleForTwoTasks(currTODO, studyToday, currTime, index);
               break;
               
             //If total number of hours is more than 3
-		    } else {
-		          currTODO = thingsTODO.get(index);
-		          //moves on if due date has passed
-		          if(currTODO.getDueDatePriority() > 7){
-		            index++;
-		          } else {
-	                timeSpent = Math.min(num_of_hours.get(index), currTODO.getTimeAllocated());
-	                currTime += timeSpent;
-	                currTODO.workedOnTODO(timeSpent);
-	                studyToday.addWork(currTODO.getName(), timeSpent);
-	                currTODO.updatePriority();
-	                index++;
-		          }
-		    }
-		}
-			
-			/*
-			if(currTODO.getPriority() == 0){
-				index++;
-				continue;
-			}
-			if(currTODO.getPriority() == 1 && currTODO.getTimeAllocated() != 0){
-				timeSpent = currTODO.getTimeAllocated();
-				currTime += timeSpent;
-				currTODO.workedOnTODO(timeSpent);
-				studyToday.addWork(currTODO.getName(), timeSpent);
-				index++;
-			}
-			else{
-				// should only work on one thing for a max of 2hrs
-				timeSpent = Math.min(2, currTODO.getTimeAllocated());
-				currTime += timeSpent;
-				currTODO.workedOnTODO(timeSpent);
-				studyToday.addWork(currTODO.getName(), timeSpent);
-				index++;
-			}
+		   } else {
+	          timeSpent = Math.min(num_of_hours.get(index), currTODO.getTimeAllocated());
+	          currTime += timeSpent;
+	          currTODO.workedOnTODO(timeSpent);
+	          studyToday.addWork(currTODO.getName(), timeSpent);
+	          currTODO.updatePriority();
+              index++;
+	         }
+		 }		
+	}
+	
+	public void ScheduleForTwoTasks(TODO currTODO, StudyTimeTask studyToday
+	    , int currTime, int index){
+	  if(thingsTODO.size() < 2){
+	     currTODO = thingsTODO.get(index);
+	     
+	     int timeSpent = Math.min(2, currTODO.getTimeAllocated());
+	     currTime += timeSpent;
+	     currTODO.workedOnTODO(timeSpent);
+	     studyToday.addWork(currTODO.getName(), timeSpent);
+	  } else {
+	     currTODO = thingsTODO.get(index);
+	      currTime += 1;
+	      currTODO.workedOnTODO(1);
+	      studyToday.addWork(currTODO.getName(), 1);
+	      index++;
 
-		}
-		// worked on last task for too long, add back time
-		if(currTime > totalTime){
-			currTODO.addBack(currTime - totalTime);
-			timeSpent = timeSpent - (currTime - totalTime);
-			studyToday.addWork(currTODO.getName(), timeSpent);
-			updatePriorities();
-		}
-		*/
+	      currTODO = thingsTODO.get(index);
+	      currTime += 1;
+	      currTODO.workedOnTODO(1);
+	      studyToday.addWork(currTODO.getName(), 1);
+	  }
+
 	}
-	/*
-	public void updatePriorities(){
-		for (int i = 0; i < thingsTODO.size(); i++){
-			if(thingsTODO.get(i).getPriority() != 0){
-				thingsTODO.get(i).updatePriority();
-			}
-		}
-	}
-	*/
 	
 }
