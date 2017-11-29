@@ -167,5 +167,9 @@ public final class Api {
 			return 'X';
 		}
 	}
+
+	public static WeeklyCalendar getCal() {
+		return parse.getCalendar();
+	}
 	
 }
