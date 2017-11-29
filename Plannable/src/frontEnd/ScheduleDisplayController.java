@@ -46,7 +46,7 @@ public class ScheduleDisplayController extends Controller {
 	@FXML
 	Button printButton;
 	
-	Node grid;
+	static Node grid;
 	
 	static Set<Region> studyTimes = new HashSet<Region>();
 	
@@ -59,6 +59,8 @@ public class ScheduleDisplayController extends Controller {
 	 */
 	@FXML
 	public void initialize() {
+		// Node grid = MainApp.getScheduleDisplay();
+		// MainApp.ge
 		grid = MainApp.getScheduleGridDisplay();
 		rootNode.setCenter(grid);
 		rootNode.setLeft(MainApp.getScheduleGridInformation());
@@ -73,7 +75,6 @@ public class ScheduleDisplayController extends Controller {
 		Set<String> textRepresentation = new HashSet<String>();
 		for (Label l : MainApp.getScheduleGridMap().keySet()) {
 			for (Region r : MainApp.getScheduleGridMap().get(l)) {
-				//System.out.println(r.getId()); Prints 1, 2, 3, 4 depending on which section it was added in
 				if (r.getId().equals("4")) {
 					studyTimes.add(r);
 				}
@@ -81,7 +82,7 @@ public class ScheduleDisplayController extends Controller {
 			}
 			for (Region r : MainApp.getScheduleGridMap().get(l)) {
 				if (!textRepresentation.contains((GridPane.getRowIndex(r)-1) + " " + (GridPane.getColumnIndex(r)))) {
-					applyStamp(l, GridPane.getRowIndex(r), GridPane.getColumnIndex(r));
+					if (!r.getId().equals("4")) applyStamp(l, GridPane.getRowIndex(r), GridPane.getColumnIndex(r));
 				}
 			}
 			textRepresentation.clear();
@@ -92,7 +93,7 @@ public class ScheduleDisplayController extends Controller {
 		return studyTimes;
 	}
 	
-	private void applyStamp(Label l, int row, int col) {
+	public static void applyStamp(Label l, int row, int col) {
 		ScrollPane sp = (ScrollPane) ((VBox) grid).getChildren().get(1);
 		GridPane gridP = (GridPane) sp.getContent();
 		VBox box = new VBox();
