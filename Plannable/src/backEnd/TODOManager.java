@@ -74,6 +74,16 @@ public class TODOManager {
 		int timeSpent = 0;
 		List<Integer> num_of_hours = new ArrayList();
 		
+		if(thingsTODO.size() == 1){
+			TODO t = thingsTODO.get(0);
+			if(t.getDueDate() != studyToday.getDay()){
+				studyToday.addWork(t.getName(), studyToday.getDuration());
+				t.workedOnTODO(studyToday.getDuration());
+				t.updateDate();
+				return;
+			}
+		}
+		
 		//Determines number of hours each task will use
 		if(totalTime >= 3){
 		  int equal_hours_1 = (int) Math.ceil(totalTime / 3);
