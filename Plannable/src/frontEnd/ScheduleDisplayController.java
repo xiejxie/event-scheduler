@@ -2,6 +2,7 @@ package frontEnd;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,6 +11,9 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
+import api.Api;
+import backEnd.WeeklyCalendar;
+import backEnd.tasks.StudyTimeTask;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -62,6 +66,7 @@ public class ScheduleDisplayController extends Controller {
 		// Node grid = MainApp.getScheduleDisplay();
 		// MainApp.ge
 		grid = MainApp.getScheduleGridDisplay();
+		placeStudy();
 		rootNode.setCenter(grid);
 		rootNode.setLeft(MainApp.getScheduleGridInformation());
 		stampTimes();
@@ -102,7 +107,7 @@ public class ScheduleDisplayController extends Controller {
 		label.setWrapText(true);
 		label.setTextAlignment(TextAlignment.JUSTIFY);
 		label.getStyleClass().add("fontBold");
-		label.getStyleClass().add("whiteText");
+		//label.getStyleClass().add("whiteText");
 		box.getChildren().add(label);
 		box.setAlignment(Pos.BASELINE_CENTER);
 		gridP.add(box, col, row);
@@ -137,5 +142,28 @@ public class ScheduleDisplayController extends Controller {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
+	}
+	
+	private void placeStudy() {
+		WeeklyCalendar w = Api.getCal();
+		Map<Integer, String> record = new HashMap<Integer, String>();
+		for(int i = 0; i < w.getStudyTimes().size(); i++) {
+			record.clear();
+			for(StudyTimeTask t : w.getStudyTimes().get(i)) {
+				LocalTime curr = t.getStartTime();
+				while(curr.isBefore(t.getEndTime())){
+					int row = curr.getHour() * 2;
+					row = curr.getMinute() == 0 ? row : row + 1;
+					System.out.printf("row: %d\t\tcol: %d\n", row, i + 1);
+					String prevL = record.get(row-1);
+					record.put(row, t.getName());
+					System.out.println("Comparing "+prevL+"and "+t.getName());
+					if (prevL == null || !prevL.equals(t.getName())) {
+						applyStamp(new Label(t.getName()), row, i + 1);
+					}
+					curr = curr.plusMinutes(30);
+				}
+			}
+		}
 	}
 }

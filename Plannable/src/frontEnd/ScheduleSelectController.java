@@ -247,31 +247,14 @@ public class ScheduleSelectController extends Controller {
 			}
 		} else {
 			Api.setCal();
-			placeStudy();
+			//placeStudy();
 			disableCalendar();
 			MainApp.setScheduleGridDisplay(scheduleGridDisplay);
 			parseTimeBlocks();
 			MainApp.switchScene("ScheduleDisplay", true);
 		}
 	}
-	
-	private void placeStudy() {
-		WeeklyCalendar w = Api.getCal();
-		for(int i = 0; i < w.getStudyTimes().size(); i++) {
-			for(StudyTimeTask t : w.getStudyTimes().get(i)) {
-				LocalTime curr = t.getStartTime();
-				while(curr.isBefore(t.getEndTime())){
-					int row = curr.getHour() * 2;
-					row = curr.getMinute() == 0 ? row : row + 1;
-					System.out.printf("row: %d\t\tcol: %d\n", row, i + 1);
-					// ScheduleDisplayController.applyStamp(new Label(t.getName()), row, i + 1);
-					curr = curr.plusMinutes(30);
-				}
-				
-			}
-		}
-	}
-	
+
 	/**
 	 * Add all selected blocks as a new time block when you hit enter
 	 * @param e	the recorded key event
