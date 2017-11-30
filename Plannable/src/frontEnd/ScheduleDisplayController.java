@@ -12,8 +12,6 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
-import com.sun.org.apache.bcel.internal.generic.IFGT;
-
 import api.Api;
 import backEnd.WeeklyCalendar;
 import backEnd.tasks.StudyTimeTask;

@@ -1,6 +1,5 @@
 package frontEnd;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,8 +8,6 @@ import java.util.Map;
 import java.util.Set;
 
 import api.Api;
-import backEnd.WeeklyCalendar;
-import backEnd.tasks.StudyTimeTask;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

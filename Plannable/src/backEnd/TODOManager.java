@@ -72,7 +72,7 @@ public class TODOManager {
 		int index = 0;
 		TODO currTODO = null;
 		int timeSpent = 0;
-		List<Integer> num_of_hours = new ArrayList();
+		List<Integer> num_of_hours = new ArrayList<Integer>();
 		
 		if(thingsTODO.size() == 1){
 			TODO t = thingsTODO.get(0);

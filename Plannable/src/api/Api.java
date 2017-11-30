@@ -2,7 +2,6 @@ package api;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -107,6 +106,7 @@ public final class Api {
 	 */
 	public static void sendTODOToCal(String name, String date, int toFinish, int difficulty, int weighting, int priority) {
 		String dateFormatted = date.split("/")[2] + "-" + date.split("/")[1] + "-" + date.split("/")[0];
+		/*
 		System.out.println("Task: " + name 
 				+ "\tDate: " + dayAt(LocalDate.parse(dateFormatted).getDayOfWeek().getValue() + 1)
 				+ "\tTo Finish: " + toFinish + " hours."
@@ -119,6 +119,7 @@ public final class Api {
 		+ ", " + weighting 
 		+ ", " + difficulty 
 		+ ", " + priority);
+		*/
 		parse.createThingTODO(name + ": " 
 		+ dayAt(LocalDate.parse(dateFormatted).getDayOfWeek().getValue() + 1) 
 		+ ", " + toFinish 
