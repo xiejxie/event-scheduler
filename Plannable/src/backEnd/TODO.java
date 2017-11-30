@@ -203,5 +203,12 @@ public class TODO implements Comparable<TODO> {
 	public int compareTo(TODO o) {
 		return this.getPriority() - o.getPriority();
 	}
+	
+	/**
+	 * Returns the due date of this task
+	 */
+	public char getDueDate(){
+		return this.dueDate;
+	}
 
 }

@@ -11,6 +11,7 @@ public class StudyTimeTask extends Task {
 	
 	private long duration;
 	private HashMap <String, Integer> work;
+	private char day;
 	/**
 	 * Constructor for StudyTimeTask, which is a subclass of task, and
 	 * takes the following arguments
@@ -31,6 +32,11 @@ public class StudyTimeTask extends Task {
 		super("Study Time", sT, eT, p);
 		work = new HashMap<>();
 		duration = sT.until(eT, ChronoUnit.HOURS);
+		this.day = day;
+	}
+	
+	public char getDay(){
+		return day;
 	}
 	
 	public int getDuration(){
