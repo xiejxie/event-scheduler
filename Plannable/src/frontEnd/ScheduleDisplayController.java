@@ -108,7 +108,7 @@ public class ScheduleDisplayController extends Controller {
 		label.setWrapText(true);
 		label.setTextAlignment(TextAlignment.JUSTIFY);
 		label.getStyleClass().add("fontBold");
-		//label.getStyleClass().add("whiteText");
+		label.getStyleClass().add("whiteText");
 		box.getChildren().add(label);
 		box.setAlignment(Pos.BASELINE_CENTER);
 		gridP.add(box, col, row);
