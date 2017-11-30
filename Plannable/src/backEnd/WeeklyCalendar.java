@@ -2,7 +2,9 @@ package backEnd;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
+import backEnd.tasks.StudyTimeTask;
 import backEnd.tasks.Task;
 
 /**
@@ -74,5 +76,19 @@ public class WeeklyCalendar {
 		else{
 			return -1;
 		}
+	}
+	
+	public List<List<StudyTimeTask>> getStudyTimes() {
+		List<List<StudyTimeTask>> ret = new ArrayList<>();
+		 	for(int i = 0; i < daysOfWeek.size(); i++) {
+				List<StudyTimeTask> tasks = new ArrayList<>();
+				for(Task t : daysOfWeek.get(i)) {
+					if( t instanceof StudyTimeTask){
+						tasks.add((StudyTimeTask) t);
+					}
+				}
+				ret.add(tasks);
+		 	}
+		return ret;
 	}
 }

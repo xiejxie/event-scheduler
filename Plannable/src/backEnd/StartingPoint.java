@@ -43,18 +43,9 @@ public class StartingPoint {
 	    System.out.println("Scheduling commute times......");
 	    in.nextLine();	// Eat up newline character
 	    
-		/*
-		System.out.println("Please enter your desired rest time in hours");
-		int restTimeHours = Integer.parseInt(in.nextLine().trim());
-		
-		createAdd.createRestTimeAddToCal(restTimeHours);
-		in.nextLine();
-		*/
-	    
-	    
 		System.out.println("Please enter your desired sleep time in the " 
 				+ "following format\n"
-			    + "M 00:00-07:30, M 23:00-23:59\n"
+			    + "Sleep: M 00:00-07:30, M 23:00-23:59\n"
 			    + "When you're finished entering your sleep, type DONE");
 		
 		String currSleep = in.nextLine();
@@ -63,10 +54,10 @@ public class StartingPoint {
 			currSleep = in.nextLine();
 		}
 		System.out.println("Entering Sleep Time.......");
+	
 		
-	    
 		System.out.println("Please enter the times you would like to designate as free time, in the "
-				+ "following format:\nSleep: M 10:00-11:00, R 10:00-11:00, F 18:00-19:00\n"
+				+ "following format:\nM 10:00-11:00, R 10:00-11:00, F 18:00-19:00\n"
 				+ "When you're finished entering times, type DONE");
 		String freeTime = in.nextLine();
 		while (!freeTime.equals("DONE")){

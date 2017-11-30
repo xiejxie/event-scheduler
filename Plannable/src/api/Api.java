@@ -2,7 +2,6 @@ package api;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -58,6 +57,8 @@ public final class Api {
 			}
 		}
 		
+		System.out.println(info);
+		
 		/** Call to ParseInput **/
 		switch(state) {
 		case 1:
@@ -90,7 +91,6 @@ public final class Api {
 			System.out.println(curr + " " + info.get(curr)[0] + "-" + info.get(curr)[1]);
 		}
 		*/
-		
 		System.out.println(parse.returnCal());
 	}
 	
@@ -106,6 +106,7 @@ public final class Api {
 	 */
 	public static void sendTODOToCal(String name, String date, int toFinish, int difficulty, int weighting, int priority) {
 		String dateFormatted = date.split("/")[2] + "-" + date.split("/")[1] + "-" + date.split("/")[0];
+		/*
 		System.out.println("Task: " + name 
 				+ "\tDate: " + dayAt(LocalDate.parse(dateFormatted).getDayOfWeek().getValue() + 1)
 				+ "\tTo Finish: " + toFinish + " hours."
@@ -118,6 +119,7 @@ public final class Api {
 		+ ", " + weighting 
 		+ ", " + difficulty 
 		+ ", " + priority);
+		*/
 		parse.createThingTODO(name + ": " 
 		+ dayAt(LocalDate.parse(dateFormatted).getDayOfWeek().getValue() + 1) 
 		+ ", " + toFinish 
@@ -143,13 +145,20 @@ public final class Api {
 	}
 
 	/**
+	 * Calls the backend function to clear the calendar.
+	 */
+	public static void clearCal() {
+		// TODO
+	}
+	
+	/**
 	 * Returns the character for the day of the week 
 	 * associated with 1-7 loop counter value num.
 	 */
 	public static Character dayAt (int num) {
 		switch(num) {
 		case 1:
-			return 'S';
+			return 'N';
 		case 2:
 			return 'M';
 		case 3:
@@ -161,11 +170,15 @@ public final class Api {
 		case 6:
 			return 'F';
 		case 7:
-			return 'N';
+			return 'S';
 		default:
 			System.out.println("Invalid int.");
 			return 'X';
 		}
+	}
+
+	public static WeeklyCalendar getCal() {
+		return parse.getCalendar();
 	}
 	
 }

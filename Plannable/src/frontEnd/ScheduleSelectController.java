@@ -244,13 +244,14 @@ public class ScheduleSelectController extends Controller {
 			}
 		} else {
 			Api.setCal();
+			//placeStudy();
 			disableCalendar();
 			MainApp.setScheduleGridDisplay(scheduleGridDisplay);
 			parseTimeBlocks();
 			MainApp.switchScene("ScheduleDisplay", true);
 		}
 	}
-	
+
 	/**
 	 * Add all selected blocks as a new time block when you hit enter
 	 * @param e	the recorded key event

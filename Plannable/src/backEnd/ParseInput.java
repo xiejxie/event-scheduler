@@ -1,10 +1,8 @@
 package backEnd;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,18 +45,6 @@ public class ParseInput {
 		manager.addCommute(time);
 	}
 	
-	
-	/**
-	 * Calls the TaskManager instance to add the user's weekly sleep schedule to the WeeklyCalendar
-	 * 
-	 * @param time
-	 * 		The duration, in hours, of the user's intended nightly sleep
-	 */
-	/*
-	public void createRestTimeAddToCal(int time){
-		manager.addRest(time);
-	}
-	*/
 	
 	/**
 	 * Calls TaskManager to add a specific course to the WeeklyCalendar instance based 
@@ -119,6 +105,7 @@ public class ParseInput {
 			manager.addTaskToCalendar(currSleep, day);
 		}	
 	}
+
 	/**
 	 * Calls TaskManager to add designated weekly study or free time sessions 
 	 * to the WeeklyCalendar instance based information that has been parsed
@@ -331,6 +318,7 @@ public class ParseInput {
 			addSleepToCal("Sleep", sleepInfo);
 		}
 	}
+
 	// RETURNS CALENDAR STRING
 	public String returnCal() {
 		return this.manager.getWeek().toString();

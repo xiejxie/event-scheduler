@@ -2,7 +2,6 @@ package backEnd.tasks;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -12,6 +11,7 @@ public class StudyTimeTask extends Task {
 	
 	private long duration;
 	private HashMap <String, Integer> work;
+	private char day;
 	/**
 	 * Constructor for StudyTimeTask, which is a subclass of task, and
 	 * takes the following arguments
@@ -32,6 +32,11 @@ public class StudyTimeTask extends Task {
 		super("Study Time", sT, eT, p);
 		work = new HashMap<>();
 		duration = sT.until(eT, ChronoUnit.HOURS);
+		this.day = day;
+	}
+	
+	public char getDay(){
+		return day;
 	}
 	
 	public int getDuration(){
@@ -51,5 +56,13 @@ public class StudyTimeTask extends Task {
 		}
 		answer = answer + "]";
 		return answer;
+	}
+	
+	public Set<String> getWorkKeys () {
+		return work.keySet();
+	}
+	
+	public HashMap<String, Integer> getWork() {
+		return work;
 	}
 }
