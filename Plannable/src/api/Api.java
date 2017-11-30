@@ -72,8 +72,8 @@ public final class Api {
 			}
 			break;
 		case 3:
-			int time = Math.abs(end.getHour() - start.getHour()) * 60 + Math.abs(end.getMinute() - start.getMinute());
-			parse.createRestTimeAddToCal(time);
+			//int time = Math.abs(end.getHour() - start.getHour()) * 60 + Math.abs(end.getMinute() - start.getMinute());
+			parse.addSleepToCal(name, info);
 			break;
 		case 4:
 			parse.addFreeAndStudyTimeToCal(name, info);

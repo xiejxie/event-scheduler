@@ -52,10 +52,10 @@ public class StartingPoint {
 		*/
 	    
 	    
-		System.out.println("Please enter your desired sleep time in the"
+		System.out.println("Please enter your desired sleep time in the " 
 				+ "following format\n"
 			    + "M 00:00-07:30, M 23:00-23:59\n"
-			    + "When you're finished entering your extracurriculars, type DONE");
+			    + "When you're finished entering your sleep, type DONE");
 		
 		String currSleep = in.nextLine();
 		while(! currSleep.equals("DONE")){
@@ -65,10 +65,8 @@ public class StartingPoint {
 		System.out.println("Entering Sleep Time.......");
 		
 	    
-	    
-	    
 		System.out.println("Please enter the times you would like to designate as free time, in the "
-				+ "following format:\nM 10:00-11:00, R 10:00-11:00, F 18:00-19:00\n"
+				+ "following format:\nSleep: M 10:00-11:00, R 10:00-11:00, F 18:00-19:00\n"
 				+ "When you're finished entering times, type DONE");
 		String freeTime = in.nextLine();
 		while (!freeTime.equals("DONE")){
