@@ -2,7 +2,6 @@ package backEnd.tasks;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -51,5 +50,9 @@ public class StudyTimeTask extends Task {
 		}
 		answer = answer + "]";
 		return answer;
+	}
+	
+	public Set<String> getWorkKeys () {
+		return work.keySet();
 	}
 }

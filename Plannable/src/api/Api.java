@@ -58,6 +58,8 @@ public final class Api {
 			}
 		}
 		
+		System.out.println(info);
+		
 		/** Call to ParseInput **/
 		switch(state) {
 		case 1:
@@ -142,13 +144,20 @@ public final class Api {
 	}
 
 	/**
+	 * Calls the backend function to clear the calendar.
+	 */
+	public static void clearCal() {
+		// TODO
+	}
+	
+	/**
 	 * Returns the character for the day of the week 
 	 * associated with 1-7 loop counter value num.
 	 */
 	public static Character dayAt (int num) {
 		switch(num) {
 		case 1:
-			return 'S';
+			return 'N';
 		case 2:
 			return 'M';
 		case 3:
@@ -160,7 +169,7 @@ public final class Api {
 		case 6:
 			return 'F';
 		case 7:
-			return 'N';
+			return 'S';
 		default:
 			System.out.println("Invalid int.");
 			return 'X';

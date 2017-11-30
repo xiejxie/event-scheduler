@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -126,6 +127,7 @@ public class ScheduleDisplayController extends Controller {
 	 */
 	public void restart(MouseEvent e) {
 		studyTimes.clear();
+		Api.clearCal();
 		MainApp.clearScheduleGridMap();
 		MainApp.switchScene("AddTask", true);
 	}
@@ -146,20 +148,33 @@ public class ScheduleDisplayController extends Controller {
 	
 	private void placeStudy() {
 		WeeklyCalendar w = Api.getCal();
+		System.out.println(w.toString());
 		Map<Integer, String> record = new HashMap<Integer, String>();
 		for(int i = 0; i < w.getStudyTimes().size(); i++) {
 			record.clear();
+			System.out.println(w.getStudyTimes().get(i));
 			for(StudyTimeTask t : w.getStudyTimes().get(i)) {
 				LocalTime curr = t.getStartTime();
-				while(curr.isBefore(t.getEndTime())){
+				Iterator<String> keys = t.getWorkKeys().iterator();
+				int hourCount = -1;
+				while(curr.isBefore(t.getEndTime()) || t.getEndTime().equals(curr)){
 					int row = curr.getHour() * 2;
 					row = curr.getMinute() == 0 ? row : row + 1;
+					hourCount++;
 					System.out.printf("row: %d\t\tcol: %d\n", row, i + 1);
 					String prevL = record.get(row-1);
 					record.put(row, t.getName());
-					System.out.println("Comparing "+prevL+"and "+t.getName());
-					if (prevL == null || !prevL.equals(t.getName())) {
-						applyStamp(new Label(t.getName()), row, i + 1);
+					//System.out.println("Comparing " + prevL + " and " + t.getName());
+					String newName = "";
+					if(keys.hasNext() && hourCount % 2 == 0) {
+						newName = keys.next();
+					}
+					if (prevL == null || !prevL.equals(newName)) {
+						if(t.getWorkKeys().size() == 0 && hourCount == 0) {
+							applyStamp(new Label("Study"), row, i + 1);
+						} else if(newName != "") {
+							applyStamp(new Label(newName), row, i + 1);
+						}
 					}
 					curr = curr.plusMinutes(30);
 				}
