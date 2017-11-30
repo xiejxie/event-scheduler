@@ -12,6 +12,8 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
+import com.sun.org.apache.bcel.internal.generic.IFGT;
+
 import api.Api;
 import backEnd.WeeklyCalendar;
 import backEnd.tasks.StudyTimeTask;
@@ -146,36 +148,52 @@ public class ScheduleDisplayController extends Controller {
 	    }
 	}
 	
+	/**
+	 * Places re-organized study time blocks from backend
+	 * into the visual calendar.
+	 */
 	private void placeStudy() {
 		WeeklyCalendar w = Api.getCal();
 		System.out.println(w.toString());
 		Map<Integer, String> record = new HashMap<Integer, String>();
+		// Iterate each day of the week
 		for(int i = 0; i < w.getStudyTimes().size(); i++) {
 			record.clear();
-			System.out.println(w.getStudyTimes().get(i));
+			// Iterate every StudyTimeTask of that day
 			for(StudyTimeTask t : w.getStudyTimes().get(i)) {
 				LocalTime curr = t.getStartTime();
 				Iterator<String> keys = t.getWorkKeys().iterator();
-				int hourCount = -1;
-				while(curr.isBefore(t.getEndTime()) || t.getEndTime().equals(curr)){
+				int hourCount = 0;
+				int numHours = 0;
+				// Iterate through every half hour of that task
+				while(curr.isBefore(t.getEndTime())){
 					int row = curr.getHour() * 2;
 					row = curr.getMinute() == 0 ? row : row + 1;
-					hourCount++;
-					System.out.printf("row: %d\t\tcol: %d\n", row, i + 1);
 					String prevL = record.get(row-1);
 					record.put(row, t.getName());
-					//System.out.println("Comparing " + prevL + " and " + t.getName());
 					String newName = "";
-					if(keys.hasNext() && hourCount % 2 == 0) {
-						newName = keys.next();
+					int toEnd = (t.getEndTime().getHour() - t.getStartTime().getHour()) * 2;
+					toEnd += t.getEndTime().getMinute() - t.getStartTime().getMinute() == 0 ? 0 : 1;
+					if(keys.hasNext()) {
+						if(hourCount == 0){
+							newName = keys.next();
+							hourCount = t.getWork().get(newName) * 2;
+							numHours = hourCount;
+						}
+					} else if (hourCount == 0) {
+						newName = "Study";
+						hourCount = toEnd;
+						numHours = toEnd;
 					}
 					if (prevL == null || !prevL.equals(newName)) {
 						if(t.getWorkKeys().size() == 0 && hourCount == 0) {
 							applyStamp(new Label("Study"), row, i + 1);
-						} else if(newName != "") {
+						} else if(newName != "" && hourCount == numHours ) {
 							applyStamp(new Label(newName), row, i + 1);
 						}
+						hourCount--;
 					}
+					
 					curr = curr.plusMinutes(30);
 				}
 			}

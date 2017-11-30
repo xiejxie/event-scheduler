@@ -61,4 +61,8 @@ public class StudyTimeTask extends Task {
 	public Set<String> getWorkKeys () {
 		return work.keySet();
 	}
+	
+	public HashMap<String, Integer> getWork() {
+		return work;
+	}
 }
