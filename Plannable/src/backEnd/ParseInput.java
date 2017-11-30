@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import backEnd.tasks.Courses;
 import backEnd.tasks.ExtraCurriculars;
 import backEnd.tasks.FreeTime;
+import backEnd.tasks.Sleep;
 import backEnd.tasks.StudyTimeTask;
 
 /**
@@ -46,17 +47,6 @@ public class ParseInput {
 	
 	
 	/**
-	 * Calls the TaskManager instance to add the user's weekly sleep schedule to the WeeklyCalendar
-	 * 
-	 * @param time
-	 * 		The duration, in hours, of the user's intended nightly sleep
-	 */
-	public void createRestTimeAddToCal(int time){
-		manager.addRest(time);
-	}
-	
-	
-	/**
 	 * Calls TaskManager to add a specific course to the WeeklyCalendar instance based 
 	 * information that has been parsed from text input by createCourseAddToCal or passed by 
 	 * Front End.
@@ -84,8 +74,38 @@ public class ParseInput {
 			manager.addTaskToCalendar(currCouse, day);
 		}	
 	}
-
 	
+	/**
+	 * Calls TaskManager to add sleep time to the WeeklyCalendar instance based 
+	 * information that has been parsed from text input by createSleepAddtoCal or passed by 
+	 * Front End.
+	 * 
+	 * @param descr
+	 * 		A String stating that this a "sleep" task
+	 * @param sleepInfo
+	 * 		A HashMap with the days of the week the specific sleep time
+	 * 		occurs as the key and the start/end times for the sleep times
+	 * 		on this day as the values.
+	 * NOTE: Since a "sleep" is usually between two days, we have split each sleep into
+	 * a "morning" and "night" section to represent the parts of a specific day that the
+	 * user is sleeping
+	 */
+	public void addSleepToCal(String sleepName, HashMap<Character, LocalTime[]> sleepInfo){
+		Iterator<Character> sleepsInfoIterator = sleepInfo.keySet().iterator();
+		
+		while(sleepsInfoIterator.hasNext()){
+			Character nextSleep = sleepsInfoIterator.next();
+			char day = nextSleep;
+			
+			LocalTime startTime = sleepInfo.get(day)[0];
+			LocalTime endTime = sleepInfo.get(day)[1];
+				
+			Sleep currSleep = new Sleep(startTime, endTime, 0);
+			
+			manager.addTaskToCalendar(currSleep, day);
+		}	
+	}
+
 	/**
 	 * Calls TaskManager to add designated weekly study or free time sessions 
 	 * to the WeeklyCalendar instance based information that has been parsed
@@ -275,6 +295,30 @@ public class ParseInput {
 	      addECToCal(ECName, extraInfo);
 	}
 	
+	//THIS FUNCTION DOES STRING CONVERSION AND IS FOR BACKEND TESTING PURPOSES
+	public void createSleepTimeAddToCal(String SleepDescr){
+		//getting each offering of the course on each day
+		String desc = SleepDescr.substring(SleepDescr.indexOf(":")+1);
+		String [] daily = desc.split(",");
+		
+		HashMap<Character, LocalTime[]> sleepInfo; 
+		
+		for(int i = 0; i < daily.length; i++){
+			String currDay = daily[i];
+			char day = currDay.charAt(1);
+			
+			sleepInfo = new HashMap<Character, LocalTime[]>();
+			String startTimeString = currDay.substring(currDay.indexOf(day)+2, currDay.indexOf("-"));
+			String endTimeString = currDay.substring(currDay.indexOf("-")+1);
+			
+			LocalTime[] timeArr = {convertToTime(startTimeString), convertToTime(endTimeString)};
+
+			sleepInfo.put(day, timeArr);
+
+			addSleepToCal("Sleep", sleepInfo);
+		}
+	}
+
 	// RETURNS CALENDAR STRING
 	public String returnCal() {
 		return this.manager.getWeek().toString();
