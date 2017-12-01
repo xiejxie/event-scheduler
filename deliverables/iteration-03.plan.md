@@ -1,7 +1,7 @@
 # Plannable
 
 
-## Iteration 3
+## Iteration 03
 
  * Start date: November 21, 2017
  * End date: December 1, 2017
