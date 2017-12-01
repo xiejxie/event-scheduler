@@ -11,21 +11,41 @@
 
 1) Meeting Structure
 
-We believe that using the same meeting structure as iteration 2 was a good decision. Once again we were able to resolve issues quickly and as they arose instead of waiting until the end of the iteration. We were also able to efficiently plan our tasks to ensure that development was moving forward and code was consistently being written. This led to timely development and so we were able to meet our deadlines and complete most tasks by the end of the iteration. Artifact_01 is an image of our meeting minutes. Artifact_02 is an image of our task board towards the end of the sprint.
+We believe that using the same meeting structure as iteration 2 was a good decision. Once again we were able to resolve issues quickly and as they arose instead of waiting until the end of the iteration. We were also able to efficiently plan our tasks to ensure that development was moving forward and code was consistently being written. This led to timely development and so we were able to meet our deadlines and complete most tasks by the end of the iteration.
+
+![ARTIFACT_01](/deliverables/images/deliverable_3/Artifact_01.jpg)
+
+Artifact_01 is an image of our meeting minutes.
+
+![ARTIFACT_02](/deliverables/images/deliverable_3/Artifact_02.jpg)
+
+Artifact_02 is an image of our task board towards the end of the sprint.
 
 2) Merging Pull Requests
 
-Another good decision we made was having two individuals responsible for merging pull requests. This was a successful decision since it ensured that we were constantly building our application towards the final goal. These two individuals had a clear idea of what our final application should look like and so they could immediately tell if some code changes were aligned with our main goal or not. As a result, we had very few issues relating to one aspect of the application being designed for a certain understanding and another aspect being designed for another understanding. Artifact_03 is an image of pull requests only being merged by one of the two reviewers. 
+Another good decision we made was having two individuals responsible for merging pull requests. This was a successful decision since it ensured that we were constantly building our application towards the final goal. These two individuals had a clear idea of what our final application should look like and so they could immediately tell if some code changes were aligned with our main goal or not. As a result, we had very few issues relating to one aspect of the application being designed for a certain understanding and another aspect being designed for another understanding.
+
+![ARTIFACT_03](/deliverables/images/deliverable_3/Artifact_03.jpg)
+
+Artifact_03 is an image of pull requests only being merged by one of the two reviewers.
 
 3) Code Documentation and Slack Update
 
-Encouraging everyone to document their code and provide synopses of their pull requests was another good decision. This process change greatly improved collaboration as team members could easily hand off parts of code to other members to complete. As a result, very little time was spent trying to figure what had been implemented and how. Instead the focus transitioned to improving code that had already been written. Overall, this resulted in greater team involvement and understanding for all team members and a stronger application. Artifact_04 is an image of a Javadoc and Artifact_05 is an example of a synopses posted to Slack after a team member filed a pull request.
+Encouraging everyone to document their code and provide synopses of their pull requests was another good decision. This process change greatly improved collaboration as team members could easily hand off parts of code to other members to complete. As a result, very little time was spent trying to figure what had been implemented and how. Instead the focus transitioned to improving code that had already been written. Overall, this resulted in greater team involvement and understanding for all team members and a stronger application.
+
+![ARTIFACT_04](/deliverables/images/deliverable_3/Artifact_04.jpg)
+
+Artifact_04 is an image of a Javadoc.
+
+![ARTIFACT_05](/deliverables/images/deliverable_3/Artifact_05.jpg)
+
+Artifact_05 is an example of a synopses posted to Slack after a team member filed a pull request.
 
 #### Decisions that did not turn out as well as we hoped
 
 1) Assigning code tasks due dates
 
-In our planning document, we stated that since this is our last iteration, we wanted to focus on completing code tasks in a timely manner. We suggested that we would assign each task a due date (during the week) to be completed by so we could move on to newer tasks. We started this at the beginning of the sprint but quickly found that due dates were being missed. We were all getting busier with other tests and assignments. Instead, we decided to fall back on our original process and instead have a set of tasks that need to be completed by the end of each week. 
+In our planning document, we stated that since this is our last iteration, we wanted to focus on completing code tasks in a timely manner. We suggested that we would assign each task a due date (during the week) to be completed by so we could move on to newer tasks. We started this at the beginning of the sprint but quickly found that due dates were being missed. We were all getting busier with other tests and assignments. Instead, we decided to fall back on our original process and instead have a set of tasks that need to be completed by the end of each week.
 
 2) Updating of Project Task Board
 
@@ -41,11 +61,21 @@ We feel that over the past two iterations, we were able to take a very good proc
 
 1) Connecting frontEnd with backEnd
 
-The main product goal set out for this iteration was connecting the backEnd with the frontEnd. The solution we are proposing to the problem of student time management is implemented in the backEnd. However, the frontEnd brings this solution to the user in an easy to read format. Both of these aspects need to be connected in order for our application to be considered an effective solution to the main problem. Artifact_06 is an image of the backEnd algorithm splitting the study time according to the tasks the user has entered. This time allocation is then printed to the user in the frontEnd in an easy to read manner. 
+The main product goal set out for this iteration was connecting the backEnd with the frontEnd. The solution we are proposing to the problem of student time management is implemented in the backEnd. However, the frontEnd brings this solution to the user in an easy to read format. Both of these aspects need to be connected in order for our application to be considered an effective solution to the main problem.
+
+![ARTIFACT_06](/deliverables/images/deliverable_3/Artifact_06.jpg)
+
+Artifact_06 is an image of the backEnd algorithm splitting the study time according to the tasks the user has entered. This time allocation is then printed to the user in the frontEnd in an easy to read manner.
 
 2) Increasing user input for tasks and improving scheduling algorithm
 
-For this iteration, we also asked the user to enter more information about the tasks that they have to complete (eg. assignment weighting, course difficulty). This was in order to make our algorithm as realistic as possible. Previously, the algorithm only based study time allocation on task due dates. However, in practical terms, we often use other factors in order to determine how much time to spend on a task. Thus, the algorithm was updated in order to reflect this. Artifact_07 is the page where users are asked to input information about the tasks they must complete. Artifact_08 is the code for the scheduling algorithm located in Plannable/src/backEnd/TODOManager.java.
+For this iteration, we also asked the user to enter more information about the tasks that they have to complete (eg. assignment weighting, course difficulty). This was in order to make our algorithm as realistic as possible. Previously, the algorithm only based study time allocation on task due dates. However, in practical terms, we often use other factors in order to determine how much time to spend on a task. Thus, the algorithm was updated in order to reflect this.
+
+![ARTIFACT_07](/deliverables/images/deliverable_3/Artifact_07.jpg)
+
+Artifact_07 is the page where users are asked to input information about the tasks they must complete.
+
+Artifact_08 is the code for the scheduling algorithm located in Plannable/src/backEnd/TODOManager.java.
 
 3) Exporting calendar as image
 
