@@ -10,7 +10,9 @@ A common use case may proceed as follows: A university student has final exams c
 ## Images
 ### Evaluation Input
 <img src="/images/img2.jpg" alt="Evaluation Input" width=85% />
+
 ### Course Input
 <img src="/images/img3.jpg" alt="Course Input" width=85% />
+
 ### Schedule
 <img src="/images/img1.jpg" alt="Schedule" width=85% />
